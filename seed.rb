@@ -1,3 +1,12 @@
+# Ruby setup
+file '.ruby-version', <<-CODE
+#{RUBY_VERSION}
+CODE
+
+# This would work too, but why include the patch level unless necesary, right?
+# #{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}
+
+
 # Gem setup
 gem 'haml'
 gem 'unicorn'
@@ -7,6 +16,7 @@ gem 'bootstrap-sass'
 gem 'compass-rails'
 
 run 'gem install foreman'
+run 'gem install compass'
 
 # Because no one likes Turbolinks.
 gsub_file "Gemfile", /^#\s*Turbolinks.*$/,'# No one likes Turbolinks.'
@@ -243,7 +253,8 @@ puts "\n"
 puts "                      Thanks for planting a seed!"
 puts "\nAn app with a splash page and some great tools has just been created!"
 puts "The next step is to start the server and watch your seed grow!"
-puts "\n\t$ foreman start"
+puts "\n\t$ cd #{ARGV[0]}"
+puts "\t$ foreman start"
 puts "\n[0;32m"
 puts <<-ASCII_ART
                                         _____
