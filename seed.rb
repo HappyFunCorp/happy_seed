@@ -1,27 +1,104 @@
+APP_NAME = ARGV[0].humanize
+
+# Always enabled for now. But I'll at least leave it configurable
+USE_BOOTSTRAP = true
+
 # Ruby setup
 file '.ruby-version', <<-CODE
-#{RUBY_VERSION}
+#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}
 CODE
 
-# This would work too, but why include the patch level unless necesary, right?
-# #{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}
+
+# Just in case:
+remove_file 'public/index.html'
+
+
+# Environment setup
+file '.env', <<-CODE
+MAILER_HOST=localhost:3000
+CODE
 
 
 # Gem setup
-gem 'haml'
-gem 'unicorn'
-gem 'dotenv'
-gem 'rails_12factor'
-gem 'bootstrap-sass'
-gem 'compass-rails'
 
-run 'gem install foreman'
-run 'gem install compass'
+# Is it proper to go ahead and install non-proeject gems?
+#
+# Well, we'll at least check and see if it's already accessible.
+#
+run 'gem install foreman' unless require 'foreman'
+
+# Is this really necessary?
+run 'gem install compass' unless require 'compass'
+
+
 
 # Because no one likes Turbolinks.
 gsub_file "Gemfile", /^#\s*Turbolinks.*$/,'# No one likes Turbolinks.'
 gsub_file "Gemfile", /^gem\s+["']turbolinks["'].*$/,'# gem \'turbolinks\''
 gsub_file "app/assets/javascripts/application.js", /\/\/=\s+require\s+turbolinks.*$/, '// require turbolinks'
+
+
+
+# Nice to have:
+gem 'haml-rails'
+gem 'unicorn'
+gem 'dotenv'
+gem 'rails_12factor'
+gem 'meta-tags', :require => 'meta_tags'
+
+
+
+# Feels like there's some redundancy here:
+gem 'bootstrap-sass'
+gem 'compass-rails'
+gem 'compass-h5bp', :group=>:assets
+gem 'html5-rails'
+
+
+
+
+
+# Generate html5 boilerplate:
+run 'rails generate html5:install'
+
+
+# Clean up stupid stuff the html5 boilerplate generator has done:
+
+# The last thing we want is important includes buried in the gem somewhere:
+run 'rails generate html5:partial --all'
+
+# Not a chance we're letting any config into yaml files:
+remove_file 'config/html5_rails.yml'
+
+# Don't even leave the door open for yaml config:
+gsub_file 'app/views/application/_javascripts.html.haml', /-# Looks for google_account_id.*\n/, ''
+gsub_file 'app/views/application/_javascripts.html.haml', /google_account_id/, "ENV['GOOGLE_ACCOUNT_ID']"
+append_file '.env', 'GOOGLE_ACCOUNT_ID='
+
+
+# You've overstepped your bounds, html5 boilerplate. Please don't set our page titles:
+gsub_file "app/views/application/_head.html.haml", /^.*%title.*$/, ''
+gsub_file "app/views/application/_head.html.haml", /^.*==\s*#\{\s*controller\.controller_name.*\}.*\n/, ''
+
+inject_into_file 'app/views/application/_head.html.haml', <<-CODE, :before=>/^.*%meta.*description.*\n/
+  = display_meta_tags :site => '#{APP_NAME}'
+
+CODE
+
+
+append_file 'app/assets/stylesheets/application/index.css.scss', <<-CODE
+
+//-----------------------------------------
+// Bootstrap import
+//-----------------------------------------
+@import 'bootstrap';
+
+//-----------------------------------------
+// Add your styles below this line!
+//-----------------------------------------
+CODE
+
+
 
 
 # SERVER SETUP
@@ -32,10 +109,6 @@ CODE
 
 file '.foreman', <<-CODE
 port: 3000
-CODE
-
-file '.env', <<-CODE
-MAILER_HOST=localhost:3000
 CODE
 
 
@@ -84,105 +157,6 @@ environment "config.action_mailer.default_url_options = { host: ENV['MAILER_HOST
 
 
 
-
-# Splash page setup
-
-BOOTSTRAP_VARIABLES_PATH= "#{`bundle show bootstrap-sass`.gsub(/\n/,'')}/vendor/assets/stylesheets/bootstrap/_variables.scss"
-
-run 'mv app/assets/stylesheets/application.css app/assets/stylesheets/application.css.scss'
-
-
-file 'app/assets/stylesheets/_variables.css.scss', <<-CODE
-
-/*
- * Bootstrap customization variables. You can find a full list of variables here:
- *
- *  http://getbootstrap.com/customize/#less-variables
- *
- * Or here (For reference only! Don't modify this in the gem! Specify changes below.):
- *
- * #{BOOTSTRAP_VARIABLES_PATH}
- *
- * For example:
- *
- * $navbar-default-bg: #312312;
- * $light-orange: #ff8c00;
- * $navbar-default-color: $light-orange;
- */
-
-
-
-CODE
-
-
-
-
-file 'app/assets/stylesheets/styles.css.scss', <<-CODE
-
-/*
- * Import something from Compass. It's really useful. You should check it out.
- */
-@import "compass/css3/images";
-
-/*
- * Bootstrap customization variables. You can find a full list of variables here:
- *
- *  http://getbootstrap.com/customize/#less-variables
- *
- * Or here (For reference only! Don't modify this in the gem! Specify changes in _variables.css.scss):
- *
- * #{BOOTSTRAP_VARIABLES_PATH}
- *
- */
-@import '_variables.css';
-
-/*
- * This is where bootstrap gets included for the project. Don't include it in application.css
- * because then you won't be able to customize it.
- */
-@import 'bootstrap.css';
-
-
-$masthead-top: #138;
-$masthead-bot: #188;
-
-.splash-masthead {
-
-  color: #fff;
-
-  padding-top: 120px;
-  padding-bottom: 120px;
-
-  background-color: 0.5*($masthead-top + $masthead-bot);
-  @include filter-gradient($masthead-top, $masthead-bot, vertical);
-  @include background-image(linear-gradient(top, $masthead-top 0%, $masthead-bot 100%));
-
-
-  form {
-    margin-top: 80px;
-  }
-}
-CODE
-
-
-
-
-
-run 'rm app/views/layouts/application.html.erb'
-
-file 'app/views/layouts/application.html.haml', <<-CODE
-!!!
-%html
-  %head
-    %title Testapp
-    = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
-  %body
-    = yield
-CODE
-
-
 file "app/controllers/splash_controller.rb", <<-CODE
 class SplashController < ApplicationController
 
@@ -207,7 +181,7 @@ file "app/views/splash/index.html.haml", <<-CODE
       .col-lg-6.col-lg-offset-3
         = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
           .form-group
-            = text_field_tag :test, '',  :class=>'form-control'
+            = text_field_tag :test, '',  :class=>'form-control', :placeholder=>'Email address'
           .form-group.text-center
             = submit_tag 'Submit', :class=>'btn btn-primary'
 
@@ -270,4 +244,3 @@ ________________________________|L_____________________________________
                               |  /   \\  /
 ASCII_ART
 puts "[0;34m\n\n***********************************************************************[0m"
-
