@@ -244,9 +244,6 @@ git :init
 git add: "."
 git commit: "-a -m 'Initial commit'"
 
-# Keep it simple
-run 'echo ".env" >> .gitignore'
-
 
 puts "[0;34m***********************************************************************"
 puts "\n"
