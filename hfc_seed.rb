@@ -240,7 +240,7 @@ run 'echo ".env" >> .gitignore'
 
 puts "[0;34m***********************************************************************"
 puts "\n"
-puts "               Thanks for planting a HappyFunCorp Seed!"
+puts "                      Thanks for planting a seed!"
 puts "\nAn app with a splash page and some great tools has just been created!"
 puts "The next step is to start the server and watch your seed grow!"
 puts "\n\t$ foreman start"
