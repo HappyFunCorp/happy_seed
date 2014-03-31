@@ -89,7 +89,7 @@ file 'app/assets/stylesheets/_variables.css.scss', <<-CODE
  *
  *  http://getbootstrap.com/customize/#less-variables
  *
- * Or here (For reference only! Don't modify this in the gem!! Specify changes below.):
+ * Or here (For reference only! Don't modify this in the gem! Specify changes below.):
  *
  * #{BOOTSTRAP_VARIABLES_PATH}
  *
@@ -119,7 +119,7 @@ file 'app/assets/stylesheets/styles.css.scss', <<-CODE
  *
  *  http://getbootstrap.com/customize/#less-variables
  *
- * Or here (For reference only! Don't modify this in the gem!! Specify changes in _variables.css.scss):
+ * Or here (For reference only! Don't modify this in the gem! Specify changes in _variables.css.scss):
  *
  * #{BOOTSTRAP_VARIABLES_PATH}
  *
@@ -234,15 +234,14 @@ git :init
 git add: "."
 git commit: "-a -m 'Initial commit'"
 
-file ".gitignore", <<-CODE
-.env
-CODE
+# Keep it simple
+run 'echo ".env" >> .gitignore'
 
 
 puts "[0;34m***********************************************************************"
 puts "\n"
 puts "               Thanks for planting a HappyFunCorp Seed!"
-puts "\nAn app with a splash page and a few great tools has just been created!!"
+puts "\nAn app with a splash page and some great tools has just been created!"
 puts "The next step is to start the server and watch your seed grow!"
 puts "\n\t$ foreman start"
 puts "\n[0;32m"
