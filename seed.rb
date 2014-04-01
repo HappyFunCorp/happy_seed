@@ -256,6 +256,8 @@ file "app/views/splash/index.html.haml", <<-CODEBLOCK
   
       %section
         %h2 AWS Setup
+
+        %p Start by setting the keys in the <code>.env</code> file if your project uses AWS/S3. Fun fact: If you call your variables <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>, the <code>aws-sdk</code> gem finds them and configures itself automatically!
   
         %p You should ensure that <strong>the client owns their own AWS account</strong>. That means:
         %ol
