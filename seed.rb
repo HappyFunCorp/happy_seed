@@ -4,7 +4,7 @@
 APP_NAME = ARGV[0].humanize
 
 # Always enabled for now. But I'll at least leave it configurable
-USE_BOOTSTRAP = true
+CSS_FRAMEWORK='bootstrap'
 
 # Ruby setup
 file '.ruby-version', <<-CODE
@@ -63,7 +63,7 @@ gem 'meta-tags', :require => 'meta_tags'
 
 
 # Feels like there's some redundancy here:
-gem 'bootstrap-sass' if USE_BOOTSTRAP
+gem 'bootstrap-sass' if CSS_FRAMEWORK=='bootstrap'
 gem 'compass-rails'
 gem 'compass-h5bp', :group=>:assets
 gem 'html5-rails'
@@ -105,7 +105,7 @@ CODE
 gsub_file 'app/assets/stylesheets/application/index.css.scss', /\/\/\s*@import 'compass/, "@import 'compass"
 
 # Inject the bootstrap include into our css:
-if USE_BOOTSTRAP
+if CSS_FRAMEWORK=='bootstrap'
   inject_into_file 'app/assets/stylesheets/application/index.css.scss', <<-CODE, :before=>/.*Custom imports/
 // Bootstrap import
 //-----------------------------------------
@@ -380,6 +380,7 @@ puts "\nAn app with a splash page and some great tools has just been created!"
 puts "The next step is to start the server and watch your seed grow!"
 puts "\n\t$ cd #{ARGV[0]}"
 puts "\t$ foreman start"
+puts "\t --> http://localhost:3000/"
 puts "\n[0;32m"
 puts <<-ASCII_ART
                                         _____
