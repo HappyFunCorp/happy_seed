@@ -16,11 +16,9 @@ CODE
 # .ENV SETUP
 #---------------------------------------------------------------------
 file '.env', <<-CODE
-MAILER_HOST=localhost:3000
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 S3_BUCKET_NAME=
-GOOGLE_ACCOUNT_ID=
 CODE
 
 
@@ -32,10 +30,19 @@ CODE
 #
 # Well, we'll at least check and see if it's already accessible.
 #
-run 'gem install foreman' unless require 'foreman'
+begin
+  require 'foreman'
+rescue LoadError
+  run 'gem install foreman'
+end
+
 
 # Is this really necessary?
-run 'gem install compass' unless require 'compass'
+begin
+  require 'compass'
+rescue LoadError
+  run 'gem install compass'
+end
 
 
 
@@ -79,8 +86,8 @@ remove_file 'config/html5_rails.yml'
 
 # Don't even leave the door open for yaml config:
 gsub_file 'app/views/application/_javascripts.html.haml', /-# Looks for google_account_id.*\n/, ''
-gsub_file 'app/views/application/_javascripts.html.haml', /google_account_id/, "ENV['GOOGLE_ACCOUNT_ID']"
-append_file '.env', 'GOOGLE_ACCOUNT_ID='
+gsub_file 'app/views/application/_javascripts.html.haml', /google_account_id/, "ENV['GOOGLE_ANALYTICS_SITE_ID']"
+append_file '.env', 'GOOGLE_ANALYTICS_SITE_ID='
 
 
 # You've overstepped your bounds, html5 boilerplate. Please don't set our page titles:
@@ -165,8 +172,8 @@ CODE
 
 
 # Basic environment config
-environment "config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }", env: 'development'
-environment "config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }", env: 'production'
+#environment "config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }", env: 'development'
+#environment "config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }", env: 'production'
 
 
 
@@ -251,7 +258,7 @@ file "app/views/splash/index.html.haml", <<-CODEBLOCK
       %section
         %h2 Google Analytics Setup
 
-        %p All you have to do is set the <code>GOOGLE_ACCOUNT_ID</code> environment variable for each environment and you're done! Create the accounts and do it now!
+        %p All you have to do is set the <code>GOOGLE_ANALYTICS_SITE_ID</code> environment variable for each environment and you're done! Create the accounts and do it now!
   
   
       %section
