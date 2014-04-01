@@ -1,3 +1,6 @@
+#---------------------------------------------------------------------
+# CONFIG
+#---------------------------------------------------------------------
 APP_NAME = ARGV[0].humanize
 
 # Always enabled for now. But I'll at least leave it configurable
@@ -9,17 +12,21 @@ file '.ruby-version', <<-CODE
 CODE
 
 
-# Just in case:
-remove_file 'public/index.html'
-
-
-# Environment setup
+#---------------------------------------------------------------------
+# .ENV SETUP
+#---------------------------------------------------------------------
 file '.env', <<-CODE
 MAILER_HOST=localhost:3000
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+S3_BUCKET_NAME=
+GOOGLE_ACCOUNT_ID=
 CODE
 
 
-# Gem setup
+#---------------------------------------------------------------------
+# GEM SETUP
+#---------------------------------------------------------------------
 
 # Is it proper to go ahead and install non-proeject gems?
 #
@@ -49,7 +56,7 @@ gem 'meta-tags', :require => 'meta_tags'
 
 
 # Feels like there's some redundancy here:
-gem 'bootstrap-sass'
+gem 'bootstrap-sass' if USE_BOOTSTRAP
 gem 'compass-rails'
 gem 'compass-h5bp', :group=>:assets
 gem 'html5-rails'
@@ -86,18 +93,26 @@ inject_into_file 'app/views/application/_head.html.haml', <<-CODE, :before=>/^.*
 CODE
 
 
-inject_into_file 'app/assets/stylesheets/application/index.css.scss', <<-CODE, :before=>/.*Custom imports/
+
+# Enable compass:
+gsub_file 'app/assets/stylesheets/application/index.css.scss', /\/\/\s*@import 'compass/, "@import 'compass"
+
+# Inject the bootstrap include into our css:
+if USE_BOOTSTRAP
+  inject_into_file 'app/assets/stylesheets/application/index.css.scss', <<-CODE, :before=>/.*Custom imports/
 // Bootstrap import
 //-----------------------------------------
 @import 'bootstrap';
 
 //-----------------------------------------
 CODE
+end
 
 
 
-
+#---------------------------------------------------------------------
 # SERVER SETUP
+#---------------------------------------------------------------------
 
 file './Procfile', <<-CODE
 web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
@@ -106,6 +121,8 @@ CODE
 file '.foreman', <<-CODE
 port: 3000
 CODE
+
+
 
 
 # Configure unicorn
@@ -153,6 +170,17 @@ environment "config.action_mailer.default_url_options = { host: ENV['MAILER_HOST
 
 
 
+
+
+
+#---------------------------------------------------------------------
+# CREATE A SPLASH PAGE
+#---------------------------------------------------------------------
+
+# Just in case:
+remove_file 'public/index.html'
+
+
 file "app/controllers/splash_controller.rb", <<-CODE
 class SplashController < ApplicationController
 
@@ -166,8 +194,8 @@ end
 CODE
 
 
-file "app/views/splash/index.html.haml", <<-CODE
-%main.splash-masthead
+file "app/views/splash/index.html.haml", <<-CODEBLOCK
+%main.masthead
   .container
     .row.text-center
       .col-lg-12
@@ -183,20 +211,134 @@ file "app/views/splash/index.html.haml", <<-CODE
 
 .container
   .row
-    .col-lg-12
-      %h1 Here's what this template installed:
+    .col-lg-8.col-lg-offset-2
+      %h1.text-center Thanks for planting this seed!
 
-      %h3 Bootstrap
-      %p You should really be using a framework.
+      %p.lead.text-center Lots of great things just happened! You're not done though. Please follow the instructions below to get this project off to a good start!
 
-      %h3 This splash page
-      %code= '/app/views/splash/index.html.haml'
+      %section
+        %h2 Environments
+        %p Please set up as many accounts as are necessary for all external services. That usually means development, staging, and production accounts.
 
-      %h3 Some Gems
-      
-      
+        %h4 Development
+        %p Place all configuration variables in <code>.env</code>, as in:
 
+        :ruby
+          code = <<-CODE
+          # .env:
+          S3_BUCKET_NAME=development-bucket-name
+          AWS_ACCESS_KEY_ID=<development key>
+          AWS_SECRET_ACCESS_KEY=<development key>
+          CODE
+        %pre~ code
+
+        %p There should not be any sensitive information in this file, so it is committed to the repo.
+
+
+        %h4 Staging
+        %p If you're using Heroku, all config variables should be set using `heroku config`, as in:
+
+        %pre $ heroku config:add -a your-app-stage S3_BUCKET_NAME=assets.your-app-stage.herokuapp.com
+
+        %p If you're not using Heroku, you should still be using environment variables for <strong>all</strong> config!
+
+        
+        %h4 Production
+        %p Same thing. Use environment variables!
+
+        %pre $ heroku config:add -a your-app S3_BUCKET_NAME=assets.your-app.com
+
+      %section
+        %h2 Google Analytics Setup
+
+        %p All you have to do is set the <code>GOOGLE_ACCOUNT_ID</code> environment variable for each environment and you're done! Create the accounts and do it now!
+  
+  
+      %section
+        %h2 AWS Setup
+  
+        %p You should ensure that <strong>the client owns their own AWS account</strong>. That means:
+        %ol
+          %li The client sets up their account if they don't currently have one
+          %li The client sends you credentials
+          %li You use AWS Identity and Access Management (IAM) to set up developer accounts and an AWS login page.
+          %li The client changes their login password, if desired.
+          %li Set up buckets with restricted access keys for all necessary environments. See the Codex <a href="http://codex.happyfuncorp.com/slides/11#1" target="_blank">AWS Setup and Security</a> presentation for a walkthrough and links to the relevant resources.
+
+        Most importantly, ensure that the project <strong>does not end up on the HFC AWS account</strong>.
+
+      %section
+        %h2 Bootstrap
+        %p Bootstrap is really great! The current version is IE8 compatible. That's worth a lot. It's customizable via Sass and all the footwork is done for you! You just have to edit <code>application/variables.css.scss</code>.
+        %p Here's a summary of the CSS setup:
+        %dl
+          %dt
+            %code application/index.css.scss:
+          %dd
+            %p The CSS entry point that imports all the other css. Variables are shared among any files imported here.
+
+          %dt
+            %code application/variables.css.scss:
+          %dd
+            %p
+              A list of custom Sass varialbes accessible to anything imported by in `index.css.scss`. This is where you should puts Bootstrap customizations. You can find a full list of Bootstrap variables at:
+              = link_to 'Customize Bootstrap', 'http://getbootstrap.com/customize/', :target=>:_blank
+
+          %dt
+            %code application/layout.css.scss:
+          %dd
+            %p Your custom CSS goes here!
+
+          %dt
+            %code application/media_queries.css.scss:
+          %dd
+            %p
+              %span This is where any extra media queries you need should be place. Note that you have access to
+              %span= link_to "Bootstrap's media query helpers"
+              %span> . Use them!
+
+      %section
+        %h2 Other things this template adds
+
+        %h4 HTML5 Boilerplate
+
+        %p HTML5 Boilerplate includes things every project should have like normalize.css, Modernizr, Compass, and a placeholder polyfill for IE. It does some heavy reorganization of your application layout, but it's for the best! Go with it!
+        %p
+          &rarr; Read more about
+          = link_to 'HTML5 Boilerplate', 'http://html5boilerplate.com/', :target=>:_blank
+
+
+
+        %h4 This splash page
+        %code= '/app/views/splash/index.html.haml'
+
+      %section
+        %h2 Improvements?
+
+        %p If you have bug reports or ideas about how this template can be improved, please suggest them on the <a href="https://github.com/sublimeguile/seed/issues" target="_blank">Github issues page</a>! Thanks!
+
+CODEBLOCK
+
+
+# Style the splash page
+append_file 'app/assets/stylesheets/application/layout.css.scss', <<-CODE
+
+.splash .masthead {
+  padding-top: 120px;
+  padding-bottom: 120px;
+
+  background-color: #1e5799;
+  @include filter-gradient(#1e5799, #7db9e8, vertical);
+  @include background-image(linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%));
+}  
+
+.splash section {
+    margin-bottom: 5em;
+}
 CODE
+
+
+
 
 
 file "app/views/splash/signup.js.erb", <<-CODE
@@ -209,12 +351,19 @@ route "root to: 'splash#index'"
 
 
 
+#---------------------------------------------------------------------
 # GIT SETUP
+#---------------------------------------------------------------------
 git :init
 git add: "."
 git commit: "-a -m 'Initial commit'"
 
 
+
+
+#---------------------------------------------------------------------
+# ALL DONE
+#---------------------------------------------------------------------
 puts "[0;34m***********************************************************************"
 puts "\n"
 puts "                      Thanks for planting a seed!"
