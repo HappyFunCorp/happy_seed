@@ -77,24 +77,20 @@ append_file '.env', 'GOOGLE_ACCOUNT_ID='
 
 
 # You've overstepped your bounds, html5 boilerplate. Please don't set our page titles:
-gsub_file "app/views/application/_head.html.haml", /^.*%title.*$/, ''
-gsub_file "app/views/application/_head.html.haml", /^.*==\s*#\{\s*controller\.controller_name.*\}.*\n/, ''
+gsub_file "app/views/application/_head.html.haml", /^.*%title.*\n/s, ''
+gsub_file "app/views/application/_head.html.haml", /^.*==\s*#\{\s*controller\.controller_name.*\}.*\n/s, ''
 
-inject_into_file 'app/views/application/_head.html.haml', <<-CODE, :before=>/^.*%meta.*description.*\n/
+inject_into_file 'app/views/application/_head.html.haml', <<-CODE, :before=>/^.*%meta.*description.*\n/s
   = display_meta_tags :site => '#{APP_NAME}'
 
 CODE
 
 
-append_file 'app/assets/stylesheets/application/index.css.scss', <<-CODE
-
-//-----------------------------------------
+inject_into_file 'app/assets/stylesheets/application/index.css.scss', <<-CODE, :before=>/.*Custom imports/
 // Bootstrap import
 //-----------------------------------------
 @import 'bootstrap';
 
-//-----------------------------------------
-// Add your styles below this line!
 //-----------------------------------------
 CODE
 
