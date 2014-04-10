@@ -113,6 +113,101 @@ if CSS_FRAMEWORK=='bootstrap'
 
 //-----------------------------------------
 CODE
+
+file 'lib/templates/haml/scaffold/_form.html.haml', <<'CODE1'
+= form_for @<%= singular_table_name %>, :html => { :class => "form-horizontal" } do |f|
+  -if @<%= singular_table_name %>.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
+
+      %ul
+        - @<%= singular_table_name %>.errors.full_messages.each do |msg|
+          %li= msg
+
+<% for attribute in attributes -%>
+  .form-group{ :class => @<%= singular_table_name %>.errors[:<%= attribute.name %>].size > 0 ? "has-error" : ""}
+    = f.label :<%= attribute.name %>, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.<%= attribute.field_type %> :<%= attribute.name %>, :class => 'form-control'
+<% end -%>
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit :class => 'btn btn-primary'
+CODE1
+
+file 'lib/templates/haml/scaffold/edit.html.haml', <<-'CODE'
+.page-header
+  = link_to <%= index_helper %>_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to @<%= singular_table_name %>, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-info-sign
+    Show
+  %h1 Editing <%= singular_table_name %>
+
+= render 'form'
+CODE
+
+file 'lib/templates/haml/scaffold/index.html.haml', <<-'CODE'
+.page-header
+  = link_to new_<%= singular_table_name %>_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New <%= human_name %>
+  %h1 Listing <%= plural_table_name %>
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+<% for attribute in attributes -%>
+        %th <%= attribute.human_name %>
+<% end -%>
+        %th
+        %th
+        %th
+
+    %tbody
+      - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+        %tr
+<% for attribute in attributes -%>
+          %td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+          %td= link_to 'Show', <%= singular_table_name %>
+          %td= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
+          %td= link_to 'Destroy', <%= singular_table_name %>, :data => { confirm: 'Are you sure?' }, :method => :delete
+CODE
+
+file 'lib/templates/haml/scaffold/new.html.haml', <<-'CODE'
+.page-header
+  = link_to <%= index_helper %>_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  %h1 New <%= singular_table_name %>
+
+= render 'form'
+
+CODE
+
+file 'lib/templates/haml/scaffold/show.html.haml', <<-'CODE'
+.page-header
+  = link_to <%= index_helper %>_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show <%= singular_table_name %>
+
+%dl.dl-horizontal
+  <%- for attribute in attributes -%>
+  %dt <%= attribute.human_name %>:
+  %dd= @<%= singular_table_name %>.<%= attribute.name %>
+  <%- end -%>
+
+CODE
+
+
 end
 
 
