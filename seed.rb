@@ -1,6 +1,9 @@
 #---------------------------------------------------------------------
 # CONFIG
 #---------------------------------------------------------------------
+
+SEED_DIR = ENV['SEED_DIR']
+
 APP_NAME = ARGV[0].humanize
 
 # Always enabled for now. But I'll at least leave it configurable
@@ -13,13 +16,33 @@ CODE
 
 
 #---------------------------------------------------------------------
+# HELPER FUNCTIONS
+#---------------------------------------------------------------------
+
+
+def seed_file_content(filename)
+  _f = open( File.join(SEED_DIR, filename), 'r' )
+  _content = _f.read
+  _f.close
+  _content
+end
+
+def seed_template_content(filename)
+  seed_file_content File.join( 'templates', filename )
+end
+
+def seed_file( filename )
+  file filename, seed_template_content(filename)
+end
+
+def seed_append( filename )
+  append_file filename, seed_template_content(filename)
+end
+
+#---------------------------------------------------------------------
 # .ENV SETUP
 #---------------------------------------------------------------------
-file '.env', <<-CODE
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-S3_BUCKET_NAME=
-CODE
+seed_file '.env'
 
 
 #---------------------------------------------------------------------
@@ -28,22 +51,23 @@ CODE
 
 # Is it proper to go ahead and install non-proeject gems?
 #
-# Well, we'll at least check and see if it's already accessible.
+# Well, we'll at least check and see if they're already accessible just
+# to speed things up a bit.
 #
-begin
-  require 'foreman'
-rescue LoadError
-  run 'gem install foreman'
+#   foreman:   nice for running unicorn/resque easily
+#   rdiscount: used by generator to render README.md into the project
+#   compass:   not clear if it's actually necessary
+#
+%w( foreman rdiscount compass ).each do |_gem|
+  begin
+    print "Checking for [0;32m#{_gem}[0m gem... "
+    require _gem
+    puts '[0;32minstalled[0m'
+  rescue LoadError
+    puts '[0;33mnot installed[0m'
+    run "gem install #{_gem}"
+  end
 end
-
-
-# Is this really necessary?
-begin
-  require 'compass'
-rescue LoadError
-  run 'gem install compass'
-end
-
 
 
 # Because no one likes Turbolinks.
@@ -89,7 +113,6 @@ gsub_file 'app/views/application/_javascripts.html.haml', /-# Looks for google_a
 gsub_file 'app/views/application/_javascripts.html.haml', /google_account_id/, "ENV['GOOGLE_ANALYTICS_SITE_ID']"
 append_file '.env', 'GOOGLE_ANALYTICS_SITE_ID='
 
-
 # You've overstepped your bounds, html5 boilerplate. Please don't set our page titles:
 gsub_file "app/views/application/_head.html.haml", /^.*%title.*\n/s, ''
 gsub_file "app/views/application/_head.html.haml", /^.*==\s*#\{\s*controller\.controller_name.*\}.*\n/s, ''
@@ -106,107 +129,15 @@ gsub_file 'app/assets/stylesheets/application/index.css.scss', /\/\/\s*@import '
 
 # Inject the bootstrap include into our css:
 if CSS_FRAMEWORK=='bootstrap'
-  inject_into_file 'app/assets/stylesheets/application/index.css.scss', <<-CODE, :before=>/.*Custom imports/
-// Bootstrap import
-//-----------------------------------------
-@import 'bootstrap';
+  inject_into_file 'app/assets/stylesheets/application/index.css.scss',
+                   seed_template_content('app/assets/stylesheets/application/index.css.scss'),
+                   :before=>/.*Custom imports/
 
-//-----------------------------------------
-CODE
-
-file 'lib/templates/haml/scaffold/_form.html.haml', <<'CODE1'
-= form_for @<%= singular_table_name %>, :html => { :class => "form-horizontal" } do |f|
-  -if @<%= singular_table_name %>.errors.any?
-    .alert.alert-danger.alert-dismissable
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-      %h4= "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
-
-      %ul
-        - @<%= singular_table_name %>.errors.full_messages.each do |msg|
-          %li= msg
-
-<% for attribute in attributes -%>
-  .form-group{ :class => @<%= singular_table_name %>.errors[:<%= attribute.name %>].size > 0 ? "has-error" : ""}
-    = f.label :<%= attribute.name %>, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.<%= attribute.field_type %> :<%= attribute.name %>, :class => 'form-control'
-<% end -%>
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit :class => 'btn btn-primary'
-CODE1
-
-file 'lib/templates/haml/scaffold/edit.html.haml', <<-'CODE'
-.page-header
-  = link_to <%= index_helper %>_path, :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  = link_to @<%= singular_table_name %>, :class => 'btn btn-primary' do
-    %span.glyphicon.glyphicon-info-sign
-    Show
-  %h1 Editing <%= singular_table_name %>
-
-= render 'form'
-CODE
-
-file 'lib/templates/haml/scaffold/index.html.haml', <<-'CODE'
-.page-header
-  = link_to new_<%= singular_table_name %>_path, :class => 'btn btn-primary' do
-    %span.glyphicon.glyphicon-plus
-    New <%= human_name %>
-  %h1 Listing <%= plural_table_name %>
-
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
-<% for attribute in attributes -%>
-        %th <%= attribute.human_name %>
-<% end -%>
-        %th
-        %th
-        %th
-
-    %tbody
-      - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
-        %tr
-<% for attribute in attributes -%>
-          %td= <%= singular_table_name %>.<%= attribute.name %>
-<% end -%>
-          %td= link_to 'Show', <%= singular_table_name %>
-          %td= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>)
-          %td= link_to 'Destroy', <%= singular_table_name %>, :data => { confirm: 'Are you sure?' }, :method => :delete
-CODE
-
-file 'lib/templates/haml/scaffold/new.html.haml', <<-'CODE'
-.page-header
-  = link_to <%= index_helper %>_path, :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  %h1 New <%= singular_table_name %>
-
-= render 'form'
-
-CODE
-
-file 'lib/templates/haml/scaffold/show.html.haml', <<-'CODE'
-.page-header
-  = link_to <%= index_helper %>_path, :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  = link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), :class => 'btn btn-primary' do
-    %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1 Show <%= singular_table_name %>
-
-%dl.dl-horizontal
-  <%- for attribute in attributes -%>
-  %dt <%= attribute.human_name %>:
-  %dd= @<%= singular_table_name %>.<%= attribute.name %>
-  <%- end -%>
-
-CODE
-
+  seed_file 'lib/templates/haml/scaffold/_form.html.haml'
+  seed_file 'lib/templates/haml/scaffold/edit.html.haml'
+  seed_file 'lib/templates/haml/scaffold/index.html.haml'
+  seed_file 'lib/templates/haml/scaffold/new.html.haml'
+  seed_file 'lib/templates/haml/scaffold/show.html.haml'
 
 end
 
@@ -216,241 +147,27 @@ end
 # SERVER SETUP
 #---------------------------------------------------------------------
 
-file './Procfile', <<-CODE
-web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
-CODE
-
-file '.foreman', <<-CODE
-port: 3000
-CODE
-
-
-
-
-# Configure unicorn
-
-file './config/unicorn.rb', <<-CODE
-worker_processes 3
-timeout 30
-preload_app true
- 
-before_fork do |server, worker|
-  # Replace with MongoDB or whatever
-  if defined?(ActiveRecord::Base)
-    ActiveRecord::Base.connection.disconnect!
-    Rails.logger.info('Disconnected from ActiveRecord')
-  end
- 
-  # If you are using Redis but not Resque, change this
-  if defined?(Resque)
-    Resque.redis.quit
-    Rails.logger.info('Disconnected from Redis')
-  end
- 
-  sleep 1
-end
- 
-after_fork do |server, worker|
-  # Replace with MongoDB or whatever
-  if defined?(ActiveRecord::Base)
-    ActiveRecord::Base.establish_connection
-    Rails.logger.info('Connected to ActiveRecord')
-  end
- 
-  # If you are using Redis but not Resque, change this
-  if defined?(Resque)
-    Resque.redis = ENV['REDIS_URI']
-    Rails.logger.info('Connected to Redis')
-  end
-end
-CODE
-
-
-# Basic environment config
-#environment "config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }", env: 'development'
-#environment "config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }", env: 'production'
-
-
-
-
+seed_file 'Procfile'
+seed_file '.foreman'
+seed_file 'config/unicorn.rb'
 
 
 #---------------------------------------------------------------------
 # CREATE A SPLASH PAGE
 #---------------------------------------------------------------------
 
-# Just in case:
 remove_file 'public/index.html'
-
-
-file "app/controllers/splash_controller.rb", <<-CODE
-class SplashController < ApplicationController
-
-  def index
-  end
-
-  def signup
-  end
-
-end
-CODE
-
-
-file "app/views/splash/index.html.haml", <<-CODEBLOCK
-%main.masthead
-  .container
-    .row.text-center
-      .col-lg-12
-        %h1= "\#{Rails.application.class.parent_name} Splash Page"
-          
-    .row
-      .col-lg-6.col-lg-offset-3
-        = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
-          .form-group
-            = text_field_tag :test, '',  :class=>'form-control', :placeholder=>'Email address'
-          .form-group.text-center
-            = submit_tag 'Submit', :class=>'btn btn-primary'
-
-.container
-  .row
-    .col-lg-8.col-lg-offset-2
-      %h1.text-center Thanks for planting this seed!
-
-      %p.lead.text-center Lots of great things just happened! You're not done though. Please follow the instructions below to get this project off to a good start!
-
-      %section
-        %h2 Environments
-        %p Please set up as many accounts as are necessary for all external services. That usually means development, staging, and production accounts.
-
-        %h4 Development
-        %p Place all configuration variables in <code>.env</code>, as in:
-
-        :ruby
-          code = <<-CODE
-          # .env:
-          S3_BUCKET_NAME=development-bucket-name
-          AWS_ACCESS_KEY_ID=<development key>
-          AWS_SECRET_ACCESS_KEY=<development key>
-          CODE
-        %pre~ code
-
-        %p There should not be any sensitive information in this file, so it is committed to the repo.
-
-
-        %h4 Staging
-        %p If you're using Heroku, all config variables should be set using `heroku config`, as in:
-
-        %pre $ heroku config:add -a your-app-stage S3_BUCKET_NAME=assets.your-app-stage.herokuapp.com
-
-        %p If you're not using Heroku, you should still be using environment variables for <strong>all</strong> config!
-
-        
-        %h4 Production
-        %p Same thing. Use environment variables!
-
-        %pre $ heroku config:add -a your-app S3_BUCKET_NAME=assets.your-app.com
-
-      %section
-        %h2 Google Analytics Setup
-
-        %p All you have to do is set the <code>GOOGLE_ANALYTICS_SITE_ID</code> environment variable for each environment and you're done! Create the accounts and do it now!
-  
-  
-      %section
-        %h2 AWS Setup
-
-        %p Start by setting the keys in the <code>.env</code> file if your project uses AWS/S3. Fun fact: If you call your variables <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>, the <code>aws-sdk</code> gem finds them and configures itself automatically!
-  
-        %p You should ensure that <strong>the client owns their own AWS account</strong>. That means:
-        %ol
-          %li The client sets up their account if they don't currently have one
-          %li The client sends you credentials
-          %li You use AWS Identity and Access Management (IAM) to set up developer accounts and an AWS login page.
-          %li The client changes their login password, if desired.
-          %li Set up buckets with restricted access keys for all necessary environments. See the Codex <a href="http://codex.happyfuncorp.com/slides/11#1" target="_blank">AWS Setup and Security</a> presentation for a walkthrough and links to the relevant resources.
-
-        Most importantly, ensure that the project <strong>does not end up on the HFC AWS account</strong>.
-
-      %section
-        %h2 Bootstrap
-        %p Bootstrap is really great! The current version is IE8 compatible. That's worth a lot. It's customizable via Sass and all the footwork is done for you! You just have to edit <code>application/variables.css.scss</code>.
-        %p Here's a summary of the CSS setup:
-        %dl
-          %dt
-            %code application/index.css.scss:
-          %dd
-            %p The CSS entry point that imports all the other css. Variables are shared among any files imported here.
-
-          %dt
-            %code application/variables.css.scss:
-          %dd
-            %p
-              A list of custom Sass varialbes accessible to anything imported by in `index.css.scss`. This is where you should puts Bootstrap customizations. You can find a full list of Bootstrap variables at:
-              = link_to 'Customize Bootstrap', 'http://getbootstrap.com/customize/', :target=>:_blank
-
-          %dt
-            %code application/layout.css.scss:
-          %dd
-            %p Your custom CSS goes here!
-
-          %dt
-            %code application/media_queries.css.scss:
-          %dd
-            %p
-              %span This is where any extra media queries you need should be place. Note that you have access to
-              %span= link_to "Bootstrap's media query helpers"
-              %span> . Use them!
-
-      %section
-        %h2 Other things this template adds
-
-        %h4 HTML5 Boilerplate
-
-        %p HTML5 Boilerplate includes things every project should have like normalize.css, Modernizr, Compass, and a placeholder polyfill for IE. It does some heavy reorganization of your application layout, but it's for the best! Go with it!
-        %p
-          &rarr; Read more about
-          = link_to 'HTML5 Boilerplate', 'http://html5boilerplate.com/', :target=>:_blank
-
-
-
-        %h4 This splash page
-        %code= '/app/views/splash/index.html.haml'
-
-      %section
-        %h2 Improvements?
-
-        %p If you have bug reports or ideas about how this template can be improved, please suggest them on the <a href="https://github.com/sublimeguile/seed/issues" target="_blank">Github issues page</a>! Thanks!
-
-CODEBLOCK
-
-
-# Style the splash page
-append_file 'app/assets/stylesheets/application/layout.css.scss', <<-CODE
-
-.splash .masthead {
-  padding-top: 120px;
-  padding-bottom: 120px;
-
-  background-color: #1e5799;
-  @include filter-gradient(#1e5799, #7db9e8, vertical);
-  @include background-image(linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%));
-}  
-
-.splash section {
-    margin-bottom: 5em;
-}
-CODE
-
-
-
-
-
-file "app/views/splash/signup.js.erb", <<-CODE
-alert('signed up!');
-CODE
+seed_file "app/controllers/splash_controller.rb"
+seed_file "app/views/splash/index.html.haml"
+seed_append 'app/assets/stylesheets/application/layout.css.scss'
+seed_file "app/views/splash/signup.js.erb"
 
 route "post '/signup' => 'splash#signup', as: :splash_signup"
 route "root to: 'splash#index'"
+
+readme = seed_file_content( 'README.md' )
+content_html = RDiscount.new( readme ).to_html
+file "app/views/splash/_readme.html.erb", RDiscount.new(readme).to_html
 
 
 
@@ -474,7 +191,7 @@ puts "                      Thanks for planting a seed!"
 puts "\nAn app with a splash page and some great tools has just been created!"
 puts "The next step is to start the server and watch your seed grow!"
 puts "\n\t$ cd #{ARGV[0]}"
-puts "\t$ foreman start"
+puts "\t$ foreman start\n\n"
 puts "\t --> http://localhost:3000/"
 puts "\n[0;32m"
 puts <<-ASCII_ART

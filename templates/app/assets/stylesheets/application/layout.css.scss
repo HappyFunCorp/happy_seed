@@ -1,0 +1,21 @@
+.splash .masthead {
+  padding-top: 120px;
+  padding-bottom: 120px;
+
+  background-color: #1e5799;
+  @include filter-gradient(#1e5799, #7db9e8, vertical);
+  @include background-image(linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%));
+}  
+
+.splash section {
+    margin-bottom: 5em;
+}
+
+.splash {
+  h1, h2, h3, h4 {
+    margin-top: 2em;
+  }
+  dt {
+    margin-top: 1.0em;
+  }
+}

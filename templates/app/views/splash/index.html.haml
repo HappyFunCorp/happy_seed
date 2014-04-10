@@ -1,0 +1,22 @@
+%main.masthead
+  .container
+    .row.text-center
+      .col-lg-12
+        %h1= "Splash Page"
+          
+    .row
+      .col-lg-6.col-lg-offset-3
+        = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
+          .form-group
+            = text_field_tag :test, '',  :class=>'form-control', :placeholder=>'Email address'
+          .form-group.text-center
+            = submit_tag 'Submit', :class=>'btn btn-primary'
+
+.container
+  .row
+    .col-lg-8.col-lg-offset-2
+      %h1.text-center Thanks for planting this seed!
+
+      %p.lead.text-center Lots of great things just happened! You're not done though. Please follow the instructions below to get this project off to a good start!
+
+      = render :partial=>'readme'
