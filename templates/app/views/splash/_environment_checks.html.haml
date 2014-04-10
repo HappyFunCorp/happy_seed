@@ -1,0 +1,34 @@
+%ul.list-group
+
+  - if ENV['AWS_ACCESS_KEY_ID'].blank? or ENV['AWS_SECRET_ACCESS_KEY'].blank?
+    %li.list-group-item.list-group-item-danger
+      %h4 AWS
+      You haven't set up your AWS account in this environment! Set the <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code> environment variables to configure AWS. You should have the client sign up and follow the instructions below.
+  - else
+    %li.list-group-item.list-group-item-success
+      %h4 AWS
+      Your AWS account is configured for this environment!
+
+
+
+  - if ENV['GOOGLE_ANALYTICS_SITE_ID'].blank?
+    %li.list-group-item.list-group-item-danger
+      %h4 Google Analytics
+      You haven't set up a Google Analytics account in this environment! Set the <code>GOOGLE_ANALYTICS_SITE_ID</code> environment variables to configure Google Analytics. You should ask the client to <a href="http://google.com/analytics/" target="_blank">set up a Google Analytics account</a>.
+  - else
+    %li.list-group-item.list-group-item-success
+      %h4 Google Analytics
+      Your Google Analytics account is configured for this environment!
+
+
+
+  - unless @tracker_gems.values.any?
+    %li.list-group-item.list-group-item-danger
+      %h4 Exception Tracking
+      You haven't set up an exception tracker! May I recommend <a href="https://addons.heroku.com/honeybadger" target="_blank">Honeybadger</a>?
+  - else
+    %li.list-group-item.list-group-item-success
+      %h4 Exception Tracking
+      Found exception tracker gems(s):
+      = @tracker_gems.select{|k,v| v}.keys.join(', ')
+

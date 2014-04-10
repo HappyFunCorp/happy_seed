@@ -159,6 +159,7 @@ seed_file 'config/unicorn.rb'
 remove_file 'public/index.html'
 seed_file "app/controllers/splash_controller.rb"
 seed_file "app/views/splash/index.html.haml"
+seed_file "app/views/splash/_environment_checks.html.haml"
 seed_append 'app/assets/stylesheets/application/layout.css.scss'
 seed_file "app/views/splash/signup.js.erb"
 
