@@ -1,10 +1,11 @@
 %main.masthead
   .container
-    .row.text-center
+
+    .row.text-center.brand
       .col-lg-12
         %h1= "Splash Page"
           
-    .row
+    .row.signup
       .col-lg-6.col-lg-offset-3
         = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
           .form-group

@@ -1,10 +1,28 @@
-.splash .masthead {
-  padding-top: 120px;
-  padding-bottom: 120px;
 
-  background-color: #1e5799;
-  @include filter-gradient(#1e5799, #7db9e8, vertical);
-  @include background-image(linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%));
+.navbar {
+  margin-bottom: 0;
+}
+
+$splash-top: #333;                                                                                                                             
+$splash-bot: #555;                                                                                                                             
+    
+.splash .masthead {
+  color: #fff;                                                                                                                                 
+      
+  padding-top: 120px;                                                                                                                          
+  padding-bottom: 120px;                                                                                                                       
+      
+  background-color: $splash-top;
+  @include filter-gradient($splash-top, $splash-bot, vertical);
+  @include background-image(linear-gradient(top,  $splash-top 0%, $splash-bot 100%));
+
+  .brand {
+    margin: 120px 0;
+  }
+
+  .signup {
+    margin: 120px 0;
+  }
 }  
 
 .splash .readme {
