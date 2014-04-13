@@ -123,7 +123,7 @@ Here's a summary of the CSS setup:
   <dd>Your custom CSS goes here!</dd>
 
   <dt><code>application/media_queries.css.scss</code>:</dt>
-  <dd>This is where any extra media queries you need should be place. Note that you have access to <a href="http://getbootstrap.com/css/#responsive-utilities">Bootstrap's responsive utilities</a>.com/css/#responsive-utilities). Use them!</dd>
+  <dd>This is where any extra media queries you need should be place. Note that you have access to <a href="http://getbootstrap.com/css/#responsive-utilities">Bootstrap's responsive utilities</a>. Use them!</dd>
 
 </dl>
 
