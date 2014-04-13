@@ -1,0 +1,16 @@
+%header#top.navbar.navbar-static-top.navbar-inverse{:role=>:banner}
+  .container
+    .navbar-header
+      %button.navbar-toggle{:type=>:button, 'data-toggle'=>:collapse, 'data-target'=>'.navbar-collapse'}
+        %span.sr-only Toggle navigations
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'App name', root_path, :class=>'navbar-brand'
+    %nav.collapse.navbar-collapse{:role=>:navigation}
+      %ul.nav.navbar-nav
+        %li= link_to 'Contact', '#'
+        %li= link_to 'Blog', '#'
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Sign In', '#'
+        %li= link_to 'Sign Up', '#'

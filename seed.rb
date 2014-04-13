@@ -133,12 +133,16 @@ if CSS_FRAMEWORK=='bootstrap'
                    seed_template_content('app/assets/stylesheets/application/index.css.scss'),
                    :before=>/.*Custom imports/
 
+  seed_append 'app/assets/javascripts/application.js'
+
+  remove_file 'app/views/application/_header.html.haml'
+  seed_file 'app/views/application/_header.html.haml'
+
   seed_file 'lib/templates/haml/scaffold/_form.html.haml'
   seed_file 'lib/templates/haml/scaffold/edit.html.haml'
   seed_file 'lib/templates/haml/scaffold/index.html.haml'
   seed_file 'lib/templates/haml/scaffold/new.html.haml'
   seed_file 'lib/templates/haml/scaffold/show.html.haml'
-
 end
 
 

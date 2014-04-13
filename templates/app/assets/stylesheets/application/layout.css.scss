@@ -7,12 +7,8 @@
   @include background-image(linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%));
 }  
 
-.splash section {
-    margin-bottom: 5em;
-}
-
-.splash {
-  h1, h2, h3 {
+.splash .readme {
+  h1, h2, h3, h4, h5, h6 {
     margin-top: 2em;
   }
   dt {
