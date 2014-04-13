@@ -39,8 +39,8 @@ The following is a brief list of the tools included by this generator:
   - HAML
   - Compass
   - Bootstrap SASS
-  - meta-tags gem
 - Other additions
+  - meta-tags gem
   - [rails\_12factor](https://github.com/heroku/rails_12factor) gem
   - unicorn server (with config and Procfile setup)
   - Environment variable setup with `dotenv` gem
