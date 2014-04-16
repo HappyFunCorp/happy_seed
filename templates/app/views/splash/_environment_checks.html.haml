@@ -32,3 +32,14 @@
       Found exception tracker gems(s):
       = @tracker_gems.select{|k,v| v}.keys.join(', ')
 
+
+
+  - if ENV['MAILCHIMP_API_KEY'].blank?
+    %li.list-group-item.list-group-item-danger
+      %h4 Mailchimp
+      <p>You haven't set up a Mailchimp account in this environment! Have the client create an account at <a href="http://mailchimp.com" target="_blank">mailchimp.com</a> and set the <code>MAILCHIMP_API_KEY</code> environment variables to configure Mailchimp.</p>
+      <p>Once a Mailchimp account is configured, you'll need to create a list through the web interface and set the <code>MAILCHIMP_SPLASH_SIGNUP_LIST_ID</code> environment variable to the list id (ten-digit hex id visible in the List name &amp; defaults tab).</p>
+  - else
+    %li.list-group-item.list-group-item-success
+      %h4 Mailchimp
+      Your Mailchimp account is configured for this environment!

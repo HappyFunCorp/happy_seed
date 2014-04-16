@@ -9,6 +9,8 @@ APP_NAME = ARGV[0].humanize
 # Always enabled for now. But I'll at least leave it configurable
 CSS_FRAMEWORK='bootstrap'
 
+MAILER='mailchimp'
+
 # Ruby setup
 file '.ruby-version', <<-CODE
 #{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}
@@ -80,7 +82,7 @@ gsub_file "app/assets/javascripts/application.js", /\/\/=\s+require\s+turbolinks
 # Nice to have:
 gem 'haml-rails'
 gem 'unicorn'
-gem 'dotenv'
+gem 'dotenv-rails', :groups=>[:development, :test]
 gem 'rails_12factor'
 gem 'meta-tags', :require => 'meta_tags'
 
@@ -93,6 +95,10 @@ gem 'compass-h5bp', :group=>:assets
 gem 'html5-rails'
 
 
+case MAILER
+when 'mailchimp'
+  gem 'gibbon'
+end
 
 
 
@@ -111,7 +117,6 @@ remove_file 'config/html5_rails.yml'
 # Don't even leave the door open for yaml config:
 gsub_file 'app/views/application/_javascripts.html.haml', /-# Looks for google_account_id.*\n/, ''
 gsub_file 'app/views/application/_javascripts.html.haml', /google_account_id/, "ENV['GOOGLE_ANALYTICS_SITE_ID']"
-append_file '.env', 'GOOGLE_ANALYTICS_SITE_ID='
 
 # You've overstepped your bounds, html5 boilerplate. Please don't set our page titles:
 gsub_file "app/views/application/_head.html.haml", /^.*%title.*\n/s, ''
