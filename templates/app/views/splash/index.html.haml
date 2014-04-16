@@ -6,12 +6,16 @@
         %h1= "Splash Page"
           
     .row.signup
-      .col-lg-6.col-lg-offset-3
+      .col-lg-8.col-lg-offset-2
+        .row
+          .col-lg-12.col-lg-offset-0.col-md-8.col-md-offset-2.text-center
+            %h3 Sign up to receive updates!
         = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
-          .form-group
-            = text_field_tag :signup_email, '',  :class=>'form-control', :placeholder=>'Email address'
-          .form-group.text-center
-            = submit_tag 'Submit', :class=>'btn btn-primary'
+          .form-group.row
+            .col-sm-8.col-md-6.col-md-offset-2
+              = text_field_tag :signup_email, '',  :class=>'form-control', :placeholder=>'Email address'
+            .col-sm-4.col-md-2
+              = submit_tag 'Submit', :class=>'btn btn-primary form-control'
 
 .container
   .row
@@ -20,5 +24,5 @@
 
       %p.lead.text-center Lots of great things just happened! You're not done though. Please follow the instructions below to get this project off to a good start!
 
-      .readme= render :partial=>'environment_checks'
-      ~ render :partial=>'readme'
+      = render :partial=>'environment_checks'
+      .readme~ render :partial=>'readme'

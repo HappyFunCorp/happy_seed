@@ -11,6 +11,9 @@ CSS_FRAMEWORK='bootstrap'
 
 MAILER='mailchimp'
 
+DEVISE=true
+HTTP_AUTH=true
+
 # Ruby setup
 file '.ruby-version', <<-CODE
 #{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}
@@ -101,6 +104,11 @@ when 'mailchimp'
 end
 
 
+if DEVISE
+  gem 'devise'
+end
+
+
 
 # Generate html5 boilerplate:
 run 'rails generate html5:install'
@@ -131,6 +139,7 @@ CODE
 
 # Enable compass:
 gsub_file 'app/assets/stylesheets/application/index.css.scss', /\/\/\s*@import 'compass/, "@import 'compass"
+inject_into_file 'app/assets/stylesheets/application/index.css.scss', '@import "compass/layout/sticky-footer";', :after=>/@import 'compass\/css3.*/
 
 # Inject the bootstrap include into our css:
 if CSS_FRAMEWORK=='bootstrap'
@@ -139,15 +148,37 @@ if CSS_FRAMEWORK=='bootstrap'
                    :before=>/.*Custom imports/
 
   seed_append 'app/assets/javascripts/application.js'
+  seed_append 'app/assets/stylesheets/application/layout.css.scss'
+  seed_append 'app/assets/stylesheets/application/variables.css.scss'
 
   remove_file 'app/views/application/_header.html.haml'
+  remove_file 'app/views/application/_footer.html.haml'
+  remove_file 'app/views/layouts/application.html.haml'
   seed_file 'app/views/application/_header.html.haml'
+  seed_file 'app/views/application/_footer.html.haml'
+  seed_file 'app/views/layouts/application.html.haml'
 
   seed_file 'lib/templates/haml/scaffold/_form.html.haml'
   seed_file 'lib/templates/haml/scaffold/edit.html.haml'
   seed_file 'lib/templates/haml/scaffold/index.html.haml'
   seed_file 'lib/templates/haml/scaffold/new.html.haml'
   seed_file 'lib/templates/haml/scaffold/show.html.haml'
+end
+
+
+
+if HTTP_AUTH
+  inject_into_file 'app/contollers/application_controller.rb', <<-CODE, :after=>/protect_from_forgery.*/
+  unless ENV['HTTP_AUTH_NAME'].blank? or ENV['HTTP_AUTH_PASSWORD'].blank?
+    http_basic_authenticate_with name: ENV['HTTP_AUTH_NAME'], ENV['HTTP_AUTH_PASSWORD']
+  end
+CODE
+end
+
+if DEVISE
+  run 'rails generate devise:install'
+  run 'rails generate devise User'
+  run 'rails generate devise:views'
 end
 
 
