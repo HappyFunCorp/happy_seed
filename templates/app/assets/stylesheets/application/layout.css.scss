@@ -27,7 +27,7 @@
 
 .splash {
   .jumbotron {
-    color: #fff;
+    color: $panel-default-text;
 
     background-image: url('https://s3.amazonaws.com/rickystestbucket/nyc.jpg');
     background-size: cover;
