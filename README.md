@@ -23,7 +23,7 @@ Rails is an opinionated framework when it comes to model-view-controller project
 Please give it a chance! Most of this stuff is trivial to remove if you don't like it! Don't like Bootstrap? Do this:
 
 1. Remove `@import 'bootstrap';` from `app/assets/stylesheets/application/index.css.scss`
-1. Remove `//= require bootstrap` from `templates/app/assets/javascripts/application.js`
+1. Remove `//= require bootstrap` from `app/assets/javascripts/application.js`
 1. Remove `gem 'bootstrap-sass'` from `Gemfile`
 
 There. Totally gone.
