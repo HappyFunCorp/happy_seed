@@ -108,6 +108,7 @@ end
 
 if DEVISE
   gem 'devise'
+  run 'bundle install'
 end
 
 
