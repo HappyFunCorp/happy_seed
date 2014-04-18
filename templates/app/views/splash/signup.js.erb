@@ -1,1 +1,8 @@
-alert("<%= j @message.html_safe %>");
+<% if @error %>
+  $('#signup').addClass('has-error');
+<% else %>
+  $('#signup').removeClass('has-error');
+  $('#signup_email').val('');
+<% end %>
+
+$('#signup-message').text("<%= j @message.html_safe %>").hide().slideDown('fast');
