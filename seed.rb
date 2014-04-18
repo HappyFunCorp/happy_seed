@@ -186,9 +186,13 @@ if DEVISE
   
   remove_file 'app/views/devise/registrations/new.html.erb'
   remove_file 'app/views/devise/sessions/new.html.erb'
+  remove_file 'app/views/devise/passwords/edit.html.erb'
+  remove_file 'app/views/devise/passwords/new.html.erb'
 
   seed_file 'app/views/devise/registrations/new.html.haml'
   seed_file 'app/views/devise/sessions/new.html.haml'
+  seed_file 'app/views/devise/passwords/edit.html.haml'
+  seed_file 'app/views/devise/passwords/new.html.haml'
 end
 
 
