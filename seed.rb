@@ -13,6 +13,7 @@ MAILER='mailchimp'
 
 DEVISE=true
 HTTP_AUTH=true
+FACEBOOK=true
 
 # Ruby setup
 file '.ruby-version', <<-CODE
@@ -219,6 +220,14 @@ readme = seed_file_content( 'README.md' )
 content_html = RDiscount.new( readme ).to_html
 file "app/views/splash/_readme.html.erb", RDiscount.new(readme).to_html
 
+
+
+if FACEBOOK
+  gem 'omniauth-facebook'
+
+  #MigrationGenerator.new.migration_template 'templates/db/migrate/add_authentications_to_users.rb', 'db/migrate/add_authentications_to_users.rb'
+
+end
 
 
 
