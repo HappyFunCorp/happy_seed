@@ -52,6 +52,7 @@ The following is a brief list of the tools included by this generator:
   - .ruby-version setup
   - Custom scaffolds that are actually useful!
   - Mailchimp integration for signup form
+  - devise with overhauled forms
 
 
 ## Environments
