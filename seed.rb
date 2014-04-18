@@ -131,6 +131,7 @@ gsub_file "app/views/application/_head.html.haml", /^.*%title.*\n/s, ''
 gsub_file "app/views/application/_head.html.haml", /^.*==\s*#\{\s*controller\.controller_name.*\}.*\n/s, ''
 
 inject_into_file 'app/views/application/_head.html.haml', <<-CODE, :before=>/^.*%meta.*description.*\n/s
+
   = display_meta_tags :site => '#{APP_NAME}'
 
 CODE
@@ -139,7 +140,10 @@ CODE
 
 # Enable compass:
 gsub_file 'app/assets/stylesheets/application/index.css.scss', /\/\/\s*@import 'compass/, "@import 'compass"
-inject_into_file 'app/assets/stylesheets/application/index.css.scss', '@import "compass/layout/sticky-footer";', :after=>/@import 'compass\/css3.*/
+inject_into_file 'app/assets/stylesheets/application/index.css.scss', <<-CODE, :after=>/@import 'compass\/css3.*/
+
+@import "compass/layout/sticky-footer";
+CODE
 
 # Inject the bootstrap include into our css:
 if CSS_FRAMEWORK=='bootstrap'
@@ -149,7 +153,9 @@ if CSS_FRAMEWORK=='bootstrap'
 
   seed_append 'app/assets/javascripts/application.js'
   seed_append 'app/assets/stylesheets/application/layout.css.scss'
-  seed_append 'app/assets/stylesheets/application/variables.css.scss'
+
+  remove_file 'app/assets/stylesheets/application/variables.css.scss'
+  seed_file 'app/assets/stylesheets/application/variables.css.scss'
 
   remove_file 'app/views/application/_header.html.haml'
   remove_file 'app/views/application/_footer.html.haml'
@@ -168,17 +174,20 @@ end
 
 
 if HTTP_AUTH
-  inject_into_file 'app/contollers/application_controller.rb', <<-CODE, :after=>/protect_from_forgery.*/
-  unless ENV['HTTP_AUTH_NAME'].blank? or ENV['HTTP_AUTH_PASSWORD'].blank?
-    http_basic_authenticate_with name: ENV['HTTP_AUTH_NAME'], ENV['HTTP_AUTH_PASSWORD']
-  end
-CODE
+  inject_into_file 'app/controllers/application_controller.rb', seed_template_content('app/controllers/application_controller.rb'), :after=>/protect_from_forgery.*\n/
 end
 
 if DEVISE
   run 'rails generate devise:install'
+  run 'bundle install'
   run 'rails generate devise User'
   run 'rails generate devise:views'
+  
+  remove_file 'app/views/devise/registrations/new.html.erb'
+  remove_file 'app/views/devise/sessions/new.html.erb'
+
+  seed_file 'app/views/devise/registrations/new.html.haml'
+  seed_file 'app/views/devise/sessions/new.html.haml'
 end
 
 

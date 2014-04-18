@@ -1,28 +1,35 @@
-%main.masthead
+%section.masthead.jumbotron
   .container
+    .row
+      .col-md-8.col-md-offset-2
+        .panel.panel-default
+          .panel-body
+            .row
+              .col-md-4.text-center.brand
+                %h1
+                  %span.glyphicon.glyphicon-cloud
+                  %br
+                  App
+              .signup.col-md-7.col-md-offset-0.col-lg-7.col-lg-offset-0.col-sm-offset-2.col-sm-8
+                %p.lead Get ready. We'll make your life easier and more&nbsp;meaningful.
+                = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
+                  .form-group
+                    .col-sm-12
+                      .input-group
+                        = text_field_tag :signup_email, '',  :class=>'form-control', :placeholder=>'Enter your email to know when we launch!'
+                        %span.input-group-btn
+                          = submit_tag 'Sign up', :class=>'btn btn-primary'
 
-    .row.text-center.brand
-      .col-lg-12
-        %h1= "Splash Page"
-          
-    .row.signup
+%section.dark
+  .container
+    .row
       .col-lg-8.col-lg-offset-2
-        .row
-          .col-lg-12.col-lg-offset-0.col-md-8.col-md-offset-2.text-center
-            %h3 Sign up to receive updates!
-        = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
-          .form-group.row
-            .col-sm-8.col-md-6.col-md-offset-2
-              = text_field_tag :signup_email, '',  :class=>'form-control', :placeholder=>'Email address'
-            .col-sm-4.col-md-2
-              = submit_tag 'Submit', :class=>'btn btn-primary form-control'
+        %h1.text-center Thanks for planting this seed!
+        %p.lead.text-center Lots of great things just happened! You're not done though. Please follow the instructions below to get this project off to a good start!
+        = render :partial=>'environment_checks'
 
-.container
-  .row
-    .col-lg-8.col-lg-offset-2
-      %h1.text-center Thanks for planting this seed!
-
-      %p.lead.text-center Lots of great things just happened! You're not done though. Please follow the instructions below to get this project off to a good start!
-
-      = render :partial=>'environment_checks'
-      .readme~ render :partial=>'readme'
+%section.light
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2
+        .readme~ render :partial=>'readme'

@@ -1,5 +1,7 @@
 class SplashController < ApplicationController
 
+  skip_before_filter :authenticate
+
   def index
     
     @tracker_gems = Hash[%w( honeybadger bugsnag errorapp_notifier exceptiontrap rollbar
