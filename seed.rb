@@ -89,6 +89,7 @@ gem 'unicorn'
 gem 'dotenv-rails', :groups=>[:development, :test]
 gem 'rails_12factor'
 gem 'meta-tags', :require => 'meta_tags'
+run 'bundle install'
 
 
 
