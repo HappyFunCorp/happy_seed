@@ -2,7 +2,7 @@
 
 ## Usage
 
-A simple rails generator for creating a simple app with a splash page and mailing list signup. To start, just run:
+A simple rails generator for creating a simple app with a splash page and mailing list signup. To install, just run:
 
     $ \curl -sSL https://raw.githubusercontent.com/sublimeguile/seed/master/install.sh | bash
 
@@ -10,26 +10,30 @@ The installer copies the seed repo into `~/.seed` and an executable into `/usr/l
 
     $ seed new your_project_name
 
-and to update seed,
+and to update,
   
     $ seed update
 
 ## What does seed do?
 
-A lot of time is wasted installing and configuring boilerplate code that most projects end up using. Rails is an opinionated framework in terms of MVC project structure, but beyond that it certainly doesn't force you to use any specific tools. The goal of seed is to get projects off to a good start by installing and configuring an excellent set of tools. In other words, placeholders are never going to work in IE9, so why should you worry about hunting down all the polyfills and shims every time you start a project? And Facebook sign-in is basically always the same, so why should you set up omniauth every time you start a project?
+Rails is an opinionated framework when it comes to model-view-controller project structure, but beyond that it certainly doesn't force you to use any specific tools. The goal of seed is to get projects off to a good start by installing and configuring an excellent set of tools. In other words, placeholders are never going to work in IE9, so why should you worry about hunting down all the polyfills and shims every time you start a project? And seriously, who doesn't use devise? Why install that and rewrite the forms every time you start a project?
 
-An attempt has been made to include these tools in a non-invasive way that makes either installation optional or removal trivial. For example, removal of bootstrap requires only:
+## I don't like Bootstrap. I'm not using it.
 
-1. Removal of `@import 'bootstrap';` from `app/assets/stylesheets/application/index.css.scss`
-1. Removal of `//= require bootstrap` from `templates/app/assets/javascripts/application.js`
-1. Removal of `gem 'bootstrap-sass'` from `Gemfile`
+Please give it a chance! Most of this stuff is trivial to remove if you don't like it! Don't like Bootstrap? Do this:
+
+1. Remove `@import 'bootstrap';` from `app/assets/stylesheets/application/index.css.scss`
+1. Remove `//= require bootstrap` from `templates/app/assets/javascripts/application.js`
+1. Remove `gem 'bootstrap-sass'` from `Gemfile`
+
+There. Totally gone.
 
 
 ### Which tools does this include?
 
 The following is a brief list of the tools included by this generator:
 
-- HTML5 boilerplate
+- HTML5 boilerplate, which includes:
   - normalize.css
   - IE polyfills
   - Responsive polyfill
@@ -47,7 +51,6 @@ The following is a brief list of the tools included by this generator:
   - Comments out Turbolinks code
   - .ruby-version setup
   - Custom scaffolds that are actually useful!
-- Future additions
   - Mailchimp integration for signup form
 
 
@@ -127,9 +130,7 @@ Here's a summary of the CSS setup:
 
 </dl>
 
-## Other things this template adds
-
-#### HTML5 Boilerplate
+## HTML5 Boilerplate
 
 HTML5 Boilerplate includes things every project should have like normalize.css, Modernizr, Compass, and a placeholder polyfill for IE. It does some heavy reorganization of your application layout, but it's for the best! Go with it!
 
@@ -139,7 +140,7 @@ HTML5 Boilerplate includes things every project should have like normalize.css, 
 
 
 
-## Improvements?
+## Ideas? Criticism? Improvements?
 
 
 If you have bug reports or ideas about how this template can be improved, please suggest them on the [Github issues page](https://github.com/sublimeguile/seed/issues")! Thanks!
