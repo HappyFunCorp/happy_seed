@@ -206,6 +206,7 @@ end
 seed_file 'Procfile'
 seed_file '.foreman'
 seed_file 'config/unicorn.rb'
+seed_file 'config/initializers/assets.rb'
 
 
 #---------------------------------------------------------------------
