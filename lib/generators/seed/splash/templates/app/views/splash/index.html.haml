@@ -1,0 +1,23 @@
+%section.masthead.jumbotron
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        .panel.panel-default
+          .panel-body
+            .row
+              .col-md-4.text-center.brand
+                %h1
+                  %span.glyphicon.glyphicon-cloud
+                  %br
+                  App
+              .signup.col-md-7.col-md-offset-0.col-lg-7.col-lg-offset-0.col-sm-offset-2.col-sm-8
+                %p.lead Get ready. We'll make your life easier and more&nbsp;meaningful.
+                = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
+                  .form-group#signup
+                    .col-sm-12
+                      .input-group
+                        = text_field_tag :signup_email, '',  :class=>'form-control', :placeholder=>'Enter your email to know when we launch!'
+                        %span.input-group-btn
+                          = submit_tag 'Sign up', :class=>'btn btn-primary'
+                      %small#signup-message
+
