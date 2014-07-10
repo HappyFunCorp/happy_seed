@@ -1,6 +1,6 @@
 gem 'haml-rails'
 gem 'meta-tags', :require => 'meta_tags'
-gem 'seed', :path => "/Users/wschenk/src/seed"
+gem 'seed', :path => File.dirname(__FILE__)
 gsub_file "Gemfile", /^#\s*Turbolinks.*$/,'# No one likes Turbolinks.'
 gsub_file "Gemfile", /^gem\s+["']turbolinks["'].*$/,'# gem \'turbolinks\''
 gsub_file "Gemfile", /^gem\s+["']spring["'].*$/,'# gem \'spring\''
