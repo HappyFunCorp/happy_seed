@@ -20,7 +20,9 @@ module Seed
 
         gem 'omniauth-twitter'
 
-        run 'bundle install'
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
 
         inject_into_file 'config/initializers/devise.rb', after: "==> OmniAuth\n" do <<-'RUBY'
   config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']

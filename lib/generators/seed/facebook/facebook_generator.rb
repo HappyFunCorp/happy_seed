@@ -20,7 +20,9 @@ module Seed
 
         gem 'omniauth-facebook'
 
-        run 'bundle install'
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
 
         inject_into_file 'config/initializers/devise.rb', after: "==> OmniAuth\n" do <<-'RUBY'
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'offline_access,read_insights,manage_pages'

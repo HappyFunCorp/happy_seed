@@ -5,6 +5,8 @@ gsub_file "Gemfile", /^#\s*Turbolinks.*$/,'# No one likes Turbolinks.'
 gsub_file "Gemfile", /^gem\s+["']turbolinks["'].*$/,'# gem \'turbolinks\''
 gsub_file "Gemfile", /^gem\s+["']spring["'].*$/,'# gem \'spring\''
 
+run 'bundle install'
+
 # Run the base generator
 generate "seed:foreman"
 

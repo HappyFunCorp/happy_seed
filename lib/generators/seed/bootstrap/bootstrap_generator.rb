@@ -7,7 +7,9 @@ module Seed
         gem 'bootstrap-sass'
         gem 'modernizr-rails'
 
-        run "bundle install"
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
 
         remove_file 'app/views/layouts/application.html.erb'
         remove_file 'app/assets/javascripts/application.js'

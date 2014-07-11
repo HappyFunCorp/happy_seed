@@ -21,7 +21,9 @@ module Seed
 
         gem 'omniauth'
 
-        run 'bundle install'
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
 
         generate 'model identity user:references provider:string uid:string'
         remove_file 'app/models/identity.rb'

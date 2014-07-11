@@ -6,10 +6,11 @@ module Seed
       def install_foreman
         gem 'dotenv-rails', :groups=>[:development, :test]
         gem 'unicorn'
-        gem 'dotenv-rails', :groups=>[:development, :test]
         gem 'rails_12factor'
 
-        run 'bundle install'
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
 
         directory '.'
       end

@@ -16,7 +16,9 @@ module Seed
 
         gem 'gibbon'
 
-        run "bundle install"
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
 
         remove_file 'public/index.html'
 

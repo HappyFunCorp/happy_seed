@@ -6,10 +6,11 @@ module Seed
       def install_landing_page
         gem 'devise'
 
-        run "bundle install"
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
 
         run 'rails generate devise:install'
-        run 'bundle install'
         run 'rails generate devise User'
         run 'rails generate devise:views'
         
