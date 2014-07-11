@@ -7,7 +7,7 @@ else
 end
 gsub_file "Gemfile", /^#\s*Turbolinks.*$/,'# No one likes Turbolinks.'
 gsub_file "Gemfile", /^gem\s+["']turbolinks["'].*$/,'# gem \'turbolinks\''
-gsub_file "Gemfile", /^gem\s+["']spring["'].*$/,'# gem \'spring\''
+#gsub_file "Gemfile", /^gem\s+["']spring["'].*$/,'# gem \'spring\''
 
 run 'bundle install'
 
