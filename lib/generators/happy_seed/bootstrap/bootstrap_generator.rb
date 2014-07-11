@@ -14,6 +14,7 @@ module HappySeed
         remove_file 'app/views/layouts/application.html.erb'
         remove_file 'app/assets/javascripts/application.js'
         remove_file 'app/helpers/application_helper.rb'
+        remove_file 'app/assets/stylesheets/application.css'
         directory 'app'
         directory 'lib'
         directory 'docs'
