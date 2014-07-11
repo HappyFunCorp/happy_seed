@@ -42,4 +42,6 @@ end
 
 puts "Setting up git"
 git :init
+# git :add, "."
+# git :commit, "-m"
 

@@ -2,6 +2,8 @@
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
 
+  has_many :identities
+
   # validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
@@ -33,7 +35,7 @@
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
         )
-        user.skip_confirmation!
+        # user.skip_confirmation!
         user.save!
       end
     end

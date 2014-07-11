@@ -1,0 +1,5 @@
+= @user.email
+
+%ul
+  - @user.identities.each do |i|
+    %li= link_to "Connected to #{i.provider}" 
