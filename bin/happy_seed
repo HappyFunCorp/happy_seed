@@ -2,5 +2,6 @@
 
 spec = Gem::Specification.find_by_name("happy_seed")
 gem_root = spec.gem_dir
-file = File.join( gem_root, "happy_seed.rb" )
+
+file = File.join( ENV['SEED_DEVELOPMENT'] || gem_root, "happy_seed.rb" )
 system( "rails new -m #{file} #{ARGV.join( " " )}" )

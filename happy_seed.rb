@@ -1,6 +1,6 @@
 gem 'haml-rails'
 gem 'meta-tags', :require => 'meta_tags'
-if ENV['SEED_DEVELOPMENT'] == 'true'
+if ENV['SEED_DEVELOPMENT']
   gem 'happy_seed', :path => File.dirname(__FILE__)
 else
   gem 'happy_seed'
