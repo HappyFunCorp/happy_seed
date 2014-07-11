@@ -32,6 +32,7 @@ module Seed
         gsub_file "app/models/user.rb", "devise :", "devise :omniauthable, :"
         insert_into_file "app/models/user.rb", File.read( find_in_source_paths( "user.rb" ) ), :before => "\nend\n"
         gsub_file 'config/routes.rb', "devise_for :users\n", "devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }\n"
+        directory "docs"
       end
 
       private    

@@ -1,7 +1,7 @@
 module Seed
   module Generators
     class FacebookGenerator < Rails::Generators::Base
-      # source_root File.expand_path('../templates', __FILE__)
+      source_root File.expand_path('../templates', __FILE__)
 
       def install_landing_page
         unless gem_available?( "devise" )
@@ -33,6 +33,8 @@ RUBY
         inject_into_file 'app/views/application/_header.html.haml', "          %li= link_to 'sign in with facebook', user_omniauth_authorize_path(:facebook)\n", after: "/ CONNECT\n"
         inject_into_file 'app/views/devise/sessions/new.html.haml', "                = link_to 'sign in with facebook', user_omniauth_authorize_path(:facebook)\n                %br\n", after: "/ CONNECT\n"
         inject_into_file 'app/views/devise/registrations/new.html.haml', "                = link_to 'sign in with facebook', user_omniauth_authorize_path(:facebook)\n                %br\n", after: "/ CONNECT\n"
+
+        directory 'docs'
       end
 
       private    

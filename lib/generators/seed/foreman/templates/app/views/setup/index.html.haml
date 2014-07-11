@@ -19,13 +19,13 @@
         .col-sm-10
           / Environment Variables
           %h3
-            %a{ name: "#env" }Environment Variables
+            %a{ name: "env" }Environment Variables
 
           %pre= @env
 
           / rdocs
           - @docs.each do |f|
             %h3
-              %a{ name: "##{f[:name]}"}= f[:name]
+              %a{ name: "#{f[:name]}"}= f[:name]
 
-            = f[:html].html_safe
+            ~ f[:html].html_safe

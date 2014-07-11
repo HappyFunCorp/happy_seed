@@ -1,0 +1,24 @@
+Seed Devise Install
+===================
+
+### What does this do?
+
+The seed:devise generator
+
+* Installs devise
+* Generates a User class
+* Copies over devise views
+* Gives them bootstrap views
+* Adds use signin/signup stuff to the navbar
+
+### Why do you want this?
+
+User auth is boring.
+
+### Environment Variables
+
+na
+
+### What needs to be done?
+
+Flesh out the user model and run rake db:migrate.

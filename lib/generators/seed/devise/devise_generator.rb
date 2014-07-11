@@ -20,6 +20,7 @@ module Seed
         remove_file 'app/views/devise/passwords/new.html.erb'
 
         directory 'app'
+        directory 'docs'
 
         gsub_file 'app/views/application/_header.html.haml', "/ USER NAV", <<-'RUBY'
 %ul.nav.navbar-nav.navbar-right

@@ -27,6 +27,7 @@ module Seed
         route "post '/signup' => 'splash#signup', as: :splash_signup"
 
         directory 'app'
+        directory "docs"
         append_to_file ".env", "MAILCHIMP_API_KEY=\nMAILCHIMP_SPLASH_SIGNUP_LIST_ID=\n"
       end
 

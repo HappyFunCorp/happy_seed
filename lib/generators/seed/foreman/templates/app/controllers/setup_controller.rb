@@ -1,5 +1,6 @@
 class SetupController < ApplicationController
   before_filter :require_local!
+  layout :false
 
   def index
     @env = File.read( File.join( Rails.root, ".env" ) )
@@ -19,7 +20,7 @@ class SetupController < ApplicationController
   end
 
   def files
-    docs = Dir.glob(File.join( Rails.root, "doc/README.*" )).collect do |file|
+    docs = Dir.glob(File.join( Rails.root, "docs/README.*" )).collect do |file|
       name = file.gsub( /.*README.\d\d./, "seed:" ).gsub( /.rdoc/, "" )
       html = RDiscount.new( File.read( file ) ).to_html
       { name: name, html: html }
