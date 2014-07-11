@@ -1,0 +1,34 @@
+HappySeed Base Install
+=================
+
+### What does this do?
+
+The happy_seed application template sets up haml, meta-tags, disables turbolinks, and installs the happy_seed generators into your application.
+
+The happy_seed:foreman generator installs dotenv-rails, unicorn, http site authentication, and the setup_controller.
+
+/setup is used to see the happy_seed documentation for each of the installed generators, and copies things into the rails doc directory.  The setup_controller is only visible locally.
+
+### Why do you want this?
+
+Haml is create and turbolinks make it impossible to correctly debug a site.
+
+Using the .env file to manage configuration variables makes it much easier to keep track of what is needed in each environment, and sets you up to use heroku.
+
+### Environment Variables
+
+The AWS env variables are there for reference
+
+If the HTTP_AUTH_U* variables are set, application_controller will force them to be used for authentication to let people into the site.  (The happy_seed:splash generator will not use this.)
+
+```
+  AWS_ACCESS_KEY_ID=
+  AWS_SECRET_ACCESS_KEY=
+  S3_BUCKET_NAME=
+  HTTP_AUTH_USERNAME=
+  HTTP_AUTH_PASSWORD=
+```
+
+### What needs to be done?
+
+At some point, you should remove the setup_controller from your application.

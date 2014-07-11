@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :seed do
+# task :happy_seed do
 #   # Task goes here
 # end

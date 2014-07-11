@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seed (0.0.1)
+    happy_seed (0.0.1)
       rails (~> 4.1.4)
 
 GEM
@@ -88,5 +88,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  seed!
+  happy_seed!
   sqlite3

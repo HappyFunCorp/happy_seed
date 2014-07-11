@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class SeedTest < ActiveSupport::TestCase
+class HappySeedTest < ActiveSupport::TestCase
   test "truth" do
-    assert_kind_of Module, Seed
+    assert_kind_of Module, HappySeed
   end
 end
