@@ -7,11 +7,11 @@ require "seed/version"
 Gem::Specification.new do |s|
   s.name        = "seed"
   s.version     = Seed::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Seed."
-  s.description = "TODO: Description of Seed."
+  s.authors     = ["Will Schenk", "Ricky Reusser"]
+  s.email       = ["will@happyfuncorp.com"]
+  s.homepage    = "https://github.com/sublimeguile/seed"
+  s.summary     = "Seed is a project that will build up a rails apps using some common best practices."
+  s.description = "Seed is a project that will build up a rails apps using some common best practices."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

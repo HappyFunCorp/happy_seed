@@ -1,0 +1,24 @@
+Seed Facebook Install
+====================
+
+### What does this do?
+
+The seed:facebook depends upon seed:omniauth and
+
+* Installs facebook authentication
+* Installs links in the nav bar and use signup/signin pages
+
+### Why do you want this?
+
+If you want to have the user connect via facebook, this is the one line command for it.
+
+### Environment Variables
+
+```
+  FACEBOOK_APP_ID=
+  FACEBOOK_APP_SECRET=
+```
+
+### What needs to be done?
+
+In config/initializers/devise.rb make sure that the scope you are requesting is correct.

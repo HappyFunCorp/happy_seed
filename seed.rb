@@ -1,9 +1,13 @@
 gem 'haml-rails'
 gem 'meta-tags', :require => 'meta_tags'
-gem 'devise'
 gem 'seed', :path => File.dirname(__FILE__)
 gsub_file "Gemfile", /^#\s*Turbolinks.*$/,'# No one likes Turbolinks.'
 gsub_file "Gemfile", /^gem\s+["']turbolinks["'].*$/,'# gem \'turbolinks\''
+gsub_file "Gemfile", /^gem\s+["']spring["'].*$/,'# gem \'spring\''
+
+run 'bundle install'
+
+gsub_file "app/assets/javascripts/application.js", /= require turbolinks/, "require turbolinks"
 
 # Run the base generator
 generate "seed:foreman"
