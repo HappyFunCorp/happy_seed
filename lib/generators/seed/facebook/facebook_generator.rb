@@ -28,6 +28,11 @@ module Seed
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'offline_access,read_insights,manage_pages'
 RUBY
         end
+
+        append_to_file ".env", "FACEBOOK_APP_ID=\nFACEBOOK_APP_SECRET=\n"
+        inject_into_file 'app/views/application/_header.html.haml', "          %li= link_to 'sign in with facebook', user_omniauth_authorize_path(:facebook)\n", after: "/ CONNECT\n"
+        inject_into_file 'app/views/devise/sessions/new.html.haml', "                = link_to 'sign in with facebook', user_omniauth_authorize_path(:facebook)\n                %br\n", after: "/ CONNECT\n"
+        inject_into_file 'app/views/devise/registrations/new.html.haml', "                = link_to 'sign in with facebook', user_omniauth_authorize_path(:facebook)\n                %br\n", after: "/ CONNECT\n"
       end
 
       private    

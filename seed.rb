@@ -7,6 +7,8 @@ gsub_file "Gemfile", /^gem\s+["']spring["'].*$/,'# gem \'spring\''
 
 run 'bundle install'
 
+gsub_file "app/assets/javascripts/application.js", /= require turbolinks/, "require turbolinks"
+
 # Run the base generator
 generate "seed:foreman"
 

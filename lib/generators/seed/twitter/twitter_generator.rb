@@ -28,7 +28,11 @@ module Seed
   config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
 RUBY
         end
+        append_to_file ".env", "TWITTER_APP_ID=\nTWITTER_APP_SECRET=\n"
+
         inject_into_file 'app/views/application/_header.html.haml', "          %li= link_to 'sign in with twitter', user_omniauth_authorize_path(:twitter)\n", after: "/ CONNECT\n"
+        inject_into_file 'app/views/devise/sessions/new.html.haml', "                = link_to 'sign in with twitter', user_omniauth_authorize_path(:twitter)\n                %br\n", after: "/ CONNECT\n"
+        inject_into_file 'app/views/devise/registrations/new.html.haml', "                = link_to 'sign in with twitter', user_omniauth_authorize_path(:twitter)\n                %br\n", after: "/ CONNECT\n"
       end
 
       private    

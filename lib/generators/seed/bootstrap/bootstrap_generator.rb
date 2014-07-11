@@ -23,6 +23,7 @@ module Seed
     end
 RUBY
         end
+        append_to_file ".env", "GOOGLE_ANALYTICS_SITE_ID=\n"
       end
     end
   end

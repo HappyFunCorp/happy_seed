@@ -22,10 +22,12 @@ module Seed
 
         remove_file 'public/index.html'
 
+        gsub_file "config/routes.rb", /\s*root.*\n/, "\n"
         route "root 'splash#index'"
         route "post '/signup' => 'splash#signup', as: :splash_signup"
 
         directory 'app'
+        append_to_file ".env", "MAILCHIMP_API_KEY=\nMAILCHIMP_SPLASH_SIGNUP_LIST_ID=\n"
       end
 
       private    

@@ -1,3 +1,6 @@
 = Seed
 
 This project rocks and uses MIT-LICENSE.
+
+== What is it?
+
