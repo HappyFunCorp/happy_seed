@@ -44,6 +44,11 @@ if all_in || yes?( "Would you like to install devise?" )
     generate "happy_seed:facebook"
     packages << "facebook"
   end
+
+  if all_in || yes?( "Would you like to install instagram?" )
+    generate "happy_seed:instagram"
+    packages << "instagram"
+  end
 end
 
 if all_in || yes?( "Would you like to install active admin?" )
