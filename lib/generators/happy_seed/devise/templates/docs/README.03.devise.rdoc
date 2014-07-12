@@ -10,6 +10,7 @@ The happy_seed:devise generator
 * Copies over devise views
 * Gives them bootstrap views
 * Adds use signin/signup stuff to the navbar
+* Installs MailView for the device mailer.
 
 ### Why do you want this?
 

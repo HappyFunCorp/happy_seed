@@ -22,6 +22,10 @@ module HappySeed
         directory 'app'
         directory 'docs'
 
+        application(nil, env: "development") do
+          "config.action_mailer.default_url_options = { host: 'localhost:3000' }"
+        end        
+
         gsub_file 'app/views/application/_header.html.haml', "/ USER NAV", <<-'RUBY'
 %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?

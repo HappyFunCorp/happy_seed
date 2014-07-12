@@ -10,12 +10,17 @@
       .row
         .col-sm-2
           .panel
-            %ul.affix
-              %li
-                %a{ href: "#env" }Environment Variables
-              - @docs.each do |f|
+            .panel-header
+              Nav
+            .panel-body
+              %ul.affix
                 %li
-                  %a{ href: "##{f[:name]}"}= f[:name]
+                  %a{ href: "/rails/mailers"}Mailer Previews
+                %li
+                  %a{ href: "#env" }Environment Variables
+                - @docs.each do |f|
+                  %li
+                    %a{ href: "##{f[:name]}"}= f[:name]
         .col-sm-10
           / Environment Variables
           %h3
