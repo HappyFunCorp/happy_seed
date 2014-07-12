@@ -25,16 +25,7 @@ module HappySeed
           run "bundle install"
         end
 
-        generate 'migration add_name_to_users'
-
-        puts Rails.root
-
-        migration_file = (Dir.glob( File.join( Rails.root, "db/migrate/*add_name_to_users.rb" ) ).first || "").gsub( /.*db\/migrate/, "db/migrate" )
-        remove_file migration_file
-        
-        copy_file "add_name_to_users.rb", migration_file
-
-        generate 'model identity user:references provider:string uid:string'
+        generate 'model identity user:references provider:string uid:string name:string email:string nickname:string image:string phone:string urls:string'
         remove_file 'app/models/identity.rb'
         directory 'app'
         route "match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup"
@@ -42,6 +33,7 @@ module HappySeed
 
         gsub_file "app/models/user.rb", "devise :", "devise :omniauthable, :"
         insert_into_file "app/models/user.rb", File.read( find_in_source_paths( "user.rb" ) ), :before => "\nend\n"
+        insert_into_file "app/views/application/_header.html.haml", "          %li= link_to 'Account', user_path\n", after: "        - if user_signed_in?\n"
         gsub_file 'config/routes.rb', "devise_for :users\n", "devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }\n"
         directory "docs"
       end
