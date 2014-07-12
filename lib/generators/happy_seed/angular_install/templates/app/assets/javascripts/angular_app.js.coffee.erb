@@ -1,0 +1,39 @@
+console.log "Initializing Angular App"
+app = angular.module( "HappySeed", ["ngResource", "ngRoute"])
+
+app.config(["$httpProvider", (p) ->
+  m = document.getElementsByTagName('meta')
+  for i in m 
+    p.defaults.headers.common['X-CSRF-Token'] = i.content if i.name == 'csrf-token'
+])
+
+app.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider.
+    otherwise({redirectTo: '/landing'});
+])
+
+
+safeApply = (scope, fn) ->
+  if( scope.$$phase || scope.$root.$$phase )
+    fn()
+  else
+    scope.$apply(fn)
+
+app.directive 'onEsc', ->
+  link: (scope, elm, attr) ->
+    elm.bind 'keydown', (e)->
+      if( e.keyCode == 27 )
+        scope.$apply attr.onEsc
+
+app.directive 'onEnter', ->
+  link: (scope, elm, attr) ->
+    elm.bind 'keydown', (e) ->
+      if( e.keyCode == 13 )
+        scope.$apply attr.onEnter
+
+app.directive 'onTab', ->
+  link: (scope, elm, attr) ->
+    elm.bind 'keydown', (e) ->
+      if( e.keyCode == 9 )
+        e.preventDefault()
+        scope.$apply attr.onTab

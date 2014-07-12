@@ -1,5 +1,5 @@
 HappySeed Bootstrap Install
-======================
+===========================
 
 ### What does this do?
 

@@ -51,6 +51,11 @@ if all_in || yes?( "Would you like to install active admin?" )
   packages << "admin"
 end
 
+if yes?( "You would like to install angular?" )
+  generate "happy_seed:angular_install"
+  packages << "angular"
+end
+
 puts "Setting up git"
 git :init
 git add: "."

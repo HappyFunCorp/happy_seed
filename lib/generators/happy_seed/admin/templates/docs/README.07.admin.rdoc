@@ -1,0 +1,22 @@
+HappySeed ActiveAdmin Install
+=============================
+
+### What does this do?
+
+The happy_seed bootstrap generator
+
+* Installs active admin from git
+* Runs the active_admin:install generator
+* Creates AdminUser model
+
+### Why do you want this?
+
+ActiveAdmin, for all of it's flaws, including out of date documentation, is a nice way to put a back-end on an application.
+
+### Environment Variables
+
+na
+
+### What needs to be done?
+
+Add models to the dashboard.
