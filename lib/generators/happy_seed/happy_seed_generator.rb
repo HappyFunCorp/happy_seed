@@ -27,10 +27,20 @@ module HappySeed
           end
           append_to_file ".env", "#{provider.upcase}_APP_ID=\n#{provider.upcase}_APP_SECRET=\n"
 
-          inject_into_file 'app/views/application/_header.html.haml', "          %li= link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n", after: "/ CONNECT\n"
+          inject_into_file 'app/views/application/_header.html.haml', "        %li= link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n", after: "/ CONNECT\n"
           inject_into_file 'app/views/devise/sessions/new.html.haml', "                = link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n                %br\n", after: "/ CONNECT\n"
           inject_into_file 'app/views/devise/registrations/new.html.haml', "                = link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n                %br\n", after: "/ CONNECT\n"
           inject_into_file 'app/controllers/omniauth_callbacks_controller.rb', "\n  def #{provider}\n    generic_callback( '#{provider}' )\n  end\n", before: /\s*def generic_callback/
+          inject_into_file 'app/models/user.rb', :before => "\nend" do <<-"RUBY"
+  def #{provider}
+    identities.where( :provider => "#{provider}" ).first
+  end
+
+  def #{provider}_client
+    @#{provider}_client ||= #{provider.to_s.humanize}.client( access_token: #{provider}.accesstoken )
+  end
+RUBY
+          end
         end
      
         def gem_available?(name)

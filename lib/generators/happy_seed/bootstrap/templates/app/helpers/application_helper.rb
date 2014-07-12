@@ -16,4 +16,8 @@ module ApplicationHelper
       nil
     end
   end
+
+  def page_title
+    @title || controller_name.gsub( /Controller/, "" ).humanize
+  end
 end

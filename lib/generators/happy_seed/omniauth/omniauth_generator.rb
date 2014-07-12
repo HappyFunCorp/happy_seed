@@ -25,7 +25,7 @@ module HappySeed
           run "bundle install"
         end
 
-        generate 'model identity user:references provider:string uid:string name:string email:string nickname:string image:string phone:string urls:string'
+        generate 'model identity user:references provider:string accesstoken:string uid:string name:string email:string nickname:string image:string phone:string urls:string'
         remove_file 'app/models/identity.rb'
         directory 'app'
         route "match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup"
@@ -35,6 +35,7 @@ module HappySeed
         insert_into_file "app/models/user.rb", File.read( find_in_source_paths( "user.rb" ) ), :before => "\nend\n"
         insert_into_file "app/views/application/_header.html.haml", "          %li= link_to 'Account', user_path\n", after: "        - if user_signed_in?\n"
         gsub_file 'config/routes.rb', "devise_for :users\n", "devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }\n"
+
         directory "docs"
       end
 

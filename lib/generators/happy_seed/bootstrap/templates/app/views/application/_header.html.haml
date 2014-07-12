@@ -1,16 +1,15 @@
-%header#top.navbar{:role=>:banner}
-  .container
-    .navbar-header
-      %button.navbar-toggle{:type=>:button, 'data-toggle'=>:collapse, 'data-target'=>'.navbar-collapse'}
-        %span.sr-only Toggle navigations
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to root_path, :class=>'navbar-brand' do
-        %span.glyphicon.glyphicon-cloud
-        App name
-    %nav.collapse.navbar-collapse{:role=>:navigation}
-      %ul.nav.navbar-nav
-        %li= link_to 'Contact', '#'
-        %li= link_to 'Blog', '#'
-      / USER NAV
+%header#top.navbar.navbar-default{:role=>:banner}
+  .navbar-header
+    %button.navbar-toggle{:type=>:button, 'data-toggle'=>:collapse, 'data-target'=>'.navbar-collapse'}
+      %span.sr-only Toggle navigations
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to root_path, :class=>'navbar-brand' do
+      %span.glyphicon.glyphicon-cloud
+      App name
+  %nav.collapse.navbar-collapse{:role=>:navigation}
+    %ul.nav.navbar-nav
+      %li= link_to 'Contact', '#'
+      %li= link_to 'Blog', '#'
+    / USER NAV

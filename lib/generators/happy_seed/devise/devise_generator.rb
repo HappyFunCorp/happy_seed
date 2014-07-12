@@ -29,12 +29,12 @@ module HappySeed
 
         gsub_file 'app/views/application/_header.html.haml', "/ USER NAV", <<-'RUBY'
 %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          %li= link_to 'Sign Out', destroy_user_session_path, :method=>:delete
-        - else
-          / CONNECT
-          %li= link_to 'Sign In', new_user_session_path
-          %li= link_to 'Sign Up', new_user_registration_path
+      - if user_signed_in?
+        %li= link_to 'Sign Out', destroy_user_session_path, :method=>:delete
+      - else
+        / CONNECT
+        %li= link_to 'Sign In', new_user_session_path
+        %li= link_to 'Sign Up', new_user_registration_path
 RUBY
       end
     end
