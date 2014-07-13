@@ -1,4 +1,19 @@
 gem 'haml-rails'
+gsub_file 'Gemfile', /.*sqlite3.*/, ""
+
+gem_group :development, :test do
+  gem "sqlite3"
+  gem "rspec"
+  gem "rspec-rails"
+  gem "rspec-autotest"
+  gem "factory_girl_rails"
+  gem "autotest-rails"
+end
+
+gem_group :production do
+  gem 'pg'
+end
+
 gem 'meta-tags', :require => 'meta_tags'
 if ENV['SEED_DEVELOPMENT']
   gem 'happy_seed', :path => File.dirname(__FILE__)
@@ -12,6 +27,11 @@ gsub_file "Gemfile", /^gem\s+["']turbolinks["'].*$/,'# gem \'turbolinks\''
 run 'bundle install'
 
 gsub_file "app/assets/javascripts/application.js", /= require turbolinks/, "require turbolinks"
+
+# Install rspec
+generate "rspec:install"
+gsub_file ".rspec", "--warnings\n", ""
+append_to_file ".rspec", "--format documentation\n"
 
 # Run the base generator
 generate "happy_seed:foreman"
