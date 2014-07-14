@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "HappySeed is a project that will build up a rails apps using some common best practices."
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc", "happy_seed.rb", "lib/**/.*"]
+  s.files = Dir["{app,bin,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc", "happy_seed.rb", "lib/**/.*"]
   s.test_files = Dir["test/**/*"]
   s.executables << "happy_seed"
   s.add_dependency "rails", "~> 4.1.4"
