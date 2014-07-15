@@ -6,6 +6,8 @@ module HappySeed
       def update_application_haml
         gem 'bootstrap-sass'
         gem 'modernizr-rails'
+        gem 'haml-rails'
+        gem 'meta-tags', :require => 'meta_tags'
 
         Bundler.with_clean_env do
           run "bundle install"
@@ -25,7 +27,9 @@ module HappySeed
     end
 RUBY
         end
-        append_to_file ".env", "GOOGLE_ANALYTICS_SITE_ID=\n"
+        if File.exists?( File.join( destination_root, ".env" ) )
+          append_to_file ".env", "GOOGLE_ANALYTICS_SITE_ID=\n"
+        end
       end
     end
   end

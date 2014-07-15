@@ -1,13 +1,7 @@
 class SplashController < ApplicationController
-
   skip_before_filter :authenticate
 
   def index
-    
-    @tracker_gems = Hash[%w( honeybadger bugsnag errorapp_notifier exceptiontrap rollbar
-                            runtimeerror_notifier sentry-raven airbrake ).map{|x| [x,gem_available?(x)]}]
-
-    puts @tracker_gems.to_yaml
   end
 
   def signup

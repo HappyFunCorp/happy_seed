@@ -10,11 +10,14 @@ gem_group :development, :test do
   gem "autotest-rails"
 end
 
+gem_group :test do
+  gem "webmock"
+end
+
 gem_group :production do
   gem 'pg'
 end
 
-gem 'meta-tags', :require => 'meta_tags'
 if ENV['SEED_DEVELOPMENT']
   gem 'happy_seed', :path => File.dirname(__FILE__)
 else

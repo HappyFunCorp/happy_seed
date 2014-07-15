@@ -28,7 +28,13 @@ module HappySeed
 
         directory 'app'
         directory "docs"
-        append_to_file ".env", "MAILCHIMP_API_KEY=\nMAILCHIMP_SPLASH_SIGNUP_LIST_ID=\n"
+        directory "spec"
+
+        begin
+          append_to_file ".env", "MAILCHIMP_API_KEY=\nMAILCHIMP_SPLASH_SIGNUP_LIST_ID=\n"
+        rescue
+          say_status :env, "Unable to add template .env files", :red
+        end
       end
 
       private    
