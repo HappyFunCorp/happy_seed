@@ -27,6 +27,7 @@ module HappySeed
 
         generate 'model identity user:references provider:string accesstoken:string uid:string name:string email:string nickname:string image:string phone:string urls:string'
         remove_file 'app/models/identity.rb'
+        remove_file 'spec/models/identity_spec.rb'
         directory 'app'
         directory 'spec'
         route "match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup"
