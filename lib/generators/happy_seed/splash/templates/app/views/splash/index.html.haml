@@ -1,4 +1,173 @@
-%section.masthead.jumbotron
+%section.masthead
+  .container
+    .row
+      .col-md-12.text-center
+        %h1{"data-scroll-reveal"=>"enter from the top but wait .5s"}
+          %span.glyphicon.glyphicon-leaf
+          Happy Seed
+        %h2{"data-scroll-reveal"=>"enter bottom but wait 1s over 1s"}
+          Quickly setup a Rails app
+        %h2{"data-scroll-reveal"=>"enter bottom but wait 1.5s over 1.5s"}
+          with awesome plugins
+        %h2{"data-scroll-reveal"=>"enter bottom but wait 4s over 2s"}
+          = "...and get all the pesky details right"
+        #bottom{ "data-scroll-reveal" => "wait 6s and then ease-in-out 100px" }
+          %a{ :href => "#what"}
+            %span.glyphicon.glyphicon-chevron-down
+
+%section#what.light
+  .container
+    .row
+      .col-sm-4
+        %h2 Solid Gems
+        %p.lead Stand on the shoulders of giants.
+        %ul
+          %li
+            Follows 
+            = link_to "12 factors", "http://12factor.net/"
+          %li
+            Can easily be deployed to
+            = link_to "heroku", "http://heroku.com"
+            with foreman/Profile
+          %li
+            = link_to "bootstrap", "http://getbootstrap.com/"
+            with clean layout structure
+          %li
+            = link_to "haml", "http://haml.info"
+            templates, upgraded rails scaffold templates to work with bootstap
+          %li
+            = link_to "metatag", "https://github.com/kpumuk/meta-tags"
+            setup for SEO
+          %li
+            = link_to "devise", "https://github.com/plataformatec/devise"
+            for user authentication
+          %li
+            = link_to "omniauth", "https://github.com/intridea/omniauth"
+            for oauth support
+          %li
+            = link_to "angular", "https://angularjs.org"
+            installer that fits with the rails asset pipeline
+          %li
+            = link_to "active_admin", "http://activeadmin.info"
+            for admin panel
+
+      .col-sm-4
+        %h2 Sensible Defaults
+        %p.lead Get it working quickly and start customizing
+        %ul
+          %li
+            = link_to "unicorn", "http://unicorn.bogomips.org"
+            configured
+          %li
+            Basic layout/navbar structure include
+          %li
+            Devise user models
+          %li
+            Omniauth Callback Controller
+          %li
+            Twitter, Facebook, Instrgram integration optionally wired up
+          %li
+            Site nav structure
+
+
+
+      .col-sm-4
+        %h2 More awesome stuff
+        %p.lead Why stop there?
+
+        %ul
+          %li Splash page template
+          %li Mailchimp signup form
+          %li
+            = link_to "rspec", "http://rspec.info"
+          %li
+            = link_to "factory_girl", "https://github.com/thoughtbot/factory_girl"
+          %li
+            = link_to "webmock", "https://github.com/bblimke/webmock"
+          %li
+            = link_to "autotest", "http://autotest.github.io"
+
+
+%section#why
+  .container
+    .row
+      .col-sm-12.text-center
+        %h1 Why
+
+    .row
+      .col-sm-4.col-sm-offset-1
+        %p.lead We like to try out lots of different ideas, and we build a lot of apps for clients.
+      .col-sm-4.col-sm-offset-2
+        %p.lead The ruby community has tons of great gems out there that have save a huge amount of time.
+
+    .row
+      .col-sm-6.col-sm-offset-3
+        %p.lead
+          But everytime I started a project I found myself doing the same stuff over and over.
+
+        %p Figuring out exactly how I wanted to configure a particular gem for a particular problem, even though I was more interested in creating a new product with particular functionality I was spending a lot of time doing "plumbing".
+
+    .row
+      .col-sm-8.col-sm-offset-2
+        %h2
+          Why not make it really easy to get through the plumbing, so I can focus on the part that makes the application different rather than the stuff that makes it the same?
+
+%section#how.light
+  .container
+    .row
+      .col-sm-12
+        %h1.text-center How
+
+    .row
+      .col-sm-4.col-sm-offset-1
+        %p.lead Install the gem
+
+        %pre="$ gem install happy_seed"
+
+      .col-sm-4.col-sm-offset-1
+        %p.lead This create the rails plugin on your system.
+
+        %p
+          There is a small application template that is used to start the app, which itself includes the happy_seed gem.  This exposes the rail generators and templates to your project, which is how functionality gets installed.
+
+    .row
+      .col-sm-4.col-sm-offset-1
+        %p.lead Generate a new app
+        %pre="$ happy_seed app_name"
+
+      .col-sm-4.col-sm-offset-1
+        %p.lead Now create!
+
+        %p You will get prompted for what you want to install.
+
+        %p The current generators are:
+
+        %ul
+          %li The application template
+          %li= link_to "happy_seed:forman", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/foreman/templates/docs/README.00.base.rdoc"
+          %li
+            = link_to "happy_seed:bootstrap", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/bootstrap/templates/docs/README.01.bootstrap.rdoc"
+            %ul
+              %li= link_to "happy_seed:splash", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/splash/templates/docs/README.02.splash.rdoc"
+          %li
+            = link_to "happy_seed:devise", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/devise/templates/docs/README.03.devise.rdoc"
+            %ul
+              %li
+                = link_to "happy_seed:omniauth", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/omniauth/templates/docs/README.04.omniauth.rdoc"
+              %li
+                = link_to "happy_seed:twitter", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/twitter/templates/docs/README.05.twitter.rdoc"
+              %li
+                = link_to "happy_seed:facebook", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/facebook/templates/docs/README.06.facebook.rdoc"
+              %li
+                = link_to "happy_seed:instagram", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/instagram/templates/docs/README.05.instagram.rdoc"
+          %li
+            = link_to "happy_seed:admin", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/admin/templates/docs/README.07.admin.rdoc"
+
+          %li
+            = link_to "happy_seed:angular_install", "https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.10.angular_install.rdoc"
+
+
+%section#who
   .container
     .row
       .col-md-8.col-md-offset-2
@@ -6,12 +175,15 @@
           .panel-body
             .row
               .col-md-4.text-center.brand
-                %h1
-                  %span.glyphicon.glyphicon-cloud
+                %h1{"data-scroll-reveal"=>true}
+                  %span.glyphicon.glyphicon-leaf
                   %br
-                  App
+                  Happy Seed
               .signup.col-md-7.col-md-offset-0.col-lg-7.col-lg-offset-0.col-sm-offset-2.col-sm-8
-                %p.lead Get ready. We'll make your life easier and more&nbsp;meaningful.
+                %p.lead
+                  Sign up for the
+                  = link_to "HappyFunCorp", "http://happyfuncorp.com"
+                  mailing list!.
                 = form_tag splash_signup_path, role: :form, :class=>'form-horizontal', :remote=>true do
                   .form-group#signup
                     .col-sm-12

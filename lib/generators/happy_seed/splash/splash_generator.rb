@@ -29,6 +29,9 @@ module HappySeed
         directory 'app'
         directory "docs"
         directory "spec"
+      	directory "vendor"
+
+        append_to_file "config/initializers/assets.rb", "Rails.application.config.assets.precompile += %w( splash.css scrollReveal.js )\n"
 
         begin
           append_to_file ".env", "MAILCHIMP_API_KEY=\nMAILCHIMP_SPLASH_SIGNUP_LIST_ID=\n"

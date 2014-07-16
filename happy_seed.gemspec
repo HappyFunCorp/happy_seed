@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = HappySeed::VERSION
   s.authors     = ["Will Schenk", "Ricky Reusser"]
   s.email       = ["will@happyfuncorp.com"]
-  s.homepage    = "https://github.com/sublimeguile/happy_seed"
+  s.homepage    = "http://seed.happyfuncorp.com"
   s.summary     = "HappySeed is a project that will build up a rails apps using some common best practices."
   s.description = "HappySeed is a project that will build up a rails apps using some common best practices."
   s.license     = "MIT"

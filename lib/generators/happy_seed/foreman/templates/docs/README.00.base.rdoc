@@ -19,7 +19,7 @@ Using the .env file to manage configuration variables makes it much easier to ke
 
 The AWS env variables are there for reference
 
-If the HTTP_AUTH_U* variables are set, application_controller will force them to be used for authentication to let people into the site.  (The happy_seed:splash generator will not use this.)
+If the HTTP_AUTH_* variables are set, application_controller will force them to be used for authentication to let people into the site.  (The happy_seed:splash generator will not use this.)
 
 ```
   AWS_ACCESS_KEY_ID=

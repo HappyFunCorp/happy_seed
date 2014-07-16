@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    happy_seed (0.0.5)
+    happy_seed (0.0.6)
       rails (~> 4.1.4)
 
 GEM

@@ -1,10 +1,42 @@
 !!! 5
 %html.no-js
-  = render 'head'
+  %head
+    %meta{ :charset => 'utf-8' }/
+    %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1' }/
 
-  %body{ :class => "#{ controller.controller_name }" }
+    = display_meta_tags :site => 'Seed Site', :title => page_title, :reverse => true
+
+    %meta{ :name => 'description', :content => '' }/
+    %meta{ :name => 'viewport', :content => 'width=device-width' }/
+
+    = stylesheet_link_tag 'splash', :media => nil
+
+    -# Append your own using content_for :stylesheets
+    = yield :stylesheets
+    = javascript_include_tag 'modernizr'
+
+    = csrf_meta_tag
+
+  %body{ "data-spy" => "scroll", "data-target" => "#top"}
     = render 'chromeframe'
     = render 'flashes'
+
+    %header#top.navbar.navbar-inverse.navbar-fixed-top{:role=>:banner}
+      .navbar-header
+        %button.navbar-toggle{:type=>:button, 'data-toggle'=>:collapse, 'data-target'=>'.navbar-collapse'}
+          %span.sr-only Toggle navigations
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to '#', :class=>'navbar-brand' do
+          %span.glyphicon.glyphicon-leaf
+          Happy Seed
+      %nav.collapse.navbar-collapse{:role=>:navigation}
+        %ul.nav.navbar-nav
+          %li= link_to 'What', '#what'
+          %li= link_to 'Why', '#why'
+          %li= link_to 'How', '#how'
+          %li= link_to 'Who', '#who'
 
     = yield
 
@@ -12,3 +44,23 @@
 
     -# Javascript at the bottom for fast page loading
     = render 'javascripts'
+    = javascript_include_tag 'scrollReveal.js'
+    :javascript
+        $(function() { 
+          window.scrollReveal = new scrollReveal();
+          $("#top.navbar ul li a[href^='#']").on('click', function(e) {
+            e.preventDefault();
+
+            // store hash
+            var hash = this.hash;
+
+            // animate
+            $('html, body').animate({
+              scrollTop: $(this.hash).offset().top
+            }, 300, function(){
+              // when done, add hash to url
+              // (default click behaviour)
+              window.location.hash = hash;
+            });
+          });
+        });

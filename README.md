@@ -13,6 +13,7 @@ HappySeed is an rails application template plus a set of rails generators to hel
 * [happy_seed:omniauth](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/omniauth/templates/docs/README.04.omniauth.rdoc) setting up omni auth
 * [happy_seed:twitter](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/twitter/templates/docs/README.05.twitter.rdoc) setting up twitter authentication
 * [happy_seed:facebook](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/facebook/templates/docs/README.06.facebook.rdoc) setting up facebook authentication
+* [happy_seed:instagram](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/instgram/templates/docs/README.05.instagram.rdoc) setting up instagram authentication
 * [happy_seed:admin](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/admin/templates/docs/README.07.admin.rdoc) install active admin
 
 * [happy_seed:angular_install](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.10.angular_install.rdoc) install angular in the app
