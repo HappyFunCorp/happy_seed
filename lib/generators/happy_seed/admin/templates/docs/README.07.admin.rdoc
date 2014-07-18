@@ -8,6 +8,7 @@ The happy_seed bootstrap generator
 * Installs active admin from git
 * Runs the active_admin:install generator
 * Creates AdminUser model
+* Creates basic newsletter/campaign admin panel if MAILCHIMP_API_KEY is active
 
 ### Why do you want this?
 

@@ -4,6 +4,7 @@ module HappySeed
       source_root File.expand_path('../templates', __FILE__)
 
       def install_landing_page
+        gem 'devise'
         gem 'activeadmin', github: 'gregbell/active_admin'
 
         Bundler.with_clean_env do
@@ -11,7 +12,7 @@ module HappySeed
         end
 
         generate 'active_admin:install'
-        generate 'active_admin:resource User'
+        directory 'app'
         directory "docs"
       end
 
