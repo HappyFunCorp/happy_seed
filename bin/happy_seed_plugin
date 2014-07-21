@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby -wU
+
+spec = Gem::Specification.find_by_name("happy_seed")
+gem_root = spec.gem_dir
+
+file = File.join( ENV['SEED_DEVELOPMENT'] || gem_root, "lib/generators/happy_seed/plugin/plugin_generator.rb" )
+
+# app_name = ARGV.shift
+
+puts "Generating new plugin"
+
+require file
+
+HappySeed::Generators::PluginGenerator.start
