@@ -27,9 +27,12 @@ module HappySeed
           remove_file 'app/views/devise/passwords/new.html.erb'
         end
 
+        remove_file "spec/factories/users.rb"
+        
         directory 'app'
         directory 'docs'
         directory 'test'
+        directory 'spec'
 
         application(nil, env: "development") do
           "config.action_mailer.default_url_options = { host: 'localhost:3000' }"

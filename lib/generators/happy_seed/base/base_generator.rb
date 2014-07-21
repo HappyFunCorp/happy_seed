@@ -1,6 +1,6 @@
 module HappySeed
   module Generators
-    class ForemanGenerator < Rails::Generators::Base
+    class BaseGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
 
       def install_foreman
@@ -25,6 +25,20 @@ module HappySeed
         rescue
           say_status :spec, "Unable to add webmock to rails_helper.rb", :red
         end
+
+        begin
+          inject_into_file 'spec/rails_helper.rb', "\n  config.include FactoryGirl::Syntax::Methods\n", :before => "\nend\n"
+        rescue
+          say_status :spec, "Unable to add factory girl to rails_helper.rb", :red
+        end
+
+        begin
+          prepend_to_file 'spec/spec_helper.rb', "require 'devise'\n"
+          inject_into_file 'spec/spec_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n", :before => "\nend\n"
+        rescue
+          say_status :spec, "Unable to add devise helpers to spec_helper.rb", :red
+        end
+
 
         route "get '/setup' => 'setup#index'"
         route "root 'setup#index'"

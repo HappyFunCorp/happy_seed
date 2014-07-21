@@ -37,7 +37,7 @@ gsub_file ".rspec", "--warnings\n", ""
 append_to_file ".rspec", "--format documentation\n"
 
 # Run the base generator
-generate "happy_seed:foreman"
+generate "happy_seed:base"
 
 all_in = false
 all_in = true if yes? "Would you like to install everything?"
