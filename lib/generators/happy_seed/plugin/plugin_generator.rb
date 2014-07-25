@@ -19,9 +19,12 @@ module HappySeed
         gsub_file "#{app_name}/spec/dummy/.rspec", "--warnings\n", ""
         append_to_file "#{app_name}/spec/dummy/.rspec", "--format documentation\n"
 
-        destination_root = app_name
-
+        self.destination_root = app_name
+        
+		remove_file "Rakefile"
         copy_file "Rakefile"
+        copy_file ".rspec"
+        copy_file ".autotest"
         directory "spec"
       end
     end

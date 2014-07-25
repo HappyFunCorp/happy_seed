@@ -17,5 +17,9 @@ require 'rspec/core/rake_task'
 
 desc "Run all specs in spec directory (excluding plugin specs)"
 
-RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
+# This is for moutable engines
+# RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
+
+# This is for plugins that don't have models
+RSpec::Core::RakeTask.new(:spec)
 task :default => :spec

@@ -1,0 +1,8 @@
+require "autotest/rails_rspec"
+puts "Hi from autotest"
+
+Autotest.add_hook :initialize do |autotest|
+  %w{.git .svn .hg .DS_Store ._* vendor tmp log doc}.each do |exception|
+    autotest.add_exception(exception)
+  end
+end
