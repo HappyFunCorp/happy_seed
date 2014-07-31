@@ -33,10 +33,11 @@
           Happy Seed
       %nav.collapse.navbar-collapse{:role=>:navigation}
         %ul.nav.navbar-nav
-          %li= link_to 'What', '#what'
-          %li= link_to 'Why', '#why'
-          %li= link_to 'How', '#how'
-          %li= link_to 'Who', '#who'
+          %li= link_to 'Top', '#'
+          %li= link_to 'Why', '#what'
+          %li= link_to 'Feature 1', '#feature1'
+          %li= link_to 'Feature 2', '#feature2'
+          %li= link_to 'Feature 3', '#feature3'
 
     = yield
 
@@ -56,7 +57,7 @@
 
             // animate
             $('html, body').animate({
-              scrollTop: $(this.hash).offset().top
+              scrollTop: $(this.hash).offset().top - 95  // 75 is navbar height
             }, 300, function(){
               // when done, add hash to url
               // (default click behaviour)

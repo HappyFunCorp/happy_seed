@@ -21,7 +21,7 @@ module HappySeed
 
         self.destination_root = app_name
         
-		remove_file "Rakefile"
+    		remove_file "Rakefile"
         copy_file "Rakefile"
         copy_file ".rspec"
         copy_file ".autotest"

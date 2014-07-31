@@ -12,33 +12,6 @@ $navbar-inverse-bg: rgba(0,0,0,.9);
 
 // Color Palate
 $brand-primary: #9CCC00;
-$color-accent: #428bca;
-$color-background: #202a39;
-$color-background-light: darken( white, 10% ); // #DAE3BB; //#3D6299;
-$color-text: #ddd;
-$color-text-light: $color-background; //#3F005E;
-
-// $carousel-control-color: lighten( $color-text-light, 10% );
-// $carousel-indicator-border-color: $carousel-control-color;
-
-// $color-text-light: #D0F2EF;
-// $color-accent: #91A644;
-// $color-background: #445925;
-// $color-background-light: #735D34;
-// $color-text: #91A644;
-
-// Default bootstrap reference
-// $brand-primary:         #428bca !default;
-// $brand-success:         #5cb85c !default;
-// $brand-info:            #5bc0de !default;
-// $brand-warning:         #f0ad4e !default;
-// $brand-danger:          #d9534f !default;
-
-
-
-$body-bg: $color-background;
-$text-color: $color-text;
-$navbar-inverse-brand-color: $text-color;
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
@@ -52,49 +25,6 @@ body {
   border-bottom: 2px solid $brand-primary;
 }
 
-@media screen and (min-width: $screen-sm-min) {
-  h1 { font-size: 72px }
-  .navbar-brand {
-    font-family: $headings-font-family;
-    font-size: 24px;
-  }
-
-  // .navbar-nav {
-  //   margin: ($navbar-padding-vertical / 2) (-$navbar-padding-horizontal);
-
-  //   > li > a {
-  //     padding-top:    13px;
-  //     padding-bottom: 10px;
-  //     line-height: 13px;
-  //     font-size: 20px;
-  //   }
-  // }
-}
-
-.navbar#top {
-  border-bottom: 1px solid $brand-primary;
-}
-
-.navbar-collapse.in {
-  background: white;
-}
-
-section {
-  padding-top: 20%;
-  min-height: 90%;
-  padding-bottom: 20%;
-}
-
-section #bottom {
-  margin-top: 10%;
-  font-size: 24px;
-}
-
-section.light {
-  background: $color-background-light;
-  color: $color-text-light;
-
-  a {
-    color: darken( $brand-primary, 5% );
-  }
+.navbar-inverse a.navbar-brand {
+  color: $brand-primary;
 }
