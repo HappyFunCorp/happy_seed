@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,bin,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc", "happy_seed.rb", "lib/**/.*"]
   s.test_files = Dir["test/**/*"]
   s.executables << "happy_seed"
+  s.executables << "happy_seed_plugin"
   s.add_dependency "rails", "~> 4.1.4"
 
   s.add_development_dependency "sqlite3"

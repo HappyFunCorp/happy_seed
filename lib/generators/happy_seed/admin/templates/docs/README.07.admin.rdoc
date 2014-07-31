@@ -21,3 +21,5 @@ na
 ### What needs to be done?
 
 Add models to the dashboard.
+
+(the happy_Seed stats module is in development)

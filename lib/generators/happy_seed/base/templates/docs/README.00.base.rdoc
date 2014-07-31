@@ -5,21 +5,30 @@ HappySeed Base Install
 
 The happy_seed application template sets up haml, meta-tags, disables turbolinks, and installs the happy_seed generators into your application.
 
-The happy_seed:foreman generator installs dotenv-rails, unicorn, http site authentication, and the setup_controller.
+The happy_seed:base generator installs dotenv-rails, unicorn, http site authentication, and the setup_controller.
 
 /setup is used to see the happy_seed documentation for each of the installed generators, and copies things into the rails doc directory.  The setup_controller is only visible locally.
 
 ### Why do you want this?
 
-Haml is create and turbolinks make it impossible to correctly debug a site.
+Haml is great and we like it better than balancing out closing tags.  meta-tags makes it easy to flesh out SEO.
 
-Using the .env file to manage configuration variables makes it much easier to keep track of what is needed in each environment, and sets you up to use heroku.
+Turbolinks tend to be more trouble than they are worth.  Outside of making web site analytics slightly more cumbersome, we end up having trouble with debugging and testing.  Turbolinks work by having all of the javascript of the page loaded and resident and only replacing the body of the page when the user loads up a new page.  When everything works correctly this makes things faster; when it doesn't work correctly, you end up tracking down issues where DOM event handlers aren't correctly attached.
+
+dotenv-rails mimics the way that heroku starts up the application even when using "rails s", rather than foreman.  This pulls in data from the .env file.  In the case where you only have the web application in the Procfile, its easier to read through the log file when you use rails s rather than foreman.  .env is also a good way to make sure that none of your configuration stuff is stuck away in code somewhere.
+
+Assuming that you aren't hemmoraging memory, using unicorn is a great way to get more out of your dynos.  This setup gives you 3 workers for every dyno.  (We have nothing against Puma.)
+
+Finally we setup some basic HTTP auth and a simple setup controller to help navigate what seed has generated for you.  By default the HTTP auth stuff is off (i.e. no user/pass set) but the basic idea is that before you open things up to the world you can share your app to a limited group of people.
+
 
 ### Environment Variables
 
 The AWS env variables are there for reference
 
 If the HTTP_AUTH_* variables are set, application_controller will force them to be used for authentication to let people into the site.  (The happy_seed:splash generator will not use this.)
+
+AWS_ACCESS_KEY stuff isn't used, but is here for reference.
 
 ```
   AWS_ACCESS_KEY_ID=
@@ -31,4 +40,4 @@ If the HTTP_AUTH_* variables are set, application_controller will force them to 
 
 ### What needs to be done?
 
-At some point, you should remove the setup_controller from your application.
+Even though the setup controller only works locally, you should plan on removing the setup_controller since it shows the configuration variables.
