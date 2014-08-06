@@ -4,16 +4,23 @@
     %title HappySeed Generator setup page
     %script{:src=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
     %link{:href=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel=>"stylesheet"}
+    :css
+      #nav { margin-top: 25px; }
+      @media (max-width: 768px) {
+        .affix {
+            position: static;
+        }
+      }
 
   %body
     .container
       .row
-        .col-sm-2
-          .panel
-            .panel-header
+        .col-sm-3
+          .panel.panel-default.affix#nav
+            .panel-heading
               Nav
             .panel-body
-              %ul.affix
+              %ul.list-unstyled
                 %li
                   %a{ href: "/rails/mailers"}Mailer Previews
                 %li
@@ -21,7 +28,7 @@
                 - @docs.each do |f|
                   %li
                     %a{ href: "##{f[:name]}"}= f[:name]
-        .col-sm-10
+        .col-sm-9
           / Environment Variables
           %h3
             %a{ name: "env" }Environment Variables
@@ -34,3 +41,5 @@
               %a{ name: "#{f[:name]}"}= f[:name]
 
             ~ f[:html].html_safe
+
+            %hr
