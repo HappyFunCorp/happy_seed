@@ -38,6 +38,10 @@ module HappySeed
           "config.action_mailer.default_url_options = { host: 'localhost:3000' }"
         end
 
+        application(nil, env: "test") do
+          "config.action_mailer.default_url_options = { host: 'localhost:3000' }"
+        end
+
         if File.exists?( File.join( destination_root, 'app/views/application/_header.html.haml' ) )
           gsub_file 'app/views/application/_header.html.haml', "/ USER NAV", <<-'RUBY'
   %ul.nav.navbar-nav.navbar-right

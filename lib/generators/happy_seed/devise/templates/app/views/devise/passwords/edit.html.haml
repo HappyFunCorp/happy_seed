@@ -8,13 +8,14 @@
 
         .panel-body
 
-          = form_for(resource, as: resource_name, url: password_path(resource_name), :html=>{:role=>:form, :class=>'form-horizontal'}) do |f|
+          = form_for(resource, as: resource_name, url: password_path(resource_name), :html=>{:role=>:form, :class=>'form-horizontal', method: 'put'}) do |f|
 
             = devise_error_messages!
+            = f.hidden_field :reset_password_token
 
             .form-group
               = f.label :password, :class=>'control-label col-lg-3'
-              .col-lg-9= f.password_field :password, autocomplete: "off", :autofocus: true, :class=>'form-control', :placeholder=>'Password'
+              .col-lg-9= f.password_field :password, autocomplete: "off", autofocus: true, :class=>'form-control', :placeholder=>'Password'
 
             .form-group
               = f.label :password_confirmation, :class=>'control-label col-lg-3'
