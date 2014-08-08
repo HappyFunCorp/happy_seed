@@ -1,0 +1,18 @@
+HappySeed Jazz Hands Install
+====================
+
+### What does this do?
+
+* Installs jazz_hands gen
+
+### Why do you want this?
+
+As per the jazz_hands repo https://github.com/nixme/jazz_hands
+
+Spending hours in the rails console? Spruce it up and show off those hard-working hands!
+
+jazz_hands is an opinionated set of console-related gems and a bit of glue
+
+### What needs to be done?
+
+na
