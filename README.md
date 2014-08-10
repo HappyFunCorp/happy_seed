@@ -18,6 +18,7 @@ HappySeed is an rails application template plus a set of rails generators to hel
 
 * [happy_seed:angular_install](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.10.angular_install.rdoc) install angular in the app
 * [happy_seed:angular_view](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.11.angular_view.rdoc) create a new angular route and template
+* [happy_seed:jazz_hands](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/jazz_hands/templates/docs/README.12.jazz_hands.rdoc) jazz_hands for better rails console
 
 All of these documents are droped into the docs folder of your project, and can be viewed with the [setup inspector](http://localhost:3000) once you start up the app.
 

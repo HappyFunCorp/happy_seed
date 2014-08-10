@@ -85,8 +85,12 @@ if yes?( "You would like to install angular?" )
   packages << "angular"
 end
 
+if yes?( "You would like to install jazz hands?" )
+  generate "happy_seed:jazz_hands"
+  packages << "jazz_hands"
+end
+
 puts "Setting up git"
 git :init
 git add: "."
 git commit: "-a -m 'Based off of happy_seed: #{packages.join( ', ')} included'"
-
