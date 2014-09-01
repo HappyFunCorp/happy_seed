@@ -1,8 +1,9 @@
-.page-header
-  = link_to <%= index_helper %>_path, :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  %h1 New <%= singular_table_name %>
+.container
+  .page-header
+    = link_to <%= index_helper %>_path, :class => 'btn btn-default' do
+      %span.glyphicon.glyphicon-list-alt
+      Back
+    %h1 New <%= singular_table_name %>
 
-= render 'form'
+  = render 'form'
 

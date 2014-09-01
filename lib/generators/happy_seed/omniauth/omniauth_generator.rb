@@ -41,7 +41,7 @@ module HappySeed
         end
 
         begin
-          insert_into_file "app/views/application/_header.html.haml", "          %li= link_to 'Account', user_path\n", after: "        - if user_signed_in?\n"
+          insert_into_file "app/views/application/_header.html.haml", "            %li= link_to 'Account', user_path\n", after: "        - if user_signed_in?\n"
         rescue
           say_status :header_links, "Unable to add user accounts links to the nav bar", :red
         end

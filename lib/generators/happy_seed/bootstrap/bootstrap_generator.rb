@@ -22,9 +22,12 @@ module HappySeed
         directory 'docs'
 
         inject_into_file 'config/application.rb', before: "end\nend\n" do <<-'RUBY'
-  config.generators do |g|
+  config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    config.generators do |g|
       g.stylesheets = false
+      g.scaffold_controller "scaffold_controller"
     end
+  
 RUBY
         end
         if File.exists?( File.join( destination_root, ".env" ) )

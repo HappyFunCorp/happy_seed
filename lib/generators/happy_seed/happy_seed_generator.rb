@@ -32,7 +32,7 @@ module HappySeed
           end
 
           begin
-            inject_into_file 'app/views/application/_header.html.haml', "          %li= link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n", after: "/ CONNECT\n"
+            inject_into_file 'app/views/application/_header.html.haml', "            %li= link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n", after: "/ CONNECT\n"
           rescue
             say_status :header_links, "Unable to add links to the nav bar header", :red
           end

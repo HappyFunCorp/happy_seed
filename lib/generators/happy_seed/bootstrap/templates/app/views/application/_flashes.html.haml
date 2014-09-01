@@ -1,5 +1,5 @@
 - if !flash.empty?
-  #flash
+  .container#flash
     - flash.each do |key, value|
       %div{ :title => key.to_s.humanize, :class => flash_class(key), :role => "alert" }
         %button.close{ "type" => "button", "data-dismiss" => "alert"}
