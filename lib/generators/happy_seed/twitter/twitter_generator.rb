@@ -9,6 +9,7 @@ module HappySeed
         require_omniauth
 
         gem 'omniauth-twitter'
+        gem 'twitter'
 
         Bundler.with_clean_env do
           run "bundle install"
