@@ -6,7 +6,6 @@ module HappySeed
       def update_application_haml
         gem 'bootstrap-sass'
         gem 'modernizr-rails'
-        gem 'haml-rails'
         gem 'meta-tags', :require => 'meta_tags'
 
         Bundler.with_clean_env do
