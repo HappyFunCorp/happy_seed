@@ -9,3 +9,4 @@ test/dummy/.sass-cache
 .DS_Store
 test_app/
 lib/**/Gemfile.lock
+website/build

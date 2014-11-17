@@ -1,0 +1,80 @@
+!!! 5
+%html.no-js
+  %head
+    %meta{ :charset => 'utf-8' }/
+    %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1' }/
+
+    %title HappySeed
+
+    %meta{ :name => 'description', :content => '' }/
+    %meta{ :name => 'viewport', :content => 'width=device-width,initial-scale=0.75' }/
+
+    <meta property="og:title" content="Happy Seed"/>
+    <meta property="og:url" content="http://seed.happyfuncorp.com"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://s3.amazonaws.com/happyfuncorp-cdn/use-happy-seed.png"/>
+    <meta property="og:description" content="Roses are red, violets are blue, your code sucks because you’re not using seed."/>
+
+    = stylesheet_link_tag 'application', :media => nil
+
+    -# Append your own using content_for :stylesheets
+    / = yield :stylesheets
+    = javascript_include_tag 'modernizr'
+    -#= stylesheet_link_tag 'gh-fork-ribbon', :media => nil
+    <!--[if lt IE 9]>
+    = stylesheet_link_tag 'gh-fork-ribbon.ie', :media => nil
+    <![endif]-->
+
+  %body{ "data-spy" => "scroll", "data-target" => "#top"}
+    / # = render 'chromeframe'
+    / = render 'flashes'
+
+    = link_to "View Me on GitHub", "https://github.com/sublimeguile/happy_seed", :class=>'github-fork-ribbon'
+
+    %header#top.navbar.navbar-inverse.navbar-fixed-top{:role=>:banner}
+      .navbar-header
+        %button.navbar-toggle{:type=>:button, 'data-toggle'=>:collapse, 'data-target'=>'.navbar-collapse'}
+          %span.sr-only Toggle navigations
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to '#happy-seed', :class=>'navbar-brand' do
+          %span.icon.icon-seed-logo-white
+          Happy Seed
+      %nav.collapse.navbar-collapse{:role=>:navigation}
+        %ul.nav.navbar-nav
+          %li= link_to 'What', '#what'
+          %li= link_to 'Why', '#why'
+          %li= link_to 'How', '#how'
+          %li= link_to 'Who', '#who'
+
+    = yield
+
+    -#= render 'footer'
+
+    -# Javascript at the bottom for fast page loading
+    = partial 'layouts/javascripts'
+
+    / # - unless mobile_device?
+    = javascript_include_tag 'scrollReveal.js'
+
+    :javascript
+      $(function() { 
+        window.scrollReveal = new scrollReveal();
+        $("a").on('click', function(e) {
+          if( ! $(this).attr('href') || ! $(this).attr('href').match(/^#/) ) return;
+          e.preventDefault();
+
+          // store hash
+          var hash = this.hash;
+
+          // animate
+          $('html, body').animate({
+            scrollTop: $(this.hash).offset().top
+          }, 300, function(){
+            // when done, add hash to url
+            // (default click behaviour)
+            window.location.hash = hash;
+          });
+        });
+      });

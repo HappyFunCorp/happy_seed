@@ -18,26 +18,3 @@ module HappySeed
     end
   end
 end
-
-#         system "rails plugin new #{app_name} -T --dummy-path=spec/dummy #{args.join( " ")}"
-
-#         insert_into_file "#{app_name}/#{app_name}.gemspec", File.read( "#{source_root}/gemspec" ), :before => "\nend\n"
-
-#         system( "cd #{app_name} && bundle" )
-
-#         system( "cd #{app_name}/spec/dummy && rails g rspec:install")
-
-#         gsub_file "#{app_name}/spec/dummy/.rspec", "--warnings\n", ""
-#         append_to_file "#{app_name}/spec/dummy/.rspec", "--format documentation\n"
-
-#         self.destination_root = app_name
-        
-#         remove_file "Rakefile"
-#         copy_file "Rakefile"
-#         copy_file ".rspec"
-#         copy_file ".autotest"
-#         directory "spec"
-#       end
-#     end
-#   end
-# end
