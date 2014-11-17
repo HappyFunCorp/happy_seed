@@ -1,0 +1,68 @@
+---
+title: Welcome to Happy Seeds Static Site
+---
+
+.container
+  .row
+    .col-xs-12
+      %h1.animated.bounce.text-center Welcome to Happy Seed
+
+  .row
+    .col-sm-6
+      %h2 What's installed
+
+      %p.lead
+        = "Here is a basic middleman app that's setup with Bootstrap-SASS, jQuery,"
+        = link_to "animate.css", "http://daneden.github.io/animate.css/"
+        and 
+        = link_to "socicons", "http://socicon.com"
+        = "."
+
+      %p.lead
+        The following middleman components are installed
+
+        %ul
+          %li middleman
+          %li middleman-deploy
+          %li middleman-meta-tags
+          %li middleman-livereload
+          %li middleman-bootstrap-navbar
+
+
+        = link_to "Read Middleman Documentation", "http://middlemanapp.com/"
+
+    .col-sm-6
+      %h2 What's configured
+
+      %p.lead
+        %ul
+          %li Layout and files moved to HAML
+          %li Bootstrap-Sass is included via Sass @import;
+          %li CNAME file gets generated if it exists for github pages subdomaining
+          %li data/site.yml file for default site meta data
+          %li meta_tags is enabled with the auto_meta tagger
+          %li Bootstrap nav bar helpers are actived
+          %li Livereload is on for development
+          %li Asset cleanup is on for build
+          %li Deploy to github pages setup by default
+
+  .row
+    .col-sm-6
+      %h2 Site meta data
+
+      %pre~"title: \"My Static Site\"\npublisher_twitter: \"@HappyFunCorp\"\ntwitter_id: \"@wschenk\"\n# google_analytics_id:\n"
+
+      %p
+        Set google_analytics_id for it to show up on a build version of the page.
+
+    .col-sm-6
+      %h2 Example social icons
+      %ul
+        %li
+          %a{ href: "http://twitter.com/HappyFunCorp" }
+            %span.socicon.socicon-twitter.fgcolor
+            = "@HappyFunCorp"
+        %li
+          %a{ href: "http://sublimeguile.com/"}
+            %span.socicon.socicon-tumblr.fgcolor
+            Tumblr

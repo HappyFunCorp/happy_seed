@@ -1,0 +1,24 @@
+@import "bootstrap";
+
+body {
+  padding-top: $navbar-height + 20;
+}
+
+// If you want to use a sticky footer, put the .sticky class on your .html
+html.sticky {
+  position: relative;
+  min-height: 100%;
+}
+
+.sticky .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+
+  .text-muted {
+    margin: 20px 0;
+  }
+}
