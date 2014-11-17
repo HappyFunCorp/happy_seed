@@ -19,7 +19,7 @@ activate :meta_tags
 # activate :automatic_image_sizes
 
 # Easier bootstrap navbars
-activate :bootstrap_navbar
+# activate :bootstrap_navbar
 
 configure :development do
   activate :livereload
