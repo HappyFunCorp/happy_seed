@@ -7,8 +7,10 @@ module HappySeed
       source_root File.expand_path('../templates', __FILE__)
       def generate_rails_plugin
         source_root = File.expand_path('../templates', __FILE__)
-        app_name = ARGV.shift
-        system "rails plugin new #{app_name} -T --dummy-path=spec/dummy #{ARGV.join( " ")}"
+        args.shift
+        puts args
+        app_name = args.shift
+        system "rails plugin new #{app_name} -T --dummy-path=spec/dummy #{args.join( " ")}"
 
         insert_into_file "#{app_name}/#{app_name}.gemspec", File.read( "#{source_root}/gemspec" ), :before => "\nend\n"
 
