@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/sublimeguile/middleman-meta-tags.git
-  revision: fd6d03f84216def82b684693aefb234af6534980
+  remote: git://github.com/happyfuncode/middleman-meta-tags.git
+  revision: 4c1331c04703b7c417808c785daf053b48fbc728
   branch: develop
   specs:
     middleman-meta-tags (0.0.1)
@@ -9,7 +9,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (4.1.7)
+    activesupport (4.1.8)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)

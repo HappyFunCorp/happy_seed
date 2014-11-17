@@ -6,19 +6,19 @@ This project rocks and uses MIT-LICENSE.
 
 HappySeed is an rails application template plus a set of rails generators to help you get started with apps quickly.  These generators setup the configuration of the application in a standard way, and the full set of generators include
 
-* [happy_seed:foreman](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/foreman/templates/docs/README.00.base.rdoc) environment setup
-* [happy_seed:bootstrap](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/bootstrap/templates/docs/README.01.bootstrap.rdoc)  setting up bootstrap + scaffold templates
-* [happy_seed:splash](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/splash/templates/docs/README.02.splash.rdoc) setting up a splash page
-* [happy_seed:devise](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/devise/templates/docs/README.03.devise.rdoc) setting up devise + customized templates
-* [happy_seed:omniauth](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/omniauth/templates/docs/README.04.omniauth.rdoc) setting up omni auth
-* [happy_seed:twitter](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/twitter/templates/docs/README.05.twitter.rdoc) setting up twitter authentication
-* [happy_seed:facebook](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/facebook/templates/docs/README.06.facebook.rdoc) setting up facebook authentication
-* [happy_seed:instagram](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/instgram/templates/docs/README.05.instagram.rdoc) setting up instagram authentication
-* [happy_seed:admin](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/admin/templates/docs/README.07.admin.rdoc) install active admin
+* [happy_seed:foreman](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/foreman/templates/docs/README.00.base.rdoc) environment setup
+* [happy_seed:bootstrap](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/bootstrap/templates/docs/README.01.bootstrap.rdoc)  setting up bootstrap + scaffold templates
+* [happy_seed:splash](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/splash/templates/docs/README.02.splash.rdoc) setting up a splash page
+* [happy_seed:devise](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/devise/templates/docs/README.03.devise.rdoc) setting up devise + customized templates
+* [happy_seed:omniauth](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/omniauth/templates/docs/README.04.omniauth.rdoc) setting up omni auth
+* [happy_seed:twitter](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/twitter/templates/docs/README.05.twitter.rdoc) setting up twitter authentication
+* [happy_seed:facebook](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/facebook/templates/docs/README.06.facebook.rdoc) setting up facebook authentication
+* [happy_seed:instagram](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/instgram/templates/docs/README.05.instagram.rdoc) setting up instagram authentication
+* [happy_seed:admin](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/admin/templates/docs/README.07.admin.rdoc) install active admin
 
-* [happy_seed:angular_install](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.10.angular_install.rdoc) install angular in the app
-* [happy_seed:angular_view](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.11.angular_view.rdoc) create a new angular route and template
-* [happy_seed:jazz_hands](https://github.com/sublimeguile/happy_seed/blob/master/lib/generators/happy_seed/jazz_hands/templates/docs/README.12.jazz_hands.rdoc) jazz_hands for better rails console
+* [happy_seed:angular_install](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.10.angular_install.rdoc) install angular in the app
+* [happy_seed:angular_view](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.11.angular_view.rdoc) create a new angular route and template
+* [happy_seed:jazz_hands](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/jazz_hands/templates/docs/README.12.jazz_hands.rdoc) jazz_hands for better rails console
 
 All of these documents are droped into the docs folder of your project, and can be viewed with the [setup inspector](http://localhost:3000) once you start up the app.
 

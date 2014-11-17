@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem "middleman", "~>3.3.7"
 gem "middleman-deploy"
-gem "middleman-meta-tags", github: "sublimeguile/middleman-meta-tags", branch: "develop"
+gem "middleman-meta-tags", github: "happyfuncode/middleman-meta-tags", branch: "develop"
 gem "middleman-livereload", "~> 3.1.0"
 
 gem "bootstrap-sass"
