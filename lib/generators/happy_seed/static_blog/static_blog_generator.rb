@@ -2,7 +2,7 @@ require 'thor'
 
 module HappySeed
   module Generators
-    class StaticGenerator < Thor::Group
+    class StaticBlogGenerator < Thor::Group
       include Thor::Actions
       source_root File.expand_path('../templates', __FILE__)
       def generate_rails_plugin

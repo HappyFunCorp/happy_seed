@@ -27,6 +27,12 @@ module HappySeed
       HappySeed::Generators::StaticGenerator.start
     end
 
+    desc "static_blog NAME", "Generate a new middleman static blog project"
+    def static_blog( name )
+      require 'generators/happy_seed/static/static_blog_generator'
+      HappySeed::Generators::StaticBlogGenerator.start
+    end
+
     private
     def gem_file_path( filename )
       spec = Gem::Specification.find_by_name("happy_seed")

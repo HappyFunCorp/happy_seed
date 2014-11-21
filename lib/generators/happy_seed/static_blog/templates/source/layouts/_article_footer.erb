@@ -1,0 +1,71 @@
+<div class="row article_footer">
+  <div class="comments">
+    <%#= current_article.date.strftime( '%B %e, %Y' ) %>
+    <a href="#" id="comment_shower">
+      <span class="socicon socicon-disqus fgcolor"></span>
+      <span class="disqus-comment-count" data-disqus-identifier="<%= (current_article.data['disqus_id'] || current_article.path ) %>">Be the first to comment.</span>
+    </a>
+  </div>
+  <div class="sharing">
+    <a href="http://www.twitter.com/share?url=<%= config.siteurl %><%= current_article.url %>&amp;text=<%= current_article.title %> by @wschenk" title="Share this post on Twitter" data-lang="en" onclick="return !window.open(this.href, 'Twitter', 'width=640,height=300')"><span class="socicon socicon-twitter fgcolor"></span></a>
+
+    <a target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href="http://www.facebook.com/sharer/sharer.php?u=<%= config.siteurl %><%= current_article.url %>" title="Share this post on Facebook"><span class="socicon socicon-facebook fgcolor"></span></a>
+
+    <a href="http://plus.google.com/share?url=<%= config.siteurl %><%= current_article.url %>" target="_blank" onclick="return !window.open(this.href, 'Google +', 'width=640,height=300')" title="Share this post on Google +"><span class="socicon socicon-google fgcolor"></span></a>
+  </div>
+</div>
+<div class="row comment_universe">
+  <div id="disqus_thread" class="col-sm-10 col-sm-offset-1"></div>
+</div>
+
+<%
+prev_post = {}
+next_post = {}
+
+article_list = blog.articles
+me = article_list.index current_article
+if me
+  next_post[:chronological] = article_list[me-1] if me != 0
+  prev_post[:chronological] = article_list[me+1] if me+1 != article_list.length
+
+  current_article.tags.each do |t| 
+    article_list = blog.tags[t]
+    me = article_list.index current_article
+    next_post[t] = article_list[me-1] if me != 0
+    prev_post[t] = article_list[me+1] if me+1 != article_list.length
+  end
+
+  prev_spots = {}
+  next_spots = {}
+
+  prev_post.each do |k,v|
+    prev_spots[v] ||= []
+    prev_spots[v] << k.capitalize
+  end
+
+  next_post.each do |k,v|
+    next_spots[v] ||= []
+    next_spots[v] << k.capitalize
+  end
+  %>
+
+  <div class="row navigation">
+    <div class="before">
+      <% if prev_spots.length > 0 %>
+        <h3>Earlier posts</h3>
+        <% prev_spots.each do |article, tags| %>
+          <p><%= tags.join( ", ") %>: <%= link_to article.title, article %></p>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="after">
+      <% if next_spots.length > 0 %>
+        <h3>Later posts</h3>
+        <% next_spots.each do |article, tags| %>
+          <p><%= tags.join( ", ") %>: <%= link_to article.title, article %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
