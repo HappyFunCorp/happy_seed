@@ -19,7 +19,26 @@ html.sticky {
   background-color: #f5f5f5;
 
   .text-muted {
+    float: left;
     margin: 20px 0;
+  }
+
+  .social {
+    float: right;
+    font-size: 1.5em;
+    a {
+      color: white;
+    }
+
+    .socicon {
+      margin: 10px;
+      width: 1.5em;
+      border-radius: 3px;
+    }
+    span {
+      padding: 5px;
+      display: inline-block;
+    }
   }
 }
 
@@ -177,4 +196,34 @@ code {
       }
     }
   }
+}
+
+.article_footer {
+  font-family: $headings-font-family;
+  font-size: 1.4em;
+  color: #ccc;
+  padding-bottom: 2em;
+
+  a#comment_shower {
+    color: black;
+    span {
+      margin-left: 1em;
+    }
+  }
+
+  .comments {
+    @extend .col-sm-8;
+    @extend .col-sm-offset-1;
+    font-style: italic;
+  }
+  .sharing {
+    @extend .col-sm-2;
+    text-align: right;
+    a {
+      margin-left: 1em;
+    }
+  }
+}
+.comment_universe {
+  display: none;
 }

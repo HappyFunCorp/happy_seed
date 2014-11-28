@@ -107,11 +107,23 @@ body {
 }
 
 .right-col {
-  @extend .col-md-9;
+  @extend .col-md-8;
 
   &:first-child {
     @extend .col-sm-offset-0;
     @extend .col-md-offset-3;
+  }
+
+  .doc-group {
+    @extend .row;
+
+    .doc-col {
+      @extend .col-sm-6;
+
+      pre {
+        font-size: 15px;
+      }
+    }
   }
 }
 .mb-0 { margin-bottom: 0 !important; }

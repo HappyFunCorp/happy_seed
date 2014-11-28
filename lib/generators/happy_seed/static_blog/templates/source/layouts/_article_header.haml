@@ -7,8 +7,9 @@
 %div{ class: "article-header #{@lighter}" }
   %h1= current_article.title
   %h2= current_article.data['subtitle']
-  .avatar
-    %a{ href: "/" }
-      = image_tag "avatar.jpg", class: "img-responsive"
+  - if File.exists? "source/images/avatar.jpg"
+    .avatar
+      %a{ href: "/" }
+        = image_tag "avatar.jpg", class: "img-responsive"
   %h3= link_to data['site']['title'], "/"
   %span.disqus-comment-count{ "data-disqus-identifier" => (current_article.data['disqus_id'] || current_article.path ) }

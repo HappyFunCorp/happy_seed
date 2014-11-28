@@ -9,7 +9,7 @@ set :images_dir, 'images'
 # set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
 # set :markdown_engine, :redcarpet
 
-activate :meta_tags
+activate :autometatags
 
 # Turn this on if you want to make your url's prettier, without the .html
 # activate :directory_indexes

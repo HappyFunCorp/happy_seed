@@ -1,0 +1,23 @@
+= wrap_layout :layout do
+  %section.docs.cream.under
+    .background
+    .container
+      .row
+        .col-sm-10.col-sm-push-2
+          ~ yield
+        .col-sm-2.col-sm-pull-10
+          %ul.nav.nav-pills.nav-stacked
+            %li{ class: current_page.path == "docs/index.html" ? "active" : nil }
+              = link_to "Usage", "/docs/index.html"
+            %li{ class: current_page.url == "/docs/rails.html" ? "active" : nil }
+              = link_to "Rails", "/docs/rails.html"
+            - if current_page.url == "/docs/rails.html" || current_page.url =~ /README/
+              - Dir.glob( "source/docs/README*").each do |f|
+                - l = f.gsub( /.*source\//, "/" ).gsub( /.html.*/, ".html" )
+                - n = f.gsub( /.*\d\d./, "" ).gsub( /.html.*/, "" ).capitalize
+                %li{ class: current_page.url == l ? "active" : nil }
+                  = link_to " - #{n}", l
+            %li{ class: current_page.url == "/docs/plugin.html" ? "active" : nil }
+              = link_to "Plugins", "/docs/plugin.html"
+            %li{ class: current_page.url == "/docs/middleman.html" ? "active" : nil }
+              = link_to "Middleman", "/docs/middleman.html"

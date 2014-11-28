@@ -1,16 +1,18 @@
 # For custom domains on github pages
 page "CNAME", layout: false
 
+page "docs/*", layout: :docs_layout
+
 set :font_dir, 'fonts'
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
 # Better markdown support
-# set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
-# set :markdown_engine, :redcarpet
+set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
+set :markdown_engine, :redcarpet
 
-activate :meta_tags
+activate :autometatags
 
 # Turn this on if you want to make your url's prettier, without the .html
 # activate :directory_indexes

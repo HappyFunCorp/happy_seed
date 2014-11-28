@@ -1,6 +1,6 @@
 # HappySeed
 
-This project rocks and uses MIT-LICENSE.
+This project rocks and uses MIT-LICENSE.  Documentation at the [website](http://seed.happyfuncorp.com/)
 
 ## What is it?
 
@@ -15,7 +15,6 @@ HappySeed is an rails application template plus a set of rails generators to hel
 * [happy_seed:facebook](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/facebook/templates/docs/README.06.facebook.rdoc) setting up facebook authentication
 * [happy_seed:instagram](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/instgram/templates/docs/README.05.instagram.rdoc) setting up instagram authentication
 * [happy_seed:admin](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/admin/templates/docs/README.07.admin.rdoc) install active admin
-
 * [happy_seed:angular_install](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.10.angular_install.rdoc) install angular in the app
 * [happy_seed:angular_view](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.11.angular_view.rdoc) create a new angular route and template
 * [happy_seed:jazz_hands](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/jazz_hands/templates/docs/README.12.jazz_hands.rdoc) jazz_hands for better rails console
@@ -26,7 +25,7 @@ All of these documents are droped into the docs folder of your project, and can 
 
   # gem install happy_seed
 
-  # happy_seed app_name
+  # happy_seed rails app_name
 
 To list out existing generators:
 

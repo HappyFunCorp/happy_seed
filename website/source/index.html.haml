@@ -6,11 +6,6 @@
   .container
     .row
       .col-md-12.text-center
-        
-        
-        
-        
-        -#{ "data-scroll-reveal" => "wait 6s and then ease-in-out 100px" }
         #logo-container
           #ted{"data-scroll-reveal"=>"enter from the top but wait .5s"}
           %h1#seed-logo.logo{"data-scroll-reveal"=>"enter bottom but wait 1s over 1s"}
@@ -19,7 +14,7 @@
           .col-md-8.col-md-offset-2.mb-1
             .overbracket{"data-scroll-reveal"=>"enter bottom but wait 1s over 1s"}
               %h2{"data-scroll-reveal"=>"enter bottom but wait 1.5s over 1.5s"}
-                Quickly set up a Rails app <br class="visible-xs">with awesome plugins<br>...and get all the pesky details right
+                Quickly set up a project <br class="visible-xs">with awesome plugins<br>...and get all the pesky details right
         #bottom{"data-scroll-reveal"=>"enter bottom but wait 4s over 2s"}
           = link_to '#what' do
             %span.glyphicon.glyphicon-chevron-down
@@ -29,7 +24,9 @@
   .container
     .row
       .right-col
-        %h1.text-center-sm Quickly generate a new app, <br class="hidden-xs">and then get out of the&nbsp;way
+        %h1.text-center-sm
+          Quickly generate a new app, <br class="hidden-xs">and then get out of the&nbsp;way.
+          <br>Rails, Middleman, and more.
     .row
       .left-col
         %h2.icon.icon-solid-gems Solid Gems
@@ -125,90 +122,64 @@
 
         %pre="$ gem install happy_seed"
 
-        %h2 This creates the rails plugin on your system.
+        %h2 This creates the Rails plugin on your system.
 
         %p
           There is a small application template that is used to start the app, which itself includes the happy_seed gem.  This exposes the rail generators and templates to your project, which is how functionality gets installed.
 
-        %h2 Generate a new app
-        %pre="$ happy_seed app_name"
+          %h2 Generate a new rails app
+          %pre="$ happy_seed rails app_name"
 
-        %h2 Now create!
+          %h2 Now create!
 
-        %p You will get prompted for what you want to install.
+          %p
+            You will get prompted for what you want to install.
+            = link_to "Read more about it!", "/docs/rails.html"
 
-        %p Documentation for the current generators are:
+          %h2 Start editing!
 
-        %ul
-          %li The application template
-          %li= link_to "happy_seed:base", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/base/templates/docs/README.00.base.rdoc"
-          %li
-            = link_to "happy_seed:bootstrap", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/bootstrap/templates/docs/README.01.bootstrap.rdoc"
-            %ul
-              %li= link_to "happy_seed:splash", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/splash/templates/docs/README.02.splash.rdoc"
-          %li
-            = link_to "happy_seed:devise", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/devise/templates/docs/README.03.devise.rdoc"
-            %ul
-              %li
-                = link_to "happy_seed:omniauth", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/omniauth/templates/docs/README.04.omniauth.rdoc"
-              %li
-                = link_to "happy_seed:twitter", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/twitter/templates/docs/README.05.twitter.rdoc"
-              %li
-                = link_to "happy_seed:facebook", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/facebook/templates/docs/README.06.facebook.rdoc"
-              %li
-                = link_to "happy_seed:instagram", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/instagram/templates/docs/README.05.instagram.rdoc"
-          %li
-            = link_to "happy_seed:admin", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/admin/templates/docs/README.07.admin.rdoc"
+          %p The seed gem itself is a set of generators, and only that.  Functionality is either copied directly into your application, or included via a gem.
 
-          %li
-            = link_to "happy_seed:angular_install", "https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/angular_install/templates/docs/README.10.angular_install.rdoc"
+          %p Since a lot of the generators alter routes, when you destroy a generator (for example the splash page) it may not leave your routes in the correct state.
 
-        %h2 Start editing!
+        .doc-group
+          .doc-col
+            %h2 Rails Plugins
 
-        %p The seed gem itself is a set of generators, and only that.  Functionality is either copied directly into your application, or included via a gem.
+            %p If you want to extract some functionality of your own application, rails plugins are the way to go. We like autotest and rspec, which was always tricky to configure, so we packaged that up to!
 
-        %p Since a lot of the generators alter routes, when you destroy a generator (for example the splash page) it may not leave your routes in the correct state.
+            %pre= "$ happy_seed plugin acts_as_awesome"
 
-        %h2 Rails is very modular
+            %p
+              = link_to "Read more", "/docs/plugin.html"
+              about it!
 
-        %p If you want to extract some functionality of your own application, rails plugins are the way to go. We like autotest and rspec, which was always tricky to configure, so we packaged that up to!
+          .doc-col
+            %h2 Rails Engines
 
-        %pre= "$ happy_seed_plugin acts_as_awesome"
+            %p Or if you want to make an engine
 
-        %p Or if you want to make an engine
+            %pre= "$ happy_seed engine acts_as_awesome"
 
-        %pre= "$ happy_seed_plugin acts_as_awesome --mountable"
+            %p
+              = link_to "Read more", "/docs/plugin.html"
+              about it!
 
+        .doc-group
+          .doc-col
+            %h2 Middleman static site
 
+            %pre= "$ happy_seed static static_site"
 
-%section#who.navy.under
-  .background
-  .container
-    .row
-      .left-col
-        %h1.jumbo Who?
-      .right-col
-        %h2
-          Sign up for the HappyFunCorp mailing&nbsp;list!
-        %form.form-horizontal.md-3{ action: "//happyfuncorp.us8.list-manage.com/subscribe/post?u=4693df87615db712ba7e23f18&amp;id=d4f8c4b866", method: "post" }
-          %div{ style: "position: absolute; left: -5000px;"}
-            %input{ type: "text", name: "b_4693df87615db712ba7e23f18_d4f8c4b866", tabindex: "-1", value: "" }
+            %p
+              = link_to "Read more", "/docs/middleman.html"
+              about it!
 
-          .form-group#signup
-            .col-sm-12
-              .input-group
-                %input.form-control{ type: "email", name: "EMAIL", :placeholder=>'Enter your email periodic news from HFC' }
-                %span.input-group-btn
-                  = submit_tag 'Sign Up', :class => "btn btn-primary"
+          .doc-col
+            %h2 Middleman static blog
 
+            %pre= "$ happy_seed static_blog static_site"
 
-
-
-        %h3.outset.tel.mb-0
-          .icon.icon-seed-logo-white
-          HappySeed
-          %small is a
-          = link_to 'HappyFunCorp', 'http://happyfuncorp.com'
-          %small Production.
-          %br
-          %small Made in Brooklyn, NY.
+            %p
+              = link_to "Read more", "/docs/middleman.html"
+              about it!

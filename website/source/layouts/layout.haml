@@ -38,19 +38,26 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to '#happy-seed', :class=>'navbar-brand' do
+        = link_to '/index.html#happy-seed', :class=>'navbar-brand' do
           %span.icon.icon-seed-logo-white
           Happy Seed
       %nav.collapse.navbar-collapse{:role=>:navigation}
         %ul.nav.navbar-nav
-          %li= link_to 'What', '#what'
-          %li= link_to 'Why', '#why'
-          %li= link_to 'How', '#how'
-          %li= link_to 'Who', '#who'
+          %li= link_to 'What', '/index.html#what'
+          %li= link_to 'Why', '/index.html#why'
+          %li= link_to 'How', '/index.html#how'
+          %li= link_to 'Who', '/index.html#who'
+          %li.dropdown 
+            %a.dropdown-toggle{ :href => "/docs.html", "data-toggle" => "dropdown"} Docs
+            %ul.dropdown-menu
+              %li= link_to 'Usage', "/docs/index.html"
+              %li= link_to 'Rails', "/docs/rails.html"
+              %li= link_to 'Plugins', "/docs/plugin.html"
+              %li= link_to 'Static', "/docs/middleman.html"
 
     = yield
 
-    -#= render 'footer'
+    = partial 'layouts/footer'
 
     -# Javascript at the bottom for fast page loading
     = partial 'layouts/javascripts'
