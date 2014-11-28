@@ -4,7 +4,7 @@ title: Hi there
 
 ## What is it?
 
-HappySeed is a set of application templates to help you get started building out new sites.  The main section is a rails application template plus a set of rails generators to help you get started with rails appliations quickly.  These generators setup the configuration of the application in a standard way, and the full set of generators include
+HappySeed is a set of application templates to help you get started building out new sites.  The main section is a rails application template plus a set of rails generators to help you get started with rails appliations quickly.  These generators setup the configuration of the application in a standard way, and the full set of generators include many things for setting up a modern rails app and well as middleman apps.
 
 ## Overall pattern
 
