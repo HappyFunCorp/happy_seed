@@ -1,0 +1,22 @@
+<div class="row article_footer">
+  <div class="comments">
+    <% if data['site']['disqus_shortname'] %>
+      <a href="#" id="comment_shower">
+        <span class="socicon socicon-disqus fgcolor"></span>
+        <span class="disqus-comment-count" data-disqus-identifier="<%= (current_article.data['disqus_id'] || current_article.path ) %>">Be the first to comment.</span>
+      </a>
+    <% end %>
+  </div>
+  <div class="sharing">
+    <a href="http://www.twitter.com/share?url=<%= data['site']['siteurl'] %><%= current_article.url %>&amp;text=<%= current_article.title %> by <%= data['site']['twitter_id'] %>" title="Share this post on Twitter" data-lang="en" onclick="return !window.open(this.href, 'Twitter', 'width=640,height=300')"><span class="socicon socicon-twitter fgcolor"></span></a>
+
+    <a target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href="http://www.facebook.com/sharer/sharer.php?u=<%= data['site']['siteurl'] %><%= current_article.url %>" title="Share this post on Facebook"><span class="socicon socicon-facebook fgcolor"></span></a>
+
+    <a href="http://plus.google.com/share?url=<%= data['site']['siteurl'] %><%= current_article.url %>" target="_blank" onclick="return !window.open(this.href, 'Google +', 'width=640,height=300')" title="Share this post on Google +"><span class="socicon socicon-google fgcolor"></span></a>
+  </div>
+</div>
+<% if data['site']['disqus_shortname'] %>
+  <div class="row comment_universe">
+    <div id="disqus_thread" class="col-sm-10 col-sm-offset-1"></div>
+  </div>
+<% end %>

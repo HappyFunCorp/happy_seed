@@ -30,3 +30,14 @@ end
 
 
 task default: :test
+
+desc "Copy readme files into the doc directory"
+task :sync_docs do
+  system( "mkdir -p website/source/docs" )
+  `find lib -name README\\* -print`.each_line do |file|
+    file.gsub!( /\n/, "" )
+    out = file.gsub( /.*\//, "" ).gsub( /.rdoc/, ".html.markdown" )
+    # puts file, out
+    system( "cp #{file} website/source/docs/#{out}" )
+  end
+end

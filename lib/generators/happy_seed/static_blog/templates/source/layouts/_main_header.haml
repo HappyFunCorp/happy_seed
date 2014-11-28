@@ -1,0 +1,17 @@
+= navbar fixed: :top do
+  = navbar_header brand: data['site']['title'], brand_link: '/'
+  = navbar_collapse do
+    = navbar_group class: 'foo', id: 'menu' do
+      = navbar_item "Home", '/'
+      = navbar_item "About Us", '/about.html'
+      = navbar_dropdown "Tags" do
+        - blog.tags.keys.each do |t|
+          = navbar_item t, "/tags/#{t}.html"
+      = navbar_dropdown "Archives" do
+        - blog.articles.group_by {|a| a.date.strftime('%b %Y') }.each do |date, list|
+          = navbar_item date, list.first.date.strftime( "/%Y/%m.html" )
+
+    = navbar_group align: 'right' do
+      = navbar_item '/contact' do
+        %span.glyphicon.glyphicon-hand-right
+        Contact Us!

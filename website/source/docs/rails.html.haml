@@ -1,0 +1,43 @@
+---
+title: HappySeed Rails Documentation
+---
+
+%h2 HappySeed Rails
+
+%p
+  The rails application template and generators are the bulk of the <code>happy_seed</code> gem.
+
+%p
+  When you first call <code>happy_seed</code> it sets up a new rails project using the application template.  There are a number of things that are setup to get things going, as documented in
+  = link_to "the base document", "/docs/README.00.base.html"
+  and then you are prompted to see what other generators you want to run.
+
+%p You should be able to run these generators at any time.  Some require the use of others (for example, sign in with twitter requires devise) and they will generally check to make sure that their dependancies are met.
+
+%p Documentation for the current generators are:
+
+%ul
+  %li The application template
+  %li= link_to "happy_seed:base", "/docs/README.00.base.html"
+  %li
+    = link_to "happy_seed:bootstrap", "/docs/README.01.bootstrap.html"
+    %ul
+      %li= link_to "happy_seed:splash", "/docs/README.02.splash.html"
+  %li
+    = link_to "happy_seed:devise", "/docs/README.03.devise.html"
+    %ul
+      %li
+        = link_to "happy_seed:omniauth", "/docs/README.04.omniauth.html"
+      %li
+        = link_to "happy_seed:twitter", "/docs/README.05.twitter.html"
+      %li
+        = link_to "happy_seed:facebook", "/docs/README.06.facebook.html"
+      %li
+        = link_to "happy_seed:instagram", "/docs/README.05.instagram.html"
+  %li
+    = link_to "happy_seed:admin", "/docs/README.07.admin.html"
+
+  %li
+    = link_to "happy_seed:angular_install", "/docs/README.10.angular_install.html"
+  %li
+    = link_to "happy_seed:jazz_hands", "/docs/README.12.jazz_hands.html"

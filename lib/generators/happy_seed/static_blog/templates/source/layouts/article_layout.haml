@@ -1,0 +1,26 @@
+!!! 5
+%html.no-js.sticky
+  %head
+    %meta{ :charset => 'utf-8' }/
+    %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1' }/
+
+    = auto_display_meta_tags
+    %meta{ :name => 'viewport', :content => 'width=device-width' }/
+    = stylesheet_link_tag 'application', 'socicons', "animate"
+    %link{ rel: "stylesheet", href: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css" }
+    = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
+
+  %body
+    = partial "layouts/main_header"
+    = partial "layouts/article_header"
+      
+    .content
+      .row
+        .article
+          ~ yield
+
+      = partial "layouts/article_footer"
+
+    = partial "layouts/footer"
+    = partial "layouts/javascripts"
+

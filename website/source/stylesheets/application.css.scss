@@ -1,0 +1,496 @@
+//-----------------------------------------
+// Fonts
+//-----------------------------------------
+
+@font-face {
+  font-family: 'TelegraficoRegular';
+  src: font-url('telegrafico_by_ficod-webfont.eot');
+  src: local('☺'), font-url('telegrafico_by_ficod-webfont.woff') format('woff'), font-url('telegrafico_by_ficod-webfont.ttf') format('truetype'), font-url('telegrafico_by_ficod-webfont.svg#webfontbRat92gB') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TradeGothic-Bold';
+  src: font-url('TradeGothic-BoldCondTwenty.eot');
+  src: local('☺'), font-url('TradeGothic-BoldCondTwenty.woff') format('woff'), font-url('TradeGothic-BoldCondTwenty.ttf') format('truetype'), font-url('TradeGothic-BoldCondTwenty.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TradeGothic';
+  src: font-url('TradeGothic-CondEighteen.eot');
+  src: local('☺'), font-url('TradeGothic-CondEighteen.woff') format('woff'), font-url('TradeGothic-CondEighteen.ttf') format('truetype'), font-url('TradeGothic-CondEighteen.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//-----------------------------------------
+// Variables, customize bootstrap here
+//-----------------------------------------
+
+$headings-font-family: 'TradeGothic-Bold';
+$font-family-base: 'TradeGothic', serif;
+
+$creamy: #ffeace;
+$cream: #F9F4EF;
+$green: #77B48A;
+$grey: #D6D6D6;
+$blue: #1F2D44;
+$navy: #1F2D44;
+$charcoal: #2F3620;
+$white: #fff;
+
+$sky-top: #d3ecf5;
+$sky-bot: #7FD5F2;
+
+$brand-primary: $green;
+$color-accent: #428bca;
+$color-background: #202a39;
+$color-background-light: darken( white, 10% ); // #DAE3BB; //#3D6299;
+$color-text: #ddd;
+$color-text-light: $color-background; //#3F005E;
+
+$font-size-base: 18px;
+
+$header-font-size-base: 16px;
+
+$font-size-h1:            floor(($header-font-size-base * 2.6)); // ~36px
+$font-size-h2:            floor(($header-font-size-base * 2.15)); // ~30px
+$font-size-h3:            ceil(($header-font-size-base * 1.7)); // ~24px
+$font-size-h4:            ceil(($header-font-size-base * 1.25)); // ~18px
+$font-size-h5:            $header-font-size-base;
+$font-size-h6:            ceil(($header-font-size-base * 0.85)); // ~12px
+
+
+$navbar-height: 75px;
+$navbar-inverse-bg: $navy;
+$navbar-inverse-link-color: darken(#fff,15%);
+
+$body-bg: $sky-bot;
+$text-color: $charcoal;
+$navbar-inverse-brand-color: $text-color;
+
+
+$code-bg: $creamy;
+$code-color: $charcoal;
+$pre-bg: $creamy;
+$pre-border-color: darken($creamy,5%);
+$pre-color: $charcoal;
+
+$section-spacing: 80px;
+
+//-----------------------------------------
+// Bootstrap
+//-----------------------------------------
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+//-----------------------------------------
+// Rules
+//-----------------------------------------
+
+body {
+  //padding-top: $navbar-height;
+}
+#happy-seed {
+  display: block;
+  width: 100%;
+  height: $navbar-height;
+}
+
+
+.left-col {
+  @extend .col-md-3;
+  text-align: right;
+}
+
+.right-col {
+  @extend .col-md-8;
+
+  &:first-child {
+    @extend .col-sm-offset-0;
+    @extend .col-md-offset-3;
+  }
+
+  .doc-group {
+    @extend .row;
+
+    .doc-col {
+      @extend .col-sm-6;
+
+      pre {
+        font-size: 15px;
+      }
+    }
+  }
+}
+.mb-0 { margin-bottom: 0 !important; }
+.mt-0 { margin-top: 0 !important; }
+.mb-1 { margin-bottom: 1em !important; }
+.mt-1 { margin-top: 1em !important; }
+.mb-2 { margin-bottom: 2em !important; }
+.mt-2 { margin-top: 2em !important; }
+.mb-3 { margin-bottom: 3em !important; }
+.mt-3 { margin-top: 3em !important; }
+
+@media( max-width: #{$screen-sm-max} ) {
+  .left-col {
+    text-align: center;
+  }
+}
+
+.tel {
+  font-family: 'TelegraficoRegular', sans-serif;
+}
+.lead {
+  text-transform: uppercase;
+}
+
+h1 {
+  text-transform: uppercase;
+  &.jumbo {
+    font-family: 'TradeGothic', sans-serif;
+    margin-top: 11px;
+    font-size: 6em;
+    color: $charcoal;
+  }
+}
+h1, h2, h3, h4, h5, h6 {
+  small {
+    color: inherit;
+  }
+}
+
+.navbar {
+  border-bottom: 2px solid #fff;
+  font-family: 'TelegraficoRegular';
+  .navbar-brand {
+    padding-top: 20px;
+    color: #fff;
+    font-size: 2.0em;
+    .icon {
+      margin-right: 10px;
+    }
+    span {
+      vertical-align: middle;
+    }
+  }
+}
+
+section {
+  overflow: hidden;
+  padding-top: 80px;
+
+  position: relative;
+
+  &.under {
+    &:not(.first) {
+      padding-top:$section-spacing*2;
+      margin-top:-$section-spacing;
+    }
+    padding-bottom: $section-spacing*2;
+  }
+
+  &.over {
+    margin-top: -$section-spacing*2;
+    padding-top: $section-spacing*2;
+    padding-bottom: $section-spacing*2;
+    margin-bottom: -$section-spacing*2;
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: -10%;
+    width: 120%;
+    height: 100%;
+  }
+  &.under .background {
+    z-index: -1;
+    top: -$section-spacing;
+    bottom: -$section-spacing;
+    height: auto;
+  }
+  &.over .background {
+    margin-top:$section-spacing;
+    bottom:$section-spacing;
+    height: auto;
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    -ms-transform: rotate(-2deg);
+    -o-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+  }
+
+  &.masthead {
+    @include gradient-vertical($start-color: $sky-bot, $end-color: $sky-top);
+    padding-top: 400px;
+  }
+
+  &.cream {
+    .background {
+      background-color: $cream;
+    }
+  }
+
+  &.green {
+    .background {
+      background-color: $green;
+    }
+    color: $white;
+
+    h1 {
+      color: $cream;
+    }
+  }
+
+  &.blue {
+    .background {
+      background-color: $blue;
+    }
+  }
+
+  &.navy {
+    .background {
+      background-color: $navy;
+    }
+    color: $white;
+    h1.jumbo {
+      color: $green;
+    }
+  }
+
+  &.light {
+    .background {
+      background-color: $grey;
+    }
+  }
+}
+
+.icon {
+  text-indent: -9999px;
+  text-align: left;
+  display: inline-block;
+  background-size: 100% 100%;
+
+  &.icon-seed-logo-white {
+    background-image: image-url('splash/seed-logo.png');
+    width: 0.5*50px;
+    height: 0.5*71px;
+  }
+  &.icon-solid-gems {
+    background-image: image-url('splash/solid-gems.png');
+  }
+  &.icon-sensible-defaults {
+    background-image: image-url('splash/sensible-defaults.png');
+  }
+  &.icon-more-awesome-stuff {
+    background-image: image-url('splash/more-awesome-stuff.png');
+  }
+  &.icon-solid-gems, &.icon-sensible-defaults, &.icon-more-awesome-stuff {
+    width: 0.5*274px;
+    height: 0.5*271px;
+  }
+}
+
+ul.checkmarked {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    margin-left: 30px;
+    text-indent: -30px;
+  }
+
+  li::before {
+    content: " ";
+    width: 0.5*38px;
+    height: 0.5*38px;
+    background-image: image-url('splash/checkmark.png');
+    background-size: 0.5*38px 0.5*38px;;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+}
+
+.logo {
+  text-indent: -9999px;
+  text-align: left;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0;
+}
+
+.github-fork-ribbon {
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  text-indent: -9999px;
+  text-align: left;
+  right: 20px;
+  width: 0.5*199px;
+  height: 0.5*305px;
+  background-image: image-url('splash/view-me-on-github.png');
+  background-size: 100% 100%;
+  z-index: 10000;
+}
+
+.parenthesized {
+  border-width: 21px 21px 21px 21px;
+  border-color: #f00;
+  border-style: solid;
+  border-image: image-url('splash/brackets.png') 42 42 42 42 repeat;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.overbracket {
+  border-width: 31px 25px 0 25px;
+  border-style: solid;
+  border-image: image-url('splash/overbracket.png') 62 50 0 50 repeat;
+  //margin-top: -6px;
+}
+
+
+//-----------------------------------------
+// Hacks
+//-----------------------------------------
+
+@media( max-width: #{$screen-xs-max} ) {
+  #what {
+    margin-top: -200px;
+  }
+}
+#ted {
+  background-image: image-url('splash/ted.png');
+  width: 0.5*950px;
+  height: 0.5*782px;
+  background-size: 100% 100%;
+  position: absolute;
+  top: -410px;
+  left: -390px;
+}
+
+#logo-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 0.5*232px;
+  height: 0.5*308px;
+  margin-top: 20px;
+}
+
+
+#seed-logo { background-image: image-url('splash/seed-logo-color.png');
+  width: 0.5*232px;
+  height: 0.5*308px;
+  background-size: 100% 100%;
+}
+
+
+/*
+@-webkit-keyframes translating {
+  0%    { background-position: 0 top; }
+  100%  { background-position: -100% top; }
+}
+@moz-keyframes translating {
+  0%    { background-position: 0 top; }
+  100%  { background-position: -100% top; }
+}
+@ms-keyframes translating {
+  0%    { background-position: 0 top; }
+  100%  { background-position: -100% top; }
+}
+@keyframes translating {
+  0%    { background-position: 0 top; }
+  100%  { background-position: -100% top; }
+}*/
+
+#clouds {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 50px;
+  bottom: 0;
+  background-image: image-url('splash/faded-clouds.png');
+  background-size: 0.5*3245px 0.5*579px;
+  background-position:center top;
+
+  /*-webkit-animation: translating 10s linear infinite;
+  -moz-animation:    translating 10s linear infinite;
+  -ms-animation:    translating 10s linear infinite;
+  animation:    translating 10s linear infinite;*/
+}
+
+#fg-clouds {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 350px;
+  height: 0.5*1113px;
+  background-image: image-url('splash/clouds.png');
+  background-size: 0.5*2917px 0.5*1400px;
+  background-position:center top;
+}
+
+.overbracket h2 {
+  margin-left: -25px;
+  margin-right: -25px;
+}
+#why p.caps {
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+h3.outset {
+  text-indent: -33px;
+  .icon {
+    vertical-align:middle;
+    padding-right: 10px;
+  }
+}
+
+@media( max-width: #{$screen-xs-max} ) {
+  #ted {
+    width: 0.6*475px;
+    height: 0.6*391px;
+    top: -258px;
+    left: -213px;
+  }
+  #fg-clouds {
+    top: 257px;
+  }
+  section.masthead {
+    padding-top: 300px;
+  }
+  h3.outset {
+    text-indent: 0;
+  }
+  .parenthesized {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  h1 { font-size: 0.85*$font-size-h1; }
+  h2 { font-size: 0.85*$font-size-h2; }
+}
+
+@media (min-width: #{$screen-sm-min}) and (max-width: #{$screen-sm-max}) {
+  .text-center-sm {
+    text-align: center;
+  }
+}
+@media (max-width: #{$screen-xs-max}) {
+  .text-center-xs {
+    text-align: center;
+  }
+}
+@media (min-width: #{$screen-md-min}) {
+  .left-col {
+    padding-right: 50px;
+  }
+}
