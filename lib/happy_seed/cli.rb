@@ -29,7 +29,7 @@ module HappySeed
 
     desc "static_blog NAME", "Generate a new middleman static blog project"
     def static_blog( name )
-      require 'generators/happy_seed/static/static_blog_generator'
+      require 'generators/happy_seed/static_blog/static_blog_generator'
       HappySeed::Generators::StaticBlogGenerator.start
     end
 
