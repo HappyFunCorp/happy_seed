@@ -11,6 +11,7 @@ module HappySeed
 
         Bundler.with_clean_env do
           run "bundle install"
+          run "guard init"
         end
 
         directory '.'
@@ -31,14 +32,6 @@ module HappySeed
         rescue
           say_status :spec, "Unable to add factory girl to rails_helper.rb", :red
         end
-
-        begin
-          prepend_to_file 'spec/spec_helper.rb', "require 'devise'\n"
-          inject_into_file 'spec/spec_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n", :before => "\nend\n"
-        rescue
-          say_status :spec, "Unable to add devise helpers to spec_helper.rb", :red
-        end
-
 
         route "get '/setup' => 'setup#index'"
         route "root 'setup#index'"
