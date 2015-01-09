@@ -4,14 +4,17 @@ module HappySeed
       source_root File.expand_path('../templates', __FILE__)
 
       def install_foreman
+        puts "Installing happy_seed:base environment"
         gem 'dotenv-rails', :groups=>[:development, :test]
         gem 'rdiscount', :groups => [:development, :test]
         gem 'unicorn'
         gem 'rails_12factor'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
           run "guard init"
+
+          gsub_file "Guardfile", 'cmd: "bundle exec rspec"', 'cmd: "bundle exec rspec", all_on_start: true'
         end
 
         directory '.'

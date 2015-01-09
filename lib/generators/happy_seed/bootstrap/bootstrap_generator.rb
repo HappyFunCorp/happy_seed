@@ -7,9 +7,11 @@ module HappySeed
         gem 'bootstrap-sass'
         gem 'modernizr-rails'
         gem 'meta-tags', :require => 'meta_tags'
+        gem 'responders', '~> 2.0'
+        gem 'bh'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
         end
 
         remove_file 'app/views/layouts/application.html.erb'

@@ -1,3 +1,6 @@
+puts "Setting up basic template"
+puts
+
 gsub_file 'Gemfile', /.*sqlite3.*/, ""
 gem 'haml-rails'
 gem "httparty"
@@ -28,11 +31,8 @@ else
   gem 'happy_seed'
 end
 
-puts `pwd`
-puts "Running bundle install"
-
 Bundler.with_clean_env do
-  run "bundle install"
+  run "bundle install > /dev/null"
 
   if !File.exists? "/Users/wschenk/src/happy_seed/ta/Gemfile.lock"
     puts "Gemfile.lock should exist"
@@ -57,6 +57,11 @@ Bundler.with_clean_env do
   all_in = true if yes? "Would you like to install everything?"
 
   packages = []
+
+  if all_in || yes?( "Would you like to install jazz hands?" )
+    generate "happy_seed:jazz_hands"
+    packages << "jazz_hands"
+  end
 
   if all_in || yes?( "Would you like to install bootstrap?" )
     generate "happy_seed:bootstrap"
@@ -93,55 +98,11 @@ Bundler.with_clean_env do
     packages << "admin"
   end
 
-  if yes?( "You would like to install angular?" )
+  if yes?( "Would you like to install angular?" )
     generate "happy_seed:angular_install"
     packages << "angular"
   end
 
-  if yes?( "You would like to install jazz hands?" )
-    generate "happy_seed:jazz_hands"
-    packages << "jazz_hands"
-  end
-
-  puts "Adding rake task to convert templates to ERB. If you need to do this, please run:"
-  puts "rake html2erb"
-  rakefile "haml2erb.rake",
-  %q{
-  desc "Converts everything to erb"
-  task :haml2erb do
-    require 'httparty'
-
-    FileUtils.mkdir_p "lib/templates/erb"
-
-    Dir.glob( "**/*.haml").each do |f|
-      puts "Converting #{f}"
-
-      data = File.read( f )
-
-      resp = HTTParty.post( "http://haml2erb.herokuapp.com/api.html", { query: { haml: data } } )
-
-      puts "FROM--------"
-      puts data
-      puts "TO--------"
-      puts resp.body
-
-      outfile = f.gsub( /\.haml/, ".erb" )
-
-      if outfile =~ /templates\/haml/
-        outfile.gsub!( /templates\/haml/, "templates/erb" )
-        puts "outfile = #{outfile}"
-
-        FileUtils.mkdir_p( Pathname.new( outfile ).dirname )
-      end
-
-      File.open( outfile, "w" ) do |out|
-        out.puts resp.body
-      end
-
-      FileUtils.mv( f, "#{f}.bak" )
-    end
-  end
-  }
   puts "Setting up git"
   git :init
   git add: "."
