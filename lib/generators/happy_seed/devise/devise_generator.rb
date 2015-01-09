@@ -10,10 +10,10 @@ module HappySeed
           end
         end
 
-        gem 'devise'
+        gem 'devise', '~> 3.4'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
         end
 
         run 'rails generate devise:install'
