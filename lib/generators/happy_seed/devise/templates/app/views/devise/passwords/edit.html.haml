@@ -1,6 +1,6 @@
 .container
   .row
-    .col-lg-6.col-lg-offset-3.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+    .center_panel
       .panel.panel-default.only
 
         .panel-heading
@@ -8,25 +8,12 @@
 
         .panel-body
 
-          = form_for(resource, as: resource_name, url: password_path(resource_name), :html=>{:role=>:form, :class=>'form-horizontal', method: 'put'}) do |f|
+          = form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, method: 'put') do |f|
 
-            = devise_error_messages!
+            / = devise_error_messages!
             = f.hidden_field :reset_password_token
 
-            .form-group
-              = f.label :password, :class=>'control-label col-lg-3'
-              .col-lg-9= f.password_field :password, autocomplete: "off", autofocus: true, :class=>'form-control', :placeholder=>'Password'
+            = f.password_field :password, autocomplete: "off", autofocus: true
+            = f.password_field :password_confirmation, autocomplete: "off"
 
-            .form-group
-              = f.label :password_confirmation, :class=>'control-label col-lg-3'
-              .col-lg-9= f.password_field :password_confirmation, autocomplete: "off", :class=>'form-control', :placeholder=>'Confirm password'
-
-            .form-group
-              .col-lg-9.col-lg-offset-3
-                = f.submit "Change my password", :class=>'btn btn-primary form-control'
-
-            .form-group
-              .col-lg-9.col-lg-offset-3.text-right
-                = link_to 'Sign in',  new_user_session_path
-                %br
-                = link_to 'Sign up',  new_user_registration_path
+            = f.submit "Change my password", :class=>'btn btn-primary form-control'
