@@ -31,26 +31,27 @@ module HappySeed
             say_status :env, "Unable to add template variables to .env", :red
           end
 
-          begin
-            inject_into_file 'app/views/application/_header.html.haml', "            %li= link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n", after: "/ CONNECT\n"
-          rescue
-            say_status :header_links, "Unable to add links to the nav bar header", :red
-          end
+          # begin
+          #   inject_into_file 'app/views/application/_header.html.haml', "            %li= link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n", after: "/ CONNECT\n"
+          # rescue
+          #   say_status :header_links, "Unable to add links to the nav bar header", :red
+          # end
 
-          begin
-            inject_into_file 'app/views/devise/sessions/new.html.haml', "                = link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n                %br\n", after: "/ CONNECT\n"
-          rescue
-            say_status :sign_links, "Unable to add sign in links to app/views/devise/sessions/new.html.haml", :red
-          end
+          # begin
+          #   inject_into_file 'app/views/devise/sessions/new.html.haml', "                = link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n                %br\n", after: "/ CONNECT\n"
+          # rescue
+          #   say_status :sign_links, "Unable to add sign in links to app/views/devise/sessions/new.html.haml", :red
+          # end
 
-          begin
-            inject_into_file 'app/views/devise/registrations/new.html.haml', "                = link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n                %br\n", after: "/ CONNECT\n"
-          rescue
-            say_status :sign_up_links, "Unable to add sign in links to app/views/devise/registrations/new.html.haml"
-          end
+          # begin
+          #   inject_into_file 'app/views/devise/registrations/new.html.haml', "                = link_to 'sign in with #{provider}', user_omniauth_authorize_path(:#{provider})\n                %br\n", after: "/ CONNECT\n"
+          # rescue
+          #   say_status :sign_up_links, "Unable to add sign in links to app/views/devise/registrations/new.html.haml"
+          # end
 
           inject_into_file 'app/controllers/omniauth_callbacks_controller.rb', "\n  def #{provider}\n    generic_callback( '#{provider}' )\n  end\n", before: /\s*def generic_callback/
           inject_into_file 'app/models/user.rb', :before => "\nend" do <<-"RUBY"
+
   def #{provider}
     identities.where( :provider => "#{provider}" ).first
   end

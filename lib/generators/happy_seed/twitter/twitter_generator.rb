@@ -12,7 +12,7 @@ module HappySeed
         gem 'twitter'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
         end
 
         add_omniauth :twitter

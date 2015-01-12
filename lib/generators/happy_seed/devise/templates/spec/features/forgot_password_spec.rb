@@ -32,7 +32,7 @@ feature "ForgotPasswords", :type => :feature do
 
     expect( page.body ).to_not include( "Email can't be blank" )
 
-    visit user_path
+    visit edit_user_registration_path
 
     expect( page.body ).to include( "Sign Out")
 

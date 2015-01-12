@@ -26,6 +26,19 @@
 
             = f.submit "Update"
 
+      - if devise_mapping.omniauthable?
+        .panel.panel-default.only
+          .panel-header
+            Connect your accounts
+
+          .panel-body
+            %ul
+              - resource_class.omniauth_providers.each do |provider|
+                - if resource.identities.where( :provider => provider ).first
+                  %li= link_to "Reconnect with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)
+                - else
+                  %li= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)
+
       .panel.panel-default.only
 
         .panel-heading
