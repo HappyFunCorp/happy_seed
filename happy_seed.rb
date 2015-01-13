@@ -15,6 +15,7 @@ gem_group :development, :test do
   gem "guard-rspec"
   gem "guard-cucumber"
   gem "database_cleaner"
+  gem 'spring-commands-rspec'
 end
 
 gem_group :test do
@@ -48,6 +49,12 @@ Bundler.with_clean_env do
 
   # Install cucumber
   generate "cucumber:install"
+
+  # Install Guard
+  run "guard init"
+
+  # Use the spring version and also run everything on startup
+  gsub_file "Guardfile", 'cmd: "bundle exec rspec"', 'cmd: "bin/rspec", all_on_start: true'
 
 
   # Run the base generator
@@ -98,7 +105,7 @@ Bundler.with_clean_env do
     packages << "admin"
   end
 
-  if yes?( "Would you like to install angular?" )
+  if yes?( "(BETA) Would you like to install angular?" )
     generate "happy_seed:angular_install"
     packages << "angular"
   end

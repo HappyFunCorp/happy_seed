@@ -5,11 +5,12 @@ module HappySeed
 
       def install_landing_page
         gem 'devise'
-        gem 'activeadmin', github: 'gregbell/active_admin'
+        gem 'activeadmin', github: 'activeadmin', branch: 'master'
+        gem 'inherited_resources', github: 'josevalim/inherited_resources', branch: 'rails-4-2'
         gem 'dateslices'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
         end
 
         generate 'active_admin:install'

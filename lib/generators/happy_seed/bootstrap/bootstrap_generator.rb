@@ -1,6 +1,8 @@
+require 'generators/happy_seed/happy_seed_generator'
+
 module HappySeed
   module Generators
-    class BootstrapGenerator < Rails::Generators::Base
+    class BootstrapGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
       def update_application_haml
@@ -32,7 +34,7 @@ module HappySeed
 RUBY
         end
         if File.exists?( File.join( destination_root, ".env" ) )
-          append_to_file ".env", "GOOGLE_ANALYTICS_SITE_ID=\n"
+          add_env "GOOGLE_ANALYTICS_SITE_ID"
         end
       end
     end

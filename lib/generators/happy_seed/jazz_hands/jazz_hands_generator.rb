@@ -15,11 +15,9 @@ module HappySeed
         end
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
         end
-
       end
-
     end
   end
 end
