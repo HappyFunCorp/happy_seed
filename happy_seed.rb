@@ -34,11 +34,6 @@ end
 Bundler.with_clean_env do
   run "bundle install > /dev/null"
 
-  if !File.exists? "/Users/wschenk/src/happy_seed/ta/Gemfile.lock"
-    puts "Gemfile.lock should exist"
-    exit
-  end
-
   gsub_file "app/assets/javascripts/application.js", /= require turbolinks/, "require turbolinks"
 
   # Install rspec
@@ -49,6 +44,11 @@ Bundler.with_clean_env do
   # Install cucumber
   generate "cucumber:install"
 
+  append_to_file "features/support/env.rb", "
+World(FactoryGirl::Syntax::Methods)
+Warden.test_mode! 
+World(Warden::Test::Helpers)
+After{ Warden.test_reset! }"
 
   # Run the base generator
   generate "happy_seed:base"
@@ -76,6 +76,11 @@ Bundler.with_clean_env do
   if all_in || yes?( "Would you like to install devise?" )
     generate "happy_seed:devise"
     packages << "devise"
+
+    if all_in || yes?( "Would you like to install devise_invitable?")
+      generate "happy_seed:devise_invitable"
+      packages << "devise_invitable"
+    end
 
     if all_in || yes?( "Would you like to install twitter?" )
       generate "happy_seed:twitter"
