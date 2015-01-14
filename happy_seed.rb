@@ -15,6 +15,9 @@ gem_group :development, :test do
   gem "guard-rspec"
   gem "guard-cucumber"
   gem "database_cleaner"
+  gem "spring-commands-rspec"
+  gem "quiet_assets"
+  gem "launchy"
 end
 
 gem_group :test do
@@ -49,6 +52,13 @@ World(FactoryGirl::Syntax::Methods)
 Warden.test_mode! 
 World(Warden::Test::Helpers)
 After{ Warden.test_reset! }"
+
+  # Install Guard
+  run "guard init"
+
+  # Use the spring version and also run everything on startup
+  gsub_file "Guardfile", 'cmd: "bundle exec rspec"', 'cmd: "bin/rspec", all_on_start: true'
+  gsub_file "Guardfile", 'guard "cucumber"', 'guard "cucumber", cli: "--color --strict"'
 
   # Run the base generator
   generate "happy_seed:base"
@@ -103,7 +113,7 @@ After{ Warden.test_reset! }"
     packages << "admin"
   end
 
-  if yes?( "Would you like to install angular?" )
+  if yes?( "(BETA) Would you like to install angular?" )
     generate "happy_seed:angular_install"
     packages << "angular"
   end

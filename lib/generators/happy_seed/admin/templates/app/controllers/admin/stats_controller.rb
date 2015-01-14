@@ -8,7 +8,7 @@ class Admin::StatsController < ApplicationController
       cls = User
       cls = Identity.where( "provider = ?", "twitter" ) if params[:scope] == 'twitter_users'
       cls = Identity.where( "provider = ?", "instagram" ) if params[:scope] == 'instagram_users'
-      ret = cls.group_by_month.collect { |x| [x[:date_slice],x[:count]] }
+      ret = cls.group_by_month
       render json: ret
     end
   end

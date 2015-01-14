@@ -1,4 +1,4 @@
-if ENV['MAILCHIMP_API_KEY']
+if !ENV['MAILCHIMP_API_KEY'].blank?
   ActiveAdmin.register_page "Campaigns" do
     menu parent: "Newsletter"
 

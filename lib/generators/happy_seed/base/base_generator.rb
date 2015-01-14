@@ -12,9 +12,6 @@ module HappySeed
 
         Bundler.with_clean_env do
           run "bundle install > /dev/null"
-          run "guard init"
-
-          gsub_file "Guardfile", 'cmd: "bundle exec rspec"', 'cmd: "bundle exec rspec", all_on_start: true'
         end
 
         directory '.'

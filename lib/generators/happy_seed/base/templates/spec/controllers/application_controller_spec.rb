@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController, :type => :controller do
+  after do
+    ENV['HTTP_AUTH_USERNAME'] = nil
+    ENV['HTTP_AUTH_PASSWORD'] = nil
+  end
+
   controller do
     def index
       render body: "aok"

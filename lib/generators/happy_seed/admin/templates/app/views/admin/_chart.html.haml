@@ -1,5 +1,4 @@
-= scope
-%div{ id: scope, style: "height: 300px" }
+%div{ id: "#{scope}_chart", style: "height: 300px" }
 
 :javascript
-  $( function() { new Chartkick.ColumnChart( '#{scope}', "/admin/stats/#{scope}" ) } )
+  $( function() { new Chartkick.ColumnChart( '#{scope}_chart', "/admin/stats/#{scope}" ) } )
