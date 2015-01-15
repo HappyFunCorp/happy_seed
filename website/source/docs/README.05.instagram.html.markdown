@@ -7,7 +7,6 @@ The `happy_seed:instagram` depends upon `happy_seed:omniauth` and
 
 * Installs instagram authentication
 * Installs instagram gem
-* Installs links in the nav bar and use signup/signin pages
 
 ### Why do you want this?
 

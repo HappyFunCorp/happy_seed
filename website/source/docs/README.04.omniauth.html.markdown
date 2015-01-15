@@ -29,7 +29,7 @@ Documented in spec/features/registration_spec.rb
 
 ### Environment Variables
 
-na (done in the providers)
+Set up a $HOME/.seed_defaults file which contains development application keys.  These will be copied over initially so that you don't need to enter them in all the time.
 
 ### What needs to be done?
 

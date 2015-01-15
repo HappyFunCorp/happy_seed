@@ -336,6 +336,10 @@ ul.checkmarked {
   background-image: image-url('splash/view-me-on-github.png');
   background-size: 100% 100%;
   z-index: 10000;
+  @media (max-width: $screen-xs-max ) {
+    position: absolute;
+    top: $navbar-height;
+  }
 }
 
 .parenthesized {
