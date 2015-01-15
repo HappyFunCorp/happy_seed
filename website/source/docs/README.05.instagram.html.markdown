@@ -22,4 +22,4 @@ If you want to have the user connect via instagram, this is the one line command
 
 ### What needs to be done?
 
-na
+Get yourself an app at http://instagram.com/developer/clients/manage/

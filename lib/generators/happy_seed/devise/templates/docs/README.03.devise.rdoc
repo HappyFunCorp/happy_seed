@@ -9,7 +9,6 @@ The happy_seed:devise generator
 * Generates a User class
 * Copies over devise views
 * Gives them bootstrap views
-* Adds use signin/signup stuff to the navbar
 * Installs MailPreview for the device mailer.
 
 ### Why do you want this?

@@ -18,7 +18,7 @@ module HappySeed
           end
         end
 
-        def add_omniauth( provider, scope = nil )
+        def add_omniauth( provider, scope = nil, client_api = nil, init = nil )
           scopeline = nil
           scopeline = ", scope: \"#{scope}\"" if scope
           inject_into_file 'config/initializers/devise.rb', after: "==> OmniAuth\n" do <<-"RUBY"
@@ -32,6 +32,8 @@ module HappySeed
             say_status :env, "Unable to add template variables to .env", :red
           end
 
+          client_api ||= provider.to_s.humanize
+          init ||= "access_token: #{provider}.accesstoken"
           inject_into_file 'app/controllers/omniauth_callbacks_controller.rb', "\n  def #{provider}\n    generic_callback( '#{provider}' )\n  end\n", before: /\s*def generic_callback/
           inject_into_file 'app/models/user.rb', :before => "\nend" do <<-"RUBY"
 
@@ -40,7 +42,7 @@ module HappySeed
   end
 
   def #{provider}_client
-    @#{provider}_client ||= #{provider.to_s.humanize}.client( access_token: #{provider}.accesstoken )
+    @#{provider}_client ||= #{client_api}.client( #{init} )
   end
 RUBY
           end
