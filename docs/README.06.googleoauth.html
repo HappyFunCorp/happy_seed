@@ -59,60 +59,53 @@
       <div class='container'>
         <div class='row'>
           <div class='col-sm-10 col-sm-push-2'>
-            <h2>HappySeed Rails</h2>
-            <p>
-              The rails application template and generators are the bulk of the <code>happy_seed</code> gem.
-            </p>
-            <p>
-              When you first call <code>happy_seed</code> it sets up a new rails project using the application template.  There are a number of things that are setup to get things going, as documented in
-              <a href="/docs/README.00.base.html">the base document</a>
-              and then you are prompted to see what other generators you want to run.
-            </p>
-            <p>You should be able to run these generators at any time.  Some require the use of others (for example, sign in with twitter requires devise) and they will generally check to make sure that their dependancies are met.</p>
-            <p>Documentation for the current generators are:</p>
+            <h1>HappySeed Google Oauth Install</h1>
+            
+            <h3>What does this do?</h3>
+            
+            <p>The <code>happy_seed:googleoauth</code> depends upon <code>happy_seed:omniauth</code> and</p>
+            
             <ul>
-              <li>The application template</li>
-              <li><a href="/docs/README.00.base.html">happy_seed:base</a></li>
-              <li>
-                <a href="/docs/README.01.bootstrap.html">happy_seed:bootstrap</a>
-                <ul>
-                  <li><a href="/docs/README.02.splash.html">happy_seed:splash</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="/docs/README.03.devise.html">happy_seed:devise</a>
-                <ul>
-                  <li>
-                    <a href="/docs/README.04.omniauth.html">happy_seed:omniauth</a>
-                  </li>
-                  <li>
-                    <a href="/docs/README.05.twitter.html">happy_seed:twitter</a>
-                  </li>
-                  <li>
-                    <a href="/docs/README.06.facebook.html">happy_seed:facebook</a>
-                  </li>
-                  <li>
-                    <a href="/docs/README.05.instagram.html">happy_seed:instagram</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="/docs/README.07.admin.html">happy_seed:admin</a>
-              </li>
-              <li>
-                <a href="/docs/README.10.angular_install.html">happy_seed:angular_install</a>
-              </li>
-              <li>
-                <a href="/docs/README.12.jazz_hands.html">happy_seed:jazz_hands</a>
-              </li>
+            <li>Installs googleauth authentication</li>
+            <li>Creates a sub client in lib/google<em>api</em>client that uses googles default stuff</li>
             </ul>
+            
+            <h3>Why do you want this?</h3>
+            
+            <p>If you want to have the user connect via google, this is the one line command for it.</p>
+            
+            <h3>Environment Variables</h3>
+            
+            <pre><code>GOOGLE_OAUTH2_APP_ID=&#x000A;GOOGLE_OAUTH2_APP_SECRET=&#x000A;</code></pre>
+            
+            <h3>What needs to be done?</h3>
+            
+            <p>In config/initializers/devise.rb make sure that the scope you are requesting is correct.</p>
+            
+            <p>Since you need to set the callbacks as urls, you&#39;ll need to create one app for local development and another app for production.  (Possibly one for staging as well.)</p>
+            
+            <ul>
+            <li>Go to &#39;<a href="https://console.developers.google.com">https://console.developers.google.com</a>&#39;</li>
+            <li>Select your project.</li>
+            <li>Click &#39;APIs &amp; auth&#39;</li>
+            <li>Go to credentials</li>
+            <li>Create new client ID</li>
+            <li>Call back is <a href="http://localhost:3000/users/auth/google_oauth2/callback">http://localhost:3000/users/auth/google_oauth2/callback</a></li>
+            <li>Make sure &quot;Contacts API&quot; and &quot;Google+ API&quot; are on.</li>
+            <li>Go to Consent Screen, and provide an &#39;EMAIL ADDRESS&#39; and a &#39;PRODUCT NAME&#39;</li>
+            <li>Wait 10 minutes for changes to take effect.</li>
+            </ul>
+            
+            <p>Once you have the client connected, then you need to discover the API.</p>
+            
+            <pre><code>client = user.google_oauth2_client&#x000A;admin_api = client.discovered_api(&quot;admin&quot;, &quot;directory_v1&quot;)&#x000A;&#x000A;request = { api_method: admin_api.users.list }&#x000A;request[:parameters] = { domain: &quot;happyfuncorp.com&quot; }&#x000A;response = client.execute request&#x000A;</code></pre>
           </div>
           <div class='col-sm-2 col-sm-pull-10'>
             <ul class='nav nav-pills nav-stacked'>
               <li>
                 <a href="/docs/">Usage</a>
               </li>
-              <li class='active'>
+              <li>
                 <a href="/docs/rails.html">Rails</a>
               </li>
               <li>
@@ -142,7 +135,7 @@
               <li>
                 <a href="/docs/README.06.facebook.html"> - Facebook</a>
               </li>
-              <li>
+              <li class='active'>
                 <a href="/docs/README.06.googleoauth.html"> - Googleoauth</a>
               </li>
               <li>

@@ -11,7 +11,7 @@
     <meta property="og:type" content="website"/>
     <meta property="og:image" content="https://s3.amazonaws.com/happyfuncorp-cdn/use-happy-seed.png"/>
     <meta property="og:description" content="Roses are red, violets are blue, your code sucks because you’re not using seed."/>
-    <link href="../stylesheets/application-e05ab104.css" rel="stylesheet" type="text/css" />
+    <link href="../stylesheets/application-6539cfdd.css" rel="stylesheet" type="text/css" />
     <!-- = yield :stylesheets -->
     <script src="../javascripts/modernizr-d6ac2c8a.js" type="text/javascript"></script>
     <!--[if lt IE 9]>
@@ -49,6 +49,8 @@
               <li><a href="/docs/middleman.html">Static</a></li>
             </ul>
           </li>
+          <li><a href="http://codex.happyfuncorp.com/tagged/seed">Blog</a></li>
+          <li><a href="https://github.com/happyfuncode/happy_seed">0.0.13</a></li>
         </ul>
       </nav>
     </header>
@@ -69,8 +71,9 @@
             <li>Installs an omniauth_controller</li>
             <li>Updates devise configuration</li>
             <li>Adds routes</li>
-            <li>Inserts code into User to do the lookup</li>
-            <li>Inserts fallback controller to handle the login</li>
+            <li>Removes devise email/password validations, updates database</li>
+            <li>Adds FormUser &lt; User model for validations</li>
+            <li>Adds a registration controller to allow the user to add email and password for auth strategies that don&#39;t support it.</li>
             </ul>
             
             <h3>Why do you want this?</h3>
@@ -79,11 +82,15 @@
             
             <p>The Identity model is used to link up the user with the remote information.  What information is given is stored, though you could go deeper with this.  Additionally, the access token for the user is store in the Identity model for interacting with the remote service on behalf of the user.</p>
             
-            <p>It also creates the omniauth_callback controller.  Devise as it&#39;s setup out of the box has the user&#39;s email address as the login, but not all services will give you the user&#39;s email address.  (Twitter for example.)  The controller in this case will check to see if the email address is returned, and if not, it will prompt the user for one.  This may not be the functionality that you desire.</p>
+            <p>It also creates the omniauth_callback controller.  Devise as it&#39;s setup out of the box has the user&#39;s email address as the login, but not all services will give you the user&#39;s email address.  (Twitter for example.)  The controller in this case will check only set the email address if one is returned.</p>
+            
+            <p>It also creates a registration controller to allow a user to set an email.  If the user hasn&#39;t set a password, they can change email without it.  If they set an password, then it is required to change things in the future.</p>
+            
+            <p>Documented in spec/features/registration_spec.rb</p>
             
             <h3>Environment Variables</h3>
             
-            <p>na (done in the providers)</p>
+            <p>Set up a $HOME/.seed_defaults file which contains development application keys.  These will be copied over initially so that you don&#39;t need to enter them in all the time.</p>
             
             <h3>What needs to be done?</h3>
             
@@ -109,6 +116,9 @@
               <li>
                 <a href="/docs/README.03.devise.html"> - Devise</a>
               </li>
+              <li>
+                <a href="/docs/README.03.devise_invitable.html"> - Devise_invitable</a>
+              </li>
               <li class='active'>
                 <a href="/docs/README.04.omniauth.html"> - Omniauth</a>
               </li>
@@ -120,6 +130,9 @@
               </li>
               <li>
                 <a href="/docs/README.06.facebook.html"> - Facebook</a>
+              </li>
+              <li>
+                <a href="/docs/README.06.googleoauth.html"> - Googleoauth</a>
               </li>
               <li>
                 <a href="/docs/README.07.admin.html"> - Admin</a>

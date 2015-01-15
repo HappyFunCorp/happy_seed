@@ -59,60 +59,38 @@
       <div class='container'>
         <div class='row'>
           <div class='col-sm-10 col-sm-push-2'>
-            <h2>HappySeed Rails</h2>
-            <p>
-              The rails application template and generators are the bulk of the <code>happy_seed</code> gem.
-            </p>
-            <p>
-              When you first call <code>happy_seed</code> it sets up a new rails project using the application template.  There are a number of things that are setup to get things going, as documented in
-              <a href="/docs/README.00.base.html">the base document</a>
-              and then you are prompted to see what other generators you want to run.
-            </p>
-            <p>You should be able to run these generators at any time.  Some require the use of others (for example, sign in with twitter requires devise) and they will generally check to make sure that their dependancies are met.</p>
-            <p>Documentation for the current generators are:</p>
+            <h1>HappySeed Devise Invitable Install</h1>
+            
+            <h3>What does this do?</h3>
+            
+            <p>The <code>happy_seed:devise_invitable</code> generator</p>
+            
             <ul>
-              <li>The application template</li>
-              <li><a href="/docs/README.00.base.html">happy_seed:base</a></li>
-              <li>
-                <a href="/docs/README.01.bootstrap.html">happy_seed:bootstrap</a>
-                <ul>
-                  <li><a href="/docs/README.02.splash.html">happy_seed:splash</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="/docs/README.03.devise.html">happy_seed:devise</a>
-                <ul>
-                  <li>
-                    <a href="/docs/README.04.omniauth.html">happy_seed:omniauth</a>
-                  </li>
-                  <li>
-                    <a href="/docs/README.05.twitter.html">happy_seed:twitter</a>
-                  </li>
-                  <li>
-                    <a href="/docs/README.06.facebook.html">happy_seed:facebook</a>
-                  </li>
-                  <li>
-                    <a href="/docs/README.05.instagram.html">happy_seed:instagram</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="/docs/README.07.admin.html">happy_seed:admin</a>
-              </li>
-              <li>
-                <a href="/docs/README.10.angular_install.html">happy_seed:angular_install</a>
-              </li>
-              <li>
-                <a href="/docs/README.12.jazz_hands.html">happy_seed:jazz_hands</a>
-              </li>
+            <li>Installs devise_invitable</li>
+            <li><em>runs <code>rake db:migrate</code></em> because of the way the <code>devise_invitable</code> gem works</li>
+            <li>Adds columns for invite</li>
+            <li>Copies over devise views</li>
+            <li>Gives them bootstrap views</li>
             </ul>
+            
+            <h3>Why do you want this?</h3>
+            
+            <p>This allows you to invite users to the site and have them sign up through a link.</p>
+            
+            <h3>Environment Variables</h3>
+            
+            <p>na</p>
+            
+            <h3>What needs to be done?</h3>
+            
+            <p>na</p>
           </div>
           <div class='col-sm-2 col-sm-pull-10'>
             <ul class='nav nav-pills nav-stacked'>
               <li>
                 <a href="/docs/">Usage</a>
               </li>
-              <li class='active'>
+              <li>
                 <a href="/docs/rails.html">Rails</a>
               </li>
               <li>
@@ -127,7 +105,7 @@
               <li>
                 <a href="/docs/README.03.devise.html"> - Devise</a>
               </li>
-              <li>
+              <li class='active'>
                 <a href="/docs/README.03.devise_invitable.html"> - Devise_invitable</a>
               </li>
               <li>
