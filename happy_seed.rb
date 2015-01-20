@@ -15,7 +15,9 @@ gem_group :development, :test do
   gem "guard-rspec"
   gem "guard-cucumber"
   gem "database_cleaner"
-  gem 'spring-commands-rspec'
+  gem "spring-commands-rspec"
+  gem "quiet_assets"
+  gem "launchy"
 end
 
 gem_group :test do
@@ -35,11 +37,6 @@ end
 Bundler.with_clean_env do
   run "bundle install > /dev/null"
 
-  if !File.exists? "/Users/wschenk/src/happy_seed/ta/Gemfile.lock"
-    puts "Gemfile.lock should exist"
-    exit
-  end
-
   gsub_file "app/assets/javascripts/application.js", /= require turbolinks/, "require turbolinks"
 
   # Install rspec
@@ -50,12 +47,18 @@ Bundler.with_clean_env do
   # Install cucumber
   generate "cucumber:install"
 
+  append_to_file "features/support/env.rb", "
+World(FactoryGirl::Syntax::Methods)
+Warden.test_mode! 
+World(Warden::Test::Helpers)
+After{ Warden.test_reset! }"
+
   # Install Guard
   run "guard init"
 
   # Use the spring version and also run everything on startup
   gsub_file "Guardfile", 'cmd: "bundle exec rspec"', 'cmd: "bin/rspec", all_on_start: true'
-
+  gsub_file "Guardfile", 'guard "cucumber"', 'guard "cucumber", cli: "--color --strict"'
 
   # Run the base generator
   generate "happy_seed:base"
@@ -83,6 +86,11 @@ Bundler.with_clean_env do
   if all_in || yes?( "Would you like to install devise?" )
     generate "happy_seed:devise"
     packages << "devise"
+
+    if all_in || yes?( "Would you like to install devise_invitable?")
+      generate "happy_seed:devise_invitable"
+      packages << "devise_invitable"
+    end
 
     if all_in || yes?( "Would you like to install twitter?" )
       generate "happy_seed:twitter"

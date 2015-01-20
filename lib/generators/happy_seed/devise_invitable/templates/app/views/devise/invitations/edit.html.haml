@@ -1,0 +1,21 @@
+- @title = t 'devise.invitations.edit.header'
+.container
+  .row
+    .center_panel
+      .panel.panel-default.only
+
+        .panel-heading
+          = @title
+
+        .panel-body
+
+          = form_for resource, as: resource_name, url: invitation_path(resource_name), layout: :horizontal, html: { method: :put } do |f|
+
+            = devise_error_messages!
+
+            = f.hidden_field :invitation_token
+
+            = f.password_field :password
+            = f.password_field :password_confirmation
+
+            = f.submit "Add password"

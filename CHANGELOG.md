@@ -1,3 +1,10 @@
+Version 0.0.13
+  - Removed testing code that shouldn't have been checked in
+  - Improved cucumber testing
+  - Added devise_invitable generator
+  - Added google oauth generator
+  
+
 Version 0.0.12
   - Updated rails dependancy to 4.2
   - Moved to guard from autotest

@@ -23,7 +23,9 @@ If you want to have the user connect via twitter, this is the one line command f
 
 Go to twitter.com and sign up for an application.  Since you need to set the callbacks as urls, you'll need to create one app for local development and another app for production.  (Possibly one for staging as well.)
 
-https://dev.twitter.com
+Allow the application to sign in with twitter.
+
+https://apps.twitter.com
 
 Also see more: 
 

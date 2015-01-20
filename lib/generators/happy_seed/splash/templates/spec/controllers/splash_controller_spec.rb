@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe SplashController, :type => :controller do
+  after do
+    ENV['HTTP_AUTH_USERNAME'] = nil
+    ENV['HTTP_AUTH_PASSWORD'] = nil
+  end
+
   it "should return the index page" do
     get :index
     expect(response).to render_template( :index )

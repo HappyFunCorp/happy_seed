@@ -7,7 +7,6 @@ The `happy_seed:instagram` depends upon `happy_seed:omniauth` and
 
 * Installs instagram authentication
 * Installs instagram gem
-* Installs links in the nav bar and use signup/signin pages
 
 ### Why do you want this?
 
@@ -22,4 +21,4 @@ If you want to have the user connect via instagram, this is the one line command
 
 ### What needs to be done?
 
-na
+Get yourself an app at http://instagram.com/developer/clients/manage/

@@ -14,6 +14,13 @@ set :markdown_engine, :redcarpet
 
 activate :autometatags
 
+helpers do
+  def seed_version
+    require '../lib/happy_seed/version'
+    HappySeed::VERSION
+  end
+end
+
 # Turn this on if you want to make your url's prettier, without the .html
 # activate :directory_indexes
 
