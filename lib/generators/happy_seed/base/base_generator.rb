@@ -22,7 +22,8 @@ module HappySeed
         inject_into_file 'config/environments/test.rb', "  config.log_level = :error\n", before: "end\n"
 
         begin
-          inject_into_file 'spec/spec_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n  config.include Warden::Test::Helpers, type: :feature\n  config.include ControllerHelpers, type: :controller\n  Warden.test_mode!\n", :before => "\nend\n"
+          inject_into_file 'spec/spec_helper.rb', "\n  config.include Warden::Test::Helpers, type: :feature\n  config.include ControllerHelpers, type: :controller\n  Warden.test_mode!\n", :before => "\nend\n"
+          prepend_to_file 'spec/spec_helper.rb', "require_relative 'support/controller_helpers'\n"
         rescue
           say_status :spec, "Unable to add login helpers to spec_helper.rb"
         end

@@ -32,7 +32,8 @@ module HappySeed
         
         begin
           prepend_to_file 'spec/spec_helper.rb', "require 'devise'\n"
-          prepend_to_file 'spec/spec_helper.rb', "require_relative 'support/controller_helpers'\n"
+          inject_into_file 'spec/spec_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n", :before => "\nend\n"
+
         rescue
           say_status :spec, "Unable to add devise helpers to spec_helper.rb", :red
         end
