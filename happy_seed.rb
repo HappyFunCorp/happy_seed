@@ -16,6 +16,7 @@ gem_group :development, :test do
   gem "guard-cucumber"
   gem "database_cleaner"
   gem "spring-commands-rspec"
+  gem 'spring-commands-cucumber'
   gem "quiet_assets"
   gem "launchy"
 end
