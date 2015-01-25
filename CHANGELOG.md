@@ -1,9 +1,14 @@
+Version 0.0.14
+  - Cleaned up google apps
+  - Added VCR
+  - Added github oauth
+  - Cleaned up testing helpers for authentication
+  
 Version 0.0.13
   - Removed testing code that shouldn't have been checked in
   - Improved cucumber testing
   - Added devise_invitable generator
-  - Added google oauth generator
-  
+  - Added google oauth generator  
 
 Version 0.0.12
   - Updated rails dependancy to 4.2

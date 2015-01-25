@@ -24,3 +24,6 @@ na
 Take a look at the user model to see if you want to configure any other features in devise.  Look at the migration to see if there are any other fields you wish the users to have.
 
 Once you feel good about it run "rake db:migrate" and you should be good to go.
+
+## Writing tests
+

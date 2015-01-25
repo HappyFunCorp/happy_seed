@@ -26,6 +26,7 @@ module HappySeed
 
         gsub_file "config/routes.rb", /\s*root.*\n/, "\n"
         route "root 'splash#index'"
+        route "get '/spash' => 'splash#index'"
         route "post '/signup' => 'splash#signup', as: :splash_signup"
 
         directory 'app'

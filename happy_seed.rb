@@ -19,6 +19,7 @@ gem_group :development, :test do
   gem 'spring-commands-cucumber'
   gem "quiet_assets"
   gem "launchy"
+  gem "vcr"
 end
 
 gem_group :test do
@@ -34,6 +35,8 @@ if ENV['SEED_DEVELOPMENT']
 else
   gem 'happy_seed'
 end
+
+packages = []
 
 Bundler.with_clean_env do
   run "bundle install > /dev/null"
@@ -67,8 +70,6 @@ After{ Warden.test_reset! }"
   all_in = false
   all_in = true if yes? "Would you like to install everything?"
 
-  packages = []
-
   if all_in || yes?( "Would you like to install jazz hands?" )
     generate "happy_seed:jazz_hands"
     packages << "jazz_hands"
@@ -93,19 +94,32 @@ After{ Warden.test_reset! }"
       packages << "devise_invitable"
     end
 
-    if all_in || yes?( "Would you like to install twitter?" )
-      generate "happy_seed:twitter"
-      packages << "twitter"
-    end
 
-    if all_in || yes?( "Would you like to install facebook connect?" )
+    all_connectors = yes?( "Would you like to install all of the oauth connectors?" )
+
+    if all_connectors || yes?( "Would you like to install facebook connect?" )
       generate "happy_seed:facebook"
       packages << "facebook"
     end
 
-    if all_in || yes?( "Would you like to install instagram?" )
+    if all_connectors || yes?( "Would you like to install github?" )
+      generate "happy_seed:github"
+      packages << "github"
+    end
+
+    if all_connectors || yes?( "Would you like to install google authentication?" )
+      generate "happy_seed:googleoauth"
+      packages << "googleoauth"
+    end
+
+    if all_connectors || yes?( "Would you like to install instagram?" )
       generate "happy_seed:instagram"
       packages << "instagram"
+    end
+
+    if all_connectors || yes?( "Would you like to install twitter?" )
+      generate "happy_seed:twitter"
+      packages << "twitter"
     end
   end
 
