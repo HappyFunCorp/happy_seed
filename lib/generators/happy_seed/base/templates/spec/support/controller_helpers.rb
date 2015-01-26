@@ -1,5 +1,5 @@
 module ControllerHelpers
-  def sign_in(user = double('user'), scope = :user)
+  def login_with(user = double('user'), scope = :user)
     current_user = "current_#{scope}".to_sym
     if user.nil?
       allow(request.env['warden']).to receive(:authenticate!).and_throw(:warden, {:scope => scope})

@@ -7,7 +7,7 @@ RSpec.describe Admin::StatsController, :type => :controller do
   # end
 
   it "should require the scope param" do
-    sign_in create( :admin_user ), :admin_user
+    login_with create( :admin_user ), :admin_user
 
     get :stats, scope: ''
     expect( response.status ).to eq( 422 )
@@ -16,7 +16,7 @@ RSpec.describe Admin::StatsController, :type => :controller do
   end
 
   it "should return data for a logged in user" do
-    sign_in create( :admin_user ), :admin_user
+    login_with create( :admin_user ), :admin_user
 
     get :stats, scope: 'user'
     expect( response.status ).to eq( 200 )

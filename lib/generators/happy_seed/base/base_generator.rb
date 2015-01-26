@@ -22,7 +22,7 @@ module HappySeed
         inject_into_file 'config/environments/test.rb', "  config.log_level = :error\n", before: "end\n"
 
         begin
-          inject_into_file 'spec/spec_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n  config.include Warden::Test::Helpers, type: :feature\n  config.include ControllerHelpers, type: :controller\n  Warden.test_mode!\n", :before => "\nend\n"
+          inject_into_file 'spec/spec_helper.rb', "\n  config.include ControllerHelpers, type: :controller\n  Warden.test_mode!\n", :before => "\nend\n"
         rescue
           say_status :spec, "Unable to add login helpers to spec_helper.rb"
         end
@@ -35,7 +35,7 @@ module HappySeed
         end
 
         begin
-          inject_into_file 'spec/rails_helper.rb', "\n  config.include FactoryGirl::Syntax::Methods\n", :before => "\nend\n"
+          inject_into_file 'spec/rails_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n  config.include Warden::Test::Helpers, type: :feature\n  config.include FactoryGirl::Syntax::Methods\n", :before => "\nend\n"
           append_to_file 'spec/rails_helper.rb', "\nVCR.configure do |c|\n  c.cassette_library_dir  = Rails.root.join('spec', 'vcr')\n  c.hook_into :webmock\nend\n"
         rescue
           say_status :spec, "Unable to add factory girl and VCR to rails_helper.rb", :red

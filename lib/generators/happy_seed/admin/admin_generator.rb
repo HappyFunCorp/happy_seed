@@ -6,7 +6,7 @@ module HappySeed
       def install_landing_page
         gem 'devise'
         gem 'activeadmin', github: 'activeadmin', branch: 'master'
-        gem 'inherited_resources', github: 'josevalim/inherited_resources', branch: 'rails-4-2'
+        gem 'inherited_resources' # , github: 'josevalim/inherited_resources', branch: 'rails-4-2'
         gem 'dateslices'
 
         Bundler.with_clean_env do
