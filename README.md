@@ -1,10 +1,10 @@
 # HappySeed
 
-This project rocks and uses MIT-LICENSE.  Documentation at the [website](http://seed.happyfuncorp.com/)
+This project rocks and uses MIT-LICENSE. Documentation at the [website](http://seed.happyfuncorp.com/)
 
 ## What is it?
 
-HappySeed is a set of application templates to help you get started building out new sites.  The main section is a rails application template plus a set of rails generators to help you get started with rails appliations quickly.  These generators setup the configuration of the application in a standard way, and the full set of generators include many things for setting up a modern rails app and well as middleman apps. The full set of generators include
+HappySeed is a set of application templates to help you get started building out new sites. The main section is a rails application template plus a set of rails generators to help you get started with rails appliations quickly. These generators setup the configuration of the application in a standard way, and the full set of generators include many things for setting up a modern rails app and well as middleman apps. The full set of generators include
 
 * [happy_seed:foreman](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/foreman/templates/docs/README.00.base.rdoc) environment setup
 * [happy_seed:bootstrap](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/bootstrap/templates/docs/README.01.bootstrap.rdoc)  setting up bootstrap + scaffold templates
@@ -23,22 +23,26 @@ All of these documents are droped into the docs folder of your project, and can 
 
 ## Usage
 
-  # gem install happy_seed
+    $ gem install happy_seed
 
-  # happy_seed rails app_name
+    $ happy_seed rails app_name
 
 To list out existing generators:
 
-  # rails g
+    $ rails g
 
 ## What is this for?
 
-The purpose of this app is to make it quick and easy to start projects by getting all of the basic plumbing out of the way.  There are a lot of great gems and tools around to help build software, and for common tasks, this takes away the pain of having to remember how to set them up.  The omniauth-twitter gem is great, but remembering exactly how to configure twitter for each new project is a) the same each time and b) a pain to remember.  This makes that go away.
+The purpose of this app is to make it quick and easy to start projects by getting all of the basic plumbing out of the way. There are a lot of great gems and tools around to help build software, and for common tasks, this takes away the pain of having to remember how to set them up. The omniauth-twitter gem is great, but remembering exactly how to configure twitter for each new project is a) the same each time and b) a pain to remember. This makes that go away.
 
-This application template and set of generators dumps some sensible configuration into a new rails project and then lets you customize and change from there.  It is not necessary to keep it in the project after a certain stage where everything will be custom anyway.
+This application template and set of generators dumps some sensible configuration into a new rails project and then lets you customize and change from there. It is not necessary to keep it in the project after a certain stage where everything will be custom anyway.
 
 Lets whip up some things quickly!
 
 ## Contributing
 
-Clone the repo, and set the SEED_DEVELOPMENT environment variable to the local repo directory.  For an existing app, change the Gemfile to have the happy_seed gem point to this path.  For a new app, this will be setup automatically.
+Clone the repo, and set the `SEED_DEVELOPMENT` environment variable to the local repo directory. To run the generator from the cloned source, execute:
+
+    $ bundle exec bin/happy_seed
+
+For an existing app, change the Gemfile to have the `happy_seed` gem point to this path. For a new app, this will be set up automatically.
