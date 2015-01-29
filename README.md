@@ -6,7 +6,7 @@ This project rocks and uses MIT-LICENSE. Documentation at the [website](http://s
 
 HappySeed is a set of application templates to help you get started building out new sites. The main section is a rails application template plus a set of rails generators to help you get started with rails appliations quickly. These generators setup the configuration of the application in a standard way, and the full set of generators include many things for setting up a modern rails app and well as middleman apps. The full set of generators include
 
-* [happy_seed:foreman](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/foreman/templates/docs/README.00.base.rdoc) environment setup
+* [happy_seed:base](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/base/templates/docs/README.00.base.rdoc) environment setup
 * [happy_seed:bootstrap](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/bootstrap/templates/docs/README.01.bootstrap.rdoc)  setting up bootstrap + scaffold templates
 * [happy_seed:splash](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/splash/templates/docs/README.02.splash.rdoc) setting up a splash page
 * [happy_seed:devise](https://github.com/happyfuncode/happy_seed/blob/master/lib/generators/happy_seed/devise/templates/docs/README.03.devise.rdoc) setting up devise + customized templates
