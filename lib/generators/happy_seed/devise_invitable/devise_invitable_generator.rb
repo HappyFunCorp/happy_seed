@@ -5,7 +5,7 @@ module HappySeed
 
       def install_device_invitable
         unless gem_available?( "devise" )
-          puts "The omniauth generator requires devise"
+          puts "The devise invitable generator requires devise"
 
           if yes?( "Run happy_seed:devise now?" )
             generate "happy_seed:devise"
