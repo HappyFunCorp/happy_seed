@@ -1,8 +1,17 @@
 require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
+class User
+  def _set_reset_password_token
+    set_reset_password_token
+  end
+end
+
 resource 'User' do
   let(:user) { FactoryGirl.build :user_with_token }
+  # before {
+  #   @request.env["devise.mapping"] = Devise.mappings[:user]
+  # }
 
   post '/v1/users', format: :json do
     parameter :first_name, 'First Name', scope: :user
@@ -31,7 +40,12 @@ resource 'User' do
   end
 
   post '/v1/users/forgot_password', format: :json do
-    before { user.save }
+    before do
+      user.save
+      # @request.env["devise.mapping"] = :user
+      # user.send_reset_password_instructions
+    end
+
 
     parameter :email, 'Email', required: true, scope: :user
     let(:email) { user.email }
@@ -45,13 +59,15 @@ resource 'User' do
   end
 
   put '/v1/users/reset_password', format: :json do
-    before { user.save }
+    before do
+      user.save
+    end
 
     parameter :reset_password_token, 'Reset password token', required: true, scope: :user
     parameter :password, 'Password', required: true, scope: :user
     parameter :password_confirmation, 'Password confirmation', required: true, scope: :user
 
-    let(:reset_password_token) { user.reset_password_and_notify }
+    let(:reset_password_token) { user._set_reset_password_token }
     let(:password) { Faker::Internet.password 8 }
     let(:password_confirmation) { password }
 
@@ -87,9 +103,9 @@ resource 'User' do
     header 'AUTHORIZATION', :token
 
     parameter :id, 'User Unique Identifier', required: true
-    parameter :full_name, 'Full Name', scope: :user
-    parameter :username, 'User Name', scope: :user
-    parameter :avatar, 'Avatar', scope: :user
+    parameter :first_name, 'Full Name', scope: :user
+    parameter :last_name, 'Full Name', scope: :user
+    parameter :login, 'User Name', scope: :user
 
     let(:token) { ActionController::HttpAuthentication::Token.encode_credentials user.user_tokens.first.try(:token), installation_identifier: user.user_tokens.first.try(:installation_identifier) }
     let(:id) { user.id }
@@ -104,32 +120,6 @@ resource 'User' do
 
       expect(status).to eq(200)
       expect(response_json['user']).to have_key('id')
-    end
-  end
-
-  post '/v1/users/invite', format: :json do
-    before { user.save }
-
-    header 'AUTHORIZATION', :token
-
-    parameter :invited, 'Invited Users', scope: :user
-
-    let(:token) { ActionController::HttpAuthentication::Token.encode_credentials user.user_tokens.first.try(:token), installation_identifier: user.user_tokens.first.try(:installation_identifier) }
-    let(:invited) { 2.times.map { |n| {email: Faker::Internet.free_email, full_name: Faker::Name.name} } }
-
-    example_request 'invite' do
-      response_json = JSON.parse response_body
-
-      expect(status).to eq(200)
-      expect(response_json['user']['invited']).not_to be_empty
-    end
-
-    example 'invite error', document: false do
-      do_request user: {invited: 2.times.map { |n| {email: nil, full_name: Faker::Name.name} }}
-      response_json = JSON.parse response_body
-
-      expect(status).to eq(422)
-      expect(response_json['errors']).to have_key('invited')
     end
   end
 end

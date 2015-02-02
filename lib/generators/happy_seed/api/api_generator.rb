@@ -35,7 +35,6 @@ module HappySeed
         resources :users, only: %w(create update show) do
           resources :questions, only: %w(index)
           collection do
-            post :invite
             post :forgot_password
             put :reset_password
           end
@@ -67,14 +66,22 @@ module HappySeed
   end
 "
 
+        prepend_to_file 'spec/spec_helper.rb', "require 'rspec_api_documentation'\n"
         append_to_file 'spec/spec_helper.rb', "\nRspecApiDocumentation.configure do |config|
   config.format = :json
-  config.docs_dir = Rails.root.join 'docs', 'api'
+  config.docs_dir = Pathname( 'docs/api' )
 
   config.request_headers_to_include = %w(Authorization)
   config.response_headers_to_include = %w()
 end"
 
+        append_to_file 'spec/factories/users.rb', "\nFactoryGirl.define do
+  factory :user_with_token, parent: :user do
+    after :build do |user, evaluator|
+      user.user_tokens.build installation_identifier: Faker::Lorem.characters(10), push_token: Faker::Lorem.characters(10)
+    end
+  end
+end"
       end
 
       private

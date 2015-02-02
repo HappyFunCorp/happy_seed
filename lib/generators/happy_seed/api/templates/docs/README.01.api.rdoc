@@ -18,4 +18,8 @@ na
 
 ### What needs to be done?
 
-na
+After you update your specs in spec/acceptance, run
+
+rake docs:generate
+
+to output the files into the docs/api directory.

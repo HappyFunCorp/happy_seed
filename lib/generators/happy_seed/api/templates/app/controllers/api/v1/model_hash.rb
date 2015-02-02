@@ -15,10 +15,10 @@ module Api::V1::ModelHash
   def user_hash(user)
     {
         id: user.id,
-        username: user.username,
+        login: user.login,
         email: user.email,
-        full_name: user.full_name,
-        avatar: user.avatar.try(:url)
+        first_name: user.first_name,
+        last_name: user.last_name
     }
   end
 

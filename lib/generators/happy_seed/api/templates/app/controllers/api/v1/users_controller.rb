@@ -1,3 +1,4 @@
+
 class Api::V1::UsersController < Api::V1::BaseController
   before_action :requires_authentication_token, except: %w(create forgot_password reset_password)
   before_action :set_user, only: %w(show update)
@@ -58,27 +59,13 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
-  def invite
-    respond_to do |format|
-      invited = user_params[:invited].select { |i| i[:email].present? }
-      format.json do
-        if invited.present?
-          current_user.invite invited
-          render json: {user: {invited: invited}}, status: :ok
-        else
-          current_user.errors.add :invited, 'is empty'
-          render json: {errors: current_user.errors}, status: :unprocessable_entity
-        end
-      end
-    end
-  end
-
   def forgot_password
     respond_to do |format|
-      user = User.where(email: user_params[:email]).first
+      user = FormUser.where(email: user_params[:email]).first
       format.json do
         if user.present?
-          user.reset_password_and_notify
+          user.send_reset_password_instructions
+          user.save
           render json: {user: user_hash(user).slice(:email)}, status: :ok
         else
           render json: {errors: {email: 'not found'}}, status: :not_found
@@ -95,6 +82,7 @@ class Api::V1::UsersController < Api::V1::BaseController
           if user.errors.empty?
             render json: {user: user_hash(user)}, status: :ok
           else
+            p user.errors
             render json: {errors: user.errors}, status: :unprocessable_entity
           end
         else
@@ -111,7 +99,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    params[:user].permit :email, :password, :username, :full_name, :avatar, :reset_password_token, :password_confirmation, invited: %w(email full_name).map(&:to_sym)
+    params.require(:user).permit :email, :password, :username, :first_name, :last_name, :avatar, :reset_password_token, :password_confirmation, invited: %w(email full_name).map(&:to_sym)
   end
 
   def user_token_params
