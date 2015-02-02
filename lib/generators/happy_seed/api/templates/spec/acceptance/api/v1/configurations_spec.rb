@@ -4,7 +4,7 @@ require 'rspec_api_documentation/dsl'
 resource 'Configuration' do
   header 'AUTHORIZATION', :token
 
-  let(:user) { FactoryGirl.create :user }
+  let(:user) { FactoryGirl.create :user_with_token }
   let(:token) { ActionController::HttpAuthentication::Token.encode_credentials user.user_tokens.first.try(:token), installation_identifier: user.user_tokens.first.try(:installation_identifier) }
 
   get '/v1/configuration', format: :json do

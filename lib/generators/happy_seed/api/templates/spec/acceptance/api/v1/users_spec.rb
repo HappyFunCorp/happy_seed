@@ -2,18 +2,20 @@ require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource 'User' do
-  let(:user) { FactoryGirl.build :user }
+  let(:user) { FactoryGirl.build :user_with_token }
 
   post '/v1/users', format: :json do
-    parameter :full_name, 'Full Name', scope: :user
-    parameter :username, 'User Name', required: true, scope: :user
+    parameter :first_name, 'First Name', scope: :user
+    parameter :last_name, 'Last Name', scope: :user
+    parameter :login, 'Login', required: true, scope: :user
     parameter :email, 'Email', required: true, scope: :user
     parameter :password, 'Password', required: true, scope: :user
     parameter :installation_identifier, 'Unique Installation Identifier', required: true, scope: :user_token
     parameter :avatar, 'Avatar', scope: :user
 
-    let(:full_name) { user.full_name }
-    let(:username) { user.username }
+    let(:first_name) { user.first_name }
+    let(:last_name) { user.last_name }
+    let(:login) { user.login }
     let(:email) { user.email }
     let(:password) { user.password }
     let(:installation_identifier) { Faker::Lorem.characters 10 }
@@ -91,8 +93,9 @@ resource 'User' do
 
     let(:token) { ActionController::HttpAuthentication::Token.encode_credentials user.user_tokens.first.try(:token), installation_identifier: user.user_tokens.first.try(:installation_identifier) }
     let(:id) { user.id }
-    let(:full_name) { [Faker::Name.first_name, Faker::Name.last_name].join ' ' }
-    let(:username) { Faker::Internet.user_name }
+    let(:first_name) { Faker::Name.first_name }
+    let(:last_name) { Faker::Name.last_name }
+    let(:login) { Faker::Internet.user_name }
     # let(:avatar) { fixture_file_upload Rails.root.join('spec', 'resources', 'photo.jpg'), 'image/jpeg' }
 
     example_request 'update' do

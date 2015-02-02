@@ -1,4 +1,4 @@
-module ModelHash
+module Api::V1::ModelHash
   def configuration_hash
     {
         pusher: {

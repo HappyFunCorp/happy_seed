@@ -1,4 +1,4 @@
-class Api::V1::UserTokensController < API::V1::BaseController
+class Api::V1::UserTokensController < Api::V1::BaseController
   before_action :requires_authentication_token, only: %w(update destroy)
 
   def create

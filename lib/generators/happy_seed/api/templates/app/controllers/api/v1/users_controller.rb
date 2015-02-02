@@ -1,4 +1,4 @@
-class Api::V1::UsersController < API::V1::BaseController
+class Api::V1::UsersController < Api::V1::BaseController
   before_action :requires_authentication_token, except: %w(create forgot_password reset_password)
   before_action :set_user, only: %w(show update)
 

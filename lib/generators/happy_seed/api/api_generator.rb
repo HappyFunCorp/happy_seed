@@ -23,12 +23,14 @@ module HappySeed
         end
 
         generate "model user_token user:belongs_to:index token installation_identifier:index push_token locked:boolean"
+        generate "migration add_user_tokens_count_to_users user_tokens_count:integer"
 
         directory '.'
 
         route "  scope module: :api, defaults: {format: :json} do
     %w(v1).each do |version|
       namespace version.to_sym do
+        resource :configuration, only: %w(show)
         resource :user_token, path: :token, only: %w(create destroy update)
         resources :users, only: %w(create update show) do
           resources :questions, only: %w(index)
@@ -42,7 +44,7 @@ module HappySeed
     end
   end
 "
-        inject_into_class "app/models/user.rb", "User", "  has_many :user_tokens\n"
+        inject_into_class "app/models/user.rb", "User", "  has_many :user_tokens, dependent: :destroy\n"
 
         gsub_file "app/models/user_token.rb", /belongs_to :user\n/,"  validates :user, presence: true
   validates :token, presence: true, uniqueness: {case_sensitive: false}
