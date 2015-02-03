@@ -3,6 +3,7 @@ Version 0.0.14
   - Added VCR
   - Added github oauth
   - Cleaned up testing helpers for authentication
+  - Updated Admin Generator to use inherited_resources gem
   
 Version 0.0.13
   - Removed testing code that shouldn't have been checked in
