@@ -16,7 +16,6 @@ module HappySeed
 
         gem 'apitome'
         gem 'rspec_api_documentation', :groups => [:development, :test]
-        gem 'faker', :groups => [:development, :test]
 
         Bundler.with_clean_env do
           run "bundle install > /dev/null"

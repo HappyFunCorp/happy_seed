@@ -20,6 +20,7 @@ gem_group :development, :test do
   gem "quiet_assets"
   gem "launchy"
   gem "vcr"
+  gem "faker"
 end
 
 gem_group :test do

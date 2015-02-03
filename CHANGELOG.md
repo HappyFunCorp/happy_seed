@@ -1,3 +1,6 @@
+Version 0.0.15
+  - Added API Generator
+  
 Version 0.0.14
   - Cleaned up google apps
   - Added VCR
