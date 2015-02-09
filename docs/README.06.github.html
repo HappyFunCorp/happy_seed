@@ -59,32 +59,32 @@
       <div class='container'>
         <div class='row'>
           <div class='col-sm-10 col-sm-push-2'>
-            <h1>HappySeed ActiveAdmin Install</h1>
+            <h1>HappySeed Github Install</h1>
             
             <h3>What does this do?</h3>
             
-            <p>The happy_seed bootstrap generator</p>
+            <p>The <code>happy_seed:github</code> depends upon <code>happy_seed:omniauth</code> and</p>
             
             <ul>
-            <li>Installs active admin from git</li>
-            <li>Runs the active_admin:install generator</li>
-            <li>Creates AdminUser model</li>
-            <li>Creates basic newsletter/campaign admin panel if <code>MAILCHIMP_API_KEY</code> is active</li>
+            <li>Installs github authentication</li>
+            <li>Installs github api gem</li>
             </ul>
             
             <h3>Why do you want this?</h3>
             
-            <p>ActiveAdmin, for all of it&#39;s flaws, including out of date documentation, is a nice way to put a back-end on an application.</p>
+            <p>If you want to have the user connect via github, this is the one line command for it.</p>
             
             <h3>Environment Variables</h3>
             
-            <p>na</p>
+            <pre><code>  GITHUB_APP_ID=&#x000A;  GITHUB_APP_SECRET=&#x000A;</code></pre>
             
             <h3>What needs to be done?</h3>
             
-            <p>Add models to the dashboard.</p>
+            <p>In config/initializers/devise.rb make sure that the scope you are requesting is correct.</p>
             
-            <p>(the happy_Seed stats module is in development)</p>
+            <p>Since you need to set the callbacks as urls, you&#39;ll need to create one app for local development and another app for production.  (Possibly one for staging as well.)</p>
+            
+            <p><a href="https://github.com/settings/applications">https://github.com/settings/applications</a></p>
           </div>
           <div class='col-sm-2 col-sm-pull-10'>
             <ul class='nav nav-pills nav-stacked'>
@@ -124,13 +124,13 @@
               <li>
                 <a href="/docs/README.06.facebook.html"> - Facebook</a>
               </li>
-              <li>
+              <li class='active'>
                 <a href="/docs/README.06.github.html"> - Github</a>
               </li>
               <li>
                 <a href="/docs/README.06.googleoauth.html"> - Googleoauth</a>
               </li>
-              <li class='active'>
+              <li>
                 <a href="/docs/README.07.admin.html"> - Admin</a>
               </li>
               <li>

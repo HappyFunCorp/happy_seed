@@ -59,22 +59,20 @@
       <div class='container'>
         <div class='row'>
           <div class='col-sm-10 col-sm-push-2'>
-            <h1>HappySeed ActiveAdmin Install</h1>
+            <h1>HappySeed API Install</h1>
             
             <h3>What does this do?</h3>
             
-            <p>The happy_seed bootstrap generator</p>
+            <p>The <code>happy_seed:api</code> generator</p>
             
             <ul>
-            <li>Installs active admin from git</li>
-            <li>Runs the active_admin:install generator</li>
-            <li>Creates AdminUser model</li>
-            <li>Creates basic newsletter/campaign admin panel if <code>MAILCHIMP_API_KEY</code> is active</li>
+            <li>Installs <code>apitome</code></li>
+            <li>Installs <code>rspec_api_documentation</code></li>
             </ul>
             
             <h3>Why do you want this?</h3>
             
-            <p>ActiveAdmin, for all of it&#39;s flaws, including out of date documentation, is a nice way to put a back-end on an application.</p>
+            <p>This allows you to invite users to the site and have them sign up through a link.</p>
             
             <h3>Environment Variables</h3>
             
@@ -82,9 +80,11 @@
             
             <h3>What needs to be done?</h3>
             
-            <p>Add models to the dashboard.</p>
+            <p>After you update your specs in spec/acceptance, run</p>
             
-            <p>(the happy_Seed stats module is in development)</p>
+            <pre><code>rake docs:generate&#x000A;</code></pre>
+            
+            <p>to output the files into the docs/api directory.</p>
           </div>
           <div class='col-sm-2 col-sm-pull-10'>
             <ul class='nav nav-pills nav-stacked'>
@@ -97,7 +97,7 @@
               <li>
                 <a href="/docs/README.00.base.html"> - Base</a>
               </li>
-              <li>
+              <li class='active'>
                 <a href="/docs/README.01.api.html"> - Api</a>
               </li>
               <li>
@@ -130,7 +130,7 @@
               <li>
                 <a href="/docs/README.06.googleoauth.html"> - Googleoauth</a>
               </li>
-              <li class='active'>
+              <li>
                 <a href="/docs/README.07.admin.html"> - Admin</a>
               </li>
               <li>
