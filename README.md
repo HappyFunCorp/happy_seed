@@ -45,8 +45,16 @@ Lets whip up some things quickly!
 
 ## Contributing
 
-Clone the repo, and set the `SEED_DEVELOPMENT` environment variable to the local repo directory. To run the generator from the cloned source, execute:
+Clone the repo, and set the `SEED_DEVELOPMENT` environment variable to the local repo directory path. To run the generator from the cloned source, execute:
 
+    $ cd $SEED_DEVELOPMENT
     $ bundle exec bin/happy_seed
 
-For an existing app, change the Gemfile to have the `happy_seed` gem point to this path. For a new app, this will be set up automatically.
+This will create an app and set the `happy_seed` gem to use your local `happy_seed` repo. For an existing app, change the Gemfile to have the `happy_seed` gem point to this path. For a new app, this will be set up automatically.
+
+For rails, you can now run the regular generator commands. Since it's inconvenient to create new apps over and over, a simple pattern is, for example:
+
+    $ git commit -a
+    $ rails g happy_seed:bootstrap
+    $ git reset --hard
+
