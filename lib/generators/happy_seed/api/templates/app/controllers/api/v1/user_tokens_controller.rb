@@ -9,6 +9,8 @@ class Api::V1::UserTokensController < Api::V1::BaseController
           if user.active_for_authentication?
             user_token = user.user_tokens.where(installation_identifier: user_token_params[:installation_identifier]).first_or_initialize
             user_token.update push_token: user_token_params[:push_token]
+            user_token.update form_factor: user_token_params[:form_factor]
+            user_token.update os: user_token_params[:os]
             if user_token.persisted?
               format.json do
                 render json: {user_token: user_token_hash(user_token, user: true)}, status: :ok
@@ -74,6 +76,6 @@ class Api::V1::UserTokensController < Api::V1::BaseController
   private
 
   def user_token_params
-    params[:user_token].permit :email, :password, :installation_identifier, :push_token
+    params[:user_token].permit :email, :password, :installation_identifier, :push_token, :form_factor, :os
   end
 end
