@@ -1,0 +1,31 @@
+%section#who.navy.under
+  .background
+  .container
+    .row
+      .left-col
+        %h1.jumbo Who?
+      .right-col
+        %h2
+          Sign up for the HappyFunCorp mailing&nbsp;list!
+        %form.form-horizontal.md-3{ action: "//happyfuncorp.us8.list-manage.com/subscribe/post?u=4693df87615db712ba7e23f18&amp;id=d4f8c4b866", method: "post" }
+          %div{ style: "position: absolute; left: -5000px;"}
+            %input{ type: "text", name: "b_4693df87615db712ba7e23f18_d4f8c4b866", tabindex: "-1", value: "" }
+
+          .form-group#signup
+            .col-sm-12
+              .input-group
+                %input.form-control{ type: "email", name: "EMAIL", :placeholder=>'Enter your email periodic news from HFC' }
+                %span.input-group-btn
+                  = submit_tag 'Sign Up', :class => "btn btn-primary"
+
+
+
+
+        %h3.outset.tel.mb-0
+          .icon.icon-seed-logo-white
+          HappySeed
+          %small is a
+          = link_to 'HappyFunCorp', 'http://happyfuncorp.com'
+          %small Production.
+          %br
+          %small Made in Brooklyn, NY.

@@ -1,0 +1,12 @@
+%footer.footer
+  .container
+    %p.text-muted
+      = link_to "Happy Seed", "http://seed.happyfuncorp.com/"
+      is a
+      = link_to "HappyFunCorp", "http://happyfuncorp.com"
+      production.
+
+    %p.social
+      - (data['site']['social'] || {}).each do |type,url|
+        %a{ href: url }
+          %span{ class: "socicon socicon-#{type.to_s} bgcolor" }

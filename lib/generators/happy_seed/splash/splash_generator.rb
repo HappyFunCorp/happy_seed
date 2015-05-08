@@ -1,6 +1,8 @@
+require 'generators/happy_seed/happy_seed_generator'
+
 module HappySeed
   module Generators
-    class SplashGenerator < Rails::Generators::Base
+    class SplashGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
       def install_landing_page
@@ -17,13 +19,14 @@ module HappySeed
         gem 'gibbon'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
         end
 
         remove_file 'public/index.html'
 
         gsub_file "config/routes.rb", /\s*root.*\n/, "\n"
         route "root 'splash#index'"
+        route "get '/splash' => 'splash#index'"
         route "post '/signup' => 'splash#signup', as: :splash_signup"
 
         directory 'app'
@@ -34,7 +37,8 @@ module HappySeed
         append_to_file "config/initializers/assets.rb", "Rails.application.config.assets.precompile += %w( splash.css scrollReveal.js )\n"
 
         begin
-          append_to_file ".env", "MAILCHIMP_API_KEY=\nMAILCHIMP_SPLASH_SIGNUP_LIST_ID=\n"
+          add_env "MAILCHIMP_API_KEY"
+          add_env "MAILCHIMP_SPLASH_SIGNUP_LIST_ID"
         rescue
           say_status :env, "Unable to add template .env files", :red
         end

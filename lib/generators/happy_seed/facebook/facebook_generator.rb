@@ -11,12 +11,12 @@ module HappySeed
         gem 'omniauth-facebook'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
         end
 
         directory 'docs'
 
-        add_omniauth :facebook, "offline_access,read_insights,manage_pages"
+        add_omniauth :facebook, "email"
       end
     end
   end

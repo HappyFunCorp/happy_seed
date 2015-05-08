@@ -1,15 +1,19 @@
+require 'generators/happy_seed/happy_seed_generator'
+
 module HappySeed
   module Generators
-    class BootstrapGenerator < Rails::Generators::Base
+    class BootstrapGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
       def update_application_haml
         gem 'bootstrap-sass'
         gem 'modernizr-rails'
         gem 'meta-tags', :require => 'meta_tags'
+        gem 'responders', '~> 2.0'
+        gem 'bh'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install > /dev/null"
         end
 
         remove_file 'app/views/layouts/application.html.erb'
@@ -21,13 +25,16 @@ module HappySeed
         directory 'docs'
 
         inject_into_file 'config/application.rb', before: "end\nend\n" do <<-'RUBY'
-  config.generators do |g|
+  config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    config.generators do |g|
       g.stylesheets = false
+      g.scaffold_controller "scaffold_controller"
     end
+  
 RUBY
         end
         if File.exists?( File.join( destination_root, ".env" ) )
-          append_to_file ".env", "GOOGLE_ANALYTICS_SITE_ID=\n"
+          add_env "GOOGLE_ANALYTICS_SITE_ID"
         end
       end
     end

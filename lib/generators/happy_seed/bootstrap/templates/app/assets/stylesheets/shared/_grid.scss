@@ -1,0 +1,14 @@
+// --------------Grid------------------------------------------
+//
+
+// This is used by the devise generated views.
+.center-panel {
+  @extend .col-lg-6;
+  @extend .col-lg-offset-3;
+
+  @extend .col-md-6;
+  @extend .col-md-offset-3;
+
+  @extend .col-sm-8;
+  @extend .col-sm-offset-2;
+}

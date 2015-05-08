@@ -1,0 +1,188 @@
+#happy-seed
+%section.masthead.under.first
+
+  #clouds
+  #fg-clouds
+  .container
+    .row
+      .col-md-12.text-center
+        #logo-container
+          #ted{"data-scroll-reveal"=>"enter from the top but wait .5s"}
+          %h1#seed-logo.logo{"data-scroll-reveal"=>"enter bottom but wait 1s over 1s"}
+            Happy Seed
+        .row
+          .col-md-8.col-md-offset-2.mb-1
+            .overbracket{"data-scroll-reveal"=>"enter bottom but wait 1s over 1s"}
+              %h2{"data-scroll-reveal"=>"enter bottom but wait 1.5s over 1.5s"}
+                Quickly set up a project <br class="visible-xs">with awesome plugins<br>...and get all the pesky details right
+        #bottom{"data-scroll-reveal"=>"enter bottom but wait 4s over 2s"}
+          = link_to '#what' do
+            %span.glyphicon.glyphicon-chevron-down
+
+%section#what.cream.over
+  .background
+  .container
+    .row
+      .right-col
+        %h1.text-center-sm
+          Quickly generate a new app, <br class="hidden-xs">and then get out of the&nbsp;way.
+          <br>Rails, Middleman, and more.
+    .row
+      .left-col
+        %h2.icon.icon-solid-gems Solid Gems
+      .right-col
+        %h3 Stand on the shoulders of giants. Use only what you&nbsp;need.
+        %ul.checkmarked
+          %li
+            Follows 
+            = link_to "12 factors", "http://12factor.net/"
+          %li
+            Can easily be deployed to
+            = link_to "heroku", "http://heroku.com"
+            with foreman/Procfile
+          %li
+            = link_to "bootstrap", "http://getbootstrap.com/"
+            with clean layout structure
+          %li
+            = link_to "haml", "http://haml.info"
+            templates, upgraded rails scaffold templates to work with bootstap
+          %li
+            = link_to "metatag", "https://github.com/kpumuk/meta-tags"
+            setup for SEO
+          %li
+            = link_to "devise", "https://github.com/plataformatec/devise"
+            for user authentication
+          %li
+            = link_to "omniauth", "https://github.com/intridea/omniauth"
+            for oauth support
+          %li
+            = link_to "angular", "https://angularjs.org"
+            installer that fits with the rails asset pipeline
+          %li
+            = link_to "active_admin", "http://activeadmin.info"
+            for admin panel
+
+    .row
+      .left-col
+        %h2.icon.icon-sensible-defaults Sensible Defaults
+      .right-col
+        %h3 Get it working quickly and start&nbsp;customizing
+        %ul.checkmarked
+          %li
+            %span>= link_to "unicorn", "http://unicorn.bogomips.org"
+            %span= " configured"
+          %li Basic layout/navbar structure included
+          %li Devise user models
+          %li Omniauth Callback Controller
+          %li Twitter, Facebook, Instrgram integration optionally wired up
+          %li Site nav structure
+
+
+
+    .row
+      .left-col
+        %h2.icon.icon-more-awesome-stuff More awesome stuff
+      .right-col
+        %h3 Why stop there?
+
+        %ul.checkmarked
+          %li Splash page template
+          %li Mailchimp signup form
+          %li= link_to "rspec", "http://rspec.info"
+          %li= link_to "factory_girl", "https://github.com/thoughtbot/factory_girl"
+          %li= link_to "webmock", "https://github.com/bblimke/webmock"
+          %li= link_to "vcr", "https://github.com/vcr/vcr"
+          %li= link_to "faker", "https://github.com/stympy/faker"
+          %li= link_to "rspec_api_documentation", "https://github.com/zipmark/rspec_api_documentation"
+          %li= link_to "guard", "http://guardgem.org"
+          %li Plugin generator to write your own rails extensions
+
+
+%section#why.green.under
+  .background
+  .container
+    .row
+      .left-col
+        %h1.jumbo Why?
+
+      .right-col
+        %h1.text-center-xs.text-center-sm We like to try out lots of different ideas, <br class="hidden-xs">and we build a lot of apps for&nbsp;clients.
+
+        %p The ruby community has tons of great gems out there that have saved a huge amount of time. But every time we started a project we found ourselves doing the same stuff over and over, figuring out exactly how we wanted to configure a particular gem for a particular problem. Even though we were more interested in creating a new product with particular functionality we were spending a lot of time doing&nbsp;"plumbing".
+
+        %h2.text-centered.parenthesized.text-center
+          Why not make it really easy to get through the plumbing, so we can focus on the part that makes the application different rather than the stuff that makes it the&nbsp;same?
+
+%section#how.cream.over
+  .background
+  .container
+    .row
+      .left-col
+        %h1.jumbo How?
+
+      .right-col
+        %h2 Install the gem
+
+        %pre="$ gem install happy_seed"
+
+        %h2 This creates the Rails plugin on your system.
+
+        %p
+          There is a small application template that is used to start the app, which itself includes the happy_seed gem.  This exposes the rail generators and templates to your project, which is how functionality gets installed.
+
+          %h2 Generate a new rails app
+          %pre="$ happy_seed rails app_name"
+
+          %h2 Now create!
+
+          %p
+            You will get prompted for what you want to install.
+            = link_to "Read more about it!", "/docs/rails.html"
+
+          %h2 Start editing!
+
+          %p The seed gem itself is a set of generators, and only that.  Functionality is either copied directly into your application, or included via a gem.
+
+          %p Since a lot of the generators alter routes, when you destroy a generator (for example the splash page) it may not leave your routes in the correct state.
+
+        .doc-group
+          .doc-col
+            %h2 Rails Plugins
+
+            %p If you want to extract some functionality of your own application, rails plugins are the way to go. We like autotest and rspec, which was always tricky to configure, so we packaged that up to!
+
+            %pre= "$ happy_seed plugin acts_as_awesome"
+
+            %p
+              = link_to "Read more", "/docs/plugin.html"
+              about it!
+
+          .doc-col
+            %h2 Rails Engines
+
+            %p Or if you want to make an engine
+
+            %pre= "$ happy_seed engine acts_as_awesome"
+
+            %p
+              = link_to "Read more", "/docs/plugin.html"
+              about it!
+
+        .doc-group
+          .doc-col
+            %h2 Middleman static site
+
+            %pre= "$ happy_seed static static_site"
+
+            %p
+              = link_to "Read more", "/docs/middleman.html"
+              about it!
+
+          .doc-col
+            %h2 Middleman static blog
+
+            %pre= "$ happy_seed static_blog static_site"
+
+            %p
+              = link_to "Read more", "/docs/middleman.html"
+              about it!

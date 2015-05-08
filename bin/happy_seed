@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby -wU
 
-spec = Gem::Specification.find_by_name("happy_seed")
-gem_root = spec.gem_dir
+require 'happy_seed/cli'
 
-file = File.join( ENV['SEED_DEVELOPMENT'] || gem_root, "happy_seed.rb" )
-system( "rails new -m #{file} #{ARGV.join( " " )}" )
+HappySeed::Cli.start( ARGV )

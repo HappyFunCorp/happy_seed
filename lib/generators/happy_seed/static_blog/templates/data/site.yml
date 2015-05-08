@@ -1,0 +1,13 @@
+title: "My Static Blog"
+publisher_twitter: "@HappyFunCorp"
+twitter_id: "@wschenk"
+siteurl: "http://seed.happyfuncorp.com/"
+# google_analytics_id:
+# disqus_shortname:
+social: {
+  twitter: "http://twitter.com/",
+  tumblr: "http://tumblr.com/",
+  instagram: "http://instagram.com/",
+  linkedin: "http://www.linkedin.com/",
+  github: "https://github.com/"
+}
