@@ -18,7 +18,7 @@ module HappySeed
         gem 'rspec_api_documentation', :groups => [:development, :test]
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
         generate "model user_token user:belongs_to:index token installation_identifier:index push_token locked:boolean"

@@ -25,7 +25,7 @@ module HappySeed
         gem 'omniauth'
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
         generate 'model identity user:references provider:string accesstoken:string uid:string name:string email:string nickname:string image:string phone:string urls:string'

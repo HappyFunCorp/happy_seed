@@ -19,7 +19,7 @@ module HappySeed
         gem 'gibbon'
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
         remove_file 'public/index.html'

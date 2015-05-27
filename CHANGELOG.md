@@ -1,3 +1,7 @@
+Version 0.0.16
+  - Fixes for rbenv (require bundler)
+  - Switched to bundle install --without production and print the output
+  
 Version 0.0.15
   - Added API Generator
   

@@ -7,7 +7,7 @@ module HappySeed
         gem 'angularjs-rails'
 
         Bundler.with_clean_env do
-          run "bundle install"
+          run "bundle install --without production"
         end
 
         directory "app"

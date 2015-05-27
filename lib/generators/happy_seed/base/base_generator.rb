@@ -11,7 +11,7 @@ module HappySeed
         gem 'rails_12factor'
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
         directory '.'

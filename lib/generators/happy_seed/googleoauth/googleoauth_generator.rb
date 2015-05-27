@@ -13,7 +13,7 @@ module HappySeed
         gem 'google-api-client', require: "google/api_client"
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
         directory 'docs'

@@ -1,3 +1,5 @@
+require 'bundler'
+
 puts "Setting up basic template"
 puts
 
@@ -40,7 +42,7 @@ end
 packages = []
 
 Bundler.with_clean_env do
-  run "bundle install > /dev/null"
+  run "bundle install --without production"
 
   gsub_file "app/assets/javascripts/application.js", /= require turbolinks/, "require turbolinks"
 
