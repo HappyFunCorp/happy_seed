@@ -9,11 +9,15 @@ resource 'Token' do
     parameter :password, 'Password', required: true, scope: :user_token
     parameter :installation_identifier, 'Unique Installation Identifier', required: true, scope: :user_token
     parameter :push_token, 'Unique push token', required: true, scope: :user_token
+    parameter :form_factor, 'smartphone tablet10 tablet7 desktop', required: true, scope: :user_token
+    parameter :os, 'ios android bb wp7', required: true, scope: :user_token
 
     let(:email) { user.email }
     let(:password) { user.password }
     let(:installation_identifier) { Faker::Lorem.characters 10 }
     let(:push_token) { Faker::Lorem.characters 10 }
+    let(:form_factor) { %w(smartphone tablet10 tablet7 desktop).sample }
+    let(:os) { %w(ios android bb wp7).sample }
 
     example_request 'sign in' do
       response_json = JSON.parse response_body

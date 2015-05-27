@@ -10,3 +10,4 @@ test/dummy/.sass-cache
 test_app/
 lib/**/Gemfile.lock
 website/build
+.idea/
