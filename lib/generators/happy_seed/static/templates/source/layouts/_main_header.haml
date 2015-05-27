@@ -1,16 +1,11 @@
-= navbar fixed: :top do
-  = navbar_header brand: data['site']['title'], brand_link: '/'
-  = navbar_collapse do
-    = navbar_group class: 'foo', id: 'menu' do
-      = navbar_text 'Pick an option:'
-      = navbar_item "Home", '/'
-      = navbar_item '/contact' do
+= navbar position: :top do
+  = vertical do
+    = link_to data['site']['title'], '/'
+  = horizontal do
+    = nav do
+      = link_to "Home", '/'
+      = link_to '/contact' do    
         %span.glyphicon.glyphicon-hand-right
         Contact Us!
-      = navbar_dropdown "Stuff" do
-        = navbar_dropdown_header 'Great stuff!'
-        = navbar_item "One", '/one'
-        = navbar_item "Two", '/two'
-        = navbar_item "Three", '/three'
-    = navbar_group align: 'right' do
-      = navbar_item "About Us", '/about-us'
+    = nav class: 'navbar-right' do
+      = link_to "About Us", '/about-us'

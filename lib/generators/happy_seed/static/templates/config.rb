@@ -17,8 +17,8 @@ activate :autometatags
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
-# Easier bootstrap navbars
-activate :bootstrap_navbar
+# Bootstrap helpers
+activate :bh
 
 configure :development do
   activate :livereload

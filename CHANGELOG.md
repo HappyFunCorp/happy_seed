@@ -1,6 +1,8 @@
 Version 0.0.16
   - Fixes for rbenv (require bundler)
   - Switched to bundle install --without production and print the output
+  - Switched to BH for the static sites
+  - Fixed problem with sticky footer
   
 Version 0.0.15
   - Added API Generator

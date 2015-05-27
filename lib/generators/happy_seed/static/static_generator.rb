@@ -6,7 +6,7 @@ module HappySeed
       include Thor::Actions
       source_root File.expand_path('../templates', __FILE__)
       def generate_rails_plugin
-        source_root = File.expand_path('../templates', __FILE__)
+        # source_root = File.expand_path('../templates', __FILE__)
         args.shift
         app_name = args.shift
 
