@@ -3,6 +3,8 @@ Version 0.0.16
   - Switched to bundle install --without production and print the output
   - Switched to BH for the static sites
   - Fixed problem with sticky footer
+  - Fixed a problem in the default generated CSS
+  - Fixed a missing include file for the bootstrap generator
   
 Version 0.0.15
   - Added API Generator
