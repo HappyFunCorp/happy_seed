@@ -498,3 +498,106 @@ h3.outset {
     padding-right: 50px;
   }
 }
+
+footer {
+
+  &.under {
+    padding-top:$section-spacing*2;
+    margin-top:-$section-spacing;
+  }
+
+
+  color: white;
+  background: $sky-bot;
+
+  a {
+    color: white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .infobloc {
+    @extend .col-sm-7;
+
+    .form-control {
+      border: 1px solid #d9f1fb;
+    }
+    input[type=email] {
+      // background: $transparentblue;
+      color: white;
+      @include placeholder( #d9f1fb );
+    }
+
+    .btn {
+      // background: $darkblue;
+      color: white;
+    }
+  }
+
+  .hfc {
+    // @extend .col-sm-offset-1;
+    @extend .col-sm-3;
+    @extend .col-xs-6;
+  }
+
+  .products {
+    @extend .col-sm-2;
+    @extend .col-xs-6;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li a {
+      color: rgba(255,255,255, 0.5);
+
+      &:hover { color: white; }
+    }
+  }
+
+  .social {
+    display: none;
+    @media (min-width: $screen-sm-min) {
+      font-size: 1.5em;
+      display: block;
+    }
+    a {
+      color: white;
+    }
+
+    .socicon {
+      margin-right: 20px;
+      width: 37px;
+      border-radius: 3px;
+    }
+
+    span {
+      padding: 5px;
+      display: inline-block;
+    }
+  }
+
+  .bottom {
+    @media (max-width: $screen-xs-max) {
+      padding-top: 1em;
+    }
+
+    font-size: 1.5em;
+
+    .left {
+      font-size: 20px;
+    }
+    .copy {
+      font-style: italic;
+    }
+  }
+}

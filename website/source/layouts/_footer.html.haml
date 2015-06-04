@@ -1,31 +1,58 @@
-%section#who.navy.under
+%footer#who.navy.under
   .background
   .container
     .row
-      .left-col
-        %h1.jumbo Who?
-      .right-col
-        %h2
-          Sign up for the HappyFunCorp mailing&nbsp;list!
+      .infobloc
+        %h2 Sign up for the HappyFunCorp mailing list!
         %form.form-horizontal.md-3{ action: "//happyfuncorp.us8.list-manage.com/subscribe/post?u=4693df87615db712ba7e23f18&amp;id=d4f8c4b866", method: "post" }
           %div{ style: "position: absolute; left: -5000px;"}
-            %input{ type: "text", name: "b_4693df87615db712ba7e23f18_d4f8c4b866", tabindex: "-1", value: "" }
+            %input{ type: "email", name: "b_4693df87615db712ba7e23f18_d4f8c4b866", tabindex: "-1", value: "" }
 
           .form-group#signup
             .col-sm-12
               .input-group
-                %input.form-control{ type: "email", name: "EMAIL", :placeholder=>'Enter your email periodic news from HFC' }
+                %input.form-control{ type: "email", name: "EMAIL", :placeholder=>'email address' }
                 %span.input-group-btn
-                  = submit_tag 'Sign Up', :class => "btn btn-primary"
-
-
-
-
-        %h3.outset.tel.mb-0
-          .icon.icon-seed-logo-white
-          HappySeed
-          %small is a
-          = link_to 'HappyFunCorp', 'http://happyfuncorp.com'
-          %small Production.
+                  = submit_tag 'Sign Up', :class => "btn btn-default"
+        %h2
+          You’ll get updates on new products, upcoming
           %br
-          %small Made in Brooklyn, NY.
+          events and much more!
+        %p.social
+          - (data['site']['social'] || {}).each do |type,url|
+            %a{ href: url }
+              %span{ class: "socicon socicon-#{type.to_s} bgcolor" }
+
+
+      .hfc
+        %h2.happyfuncorp= link_to "HappyFunCorp", "http://happyfuncorp.com"
+        %ul
+          %li=link_to "About", "http://happyfuncorp.com/#about"
+          %li=link_to "Team", "http://happyfuncorp.com/#team"
+          %li=link_to "Portfolio", "http://happyfuncorp.com/#portfolio"
+          %li=link_to "Happy Thoughts", "http://happyfuncorp.com/#happy-thoughts"
+          %li=link_to "News", "http://happyfuncorp.com/#news"
+          %li=link_to "Jobs", "http://happyfuncorp.com/#jobs"
+          %li=link_to "Events", "http://academy.happyfuncorp.com/"
+          %li=link_to "Contact", "http://happyfuncorp.com/#contact"
+
+      .products
+        %h2 Products
+        %ul
+          %li= link_to "Happy Seed", "http://seed.happyfuncorp.com/"
+          %li= link_to "Happy Alchemy", "http://happyalchemy.com/"
+          %li= link_to "Shoutouts", "http://shoutouts.happyfuncorp.com/"
+          %li= link_to "Benevolent Gaze", "http://gaze.happyfuncorp.com"
+          %li= link_to "Knowmore", "http://knowmore.happyfuncorp.com"
+
+
+  .container
+    .row
+      .col-sm-12
+        %p.bottom
+          %span.left
+            &copy;
+            %span.copy 2015
+          = "|"
+          %span.happyfuncorp
+            = link_to "HappyFunCorp", "http://happyfuncorp.com"
