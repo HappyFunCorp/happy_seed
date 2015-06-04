@@ -508,7 +508,7 @@ footer {
 
 
   color: white;
-  background: $sky-bot;
+  background: $navy;
 
   a {
     color: white;
@@ -527,12 +527,12 @@ footer {
     @extend .col-sm-7;
 
     .form-control {
-      border: 1px solid #d9f1fb;
+      border: 1px solid $green;
     }
     input[type=email] {
       // background: $transparentblue;
-      color: white;
-      @include placeholder( #d9f1fb );
+      color: $navy;
+      @include placeholder( $navy );
     }
 
     .btn {
