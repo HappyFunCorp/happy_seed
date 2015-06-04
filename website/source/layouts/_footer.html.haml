@@ -1,5 +1,4 @@
-%footer#who.navy.under
-  .background
+%footer
   .container
     .row
       .infobloc
@@ -13,7 +12,7 @@
               .input-group
                 %input.form-control{ type: "email", name: "EMAIL", :placeholder=>'email address' }
                 %span.input-group-btn
-                  = submit_tag 'Sign Up', :class => "btn btn-primary"
+                  = submit_tag 'Sign Up', :class => "btn btn-default"
         %h2
           You’ll get updates on new products, upcoming
           %br
@@ -22,7 +21,7 @@
           - (data['site']['social'] || {}).each do |type,url|
             %a{ href: url }
               %span{ class: "socicon socicon-#{type.to_s} bgcolor" }
-
+          = partial 'layouts/twitter'
 
       .hfc
         %h2.happyfuncorp= link_to "HappyFunCorp", "http://happyfuncorp.com"
