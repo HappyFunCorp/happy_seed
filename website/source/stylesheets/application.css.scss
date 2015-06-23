@@ -41,6 +41,8 @@ $blue: #1F2D44;
 $navy: #1F2D44;
 $charcoal: #2F3620;
 $white: #fff;
+$btn-default-color: #2F3620;
+
 
 $sky-top: #d3ecf5;
 $sky-bot: #7FD5F2;
@@ -509,7 +511,7 @@ footer {
 
   color: white;
   background: $navy;
-
+  
   a {
     color: white;
 
@@ -538,6 +540,7 @@ footer {
     .btn {
       // background: $darkblue;
       color: white;
+      background: $green !important;
     }
   }
 
