@@ -1,3 +1,5 @@
+require 'bundler'
+
 puts "Setting up basic template"
 puts
 
