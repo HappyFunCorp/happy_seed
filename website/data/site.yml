@@ -2,3 +2,9 @@ title: "Happy Seed"
 publisher_twitter: "@HappyFunCorp"
 twitter_id: "@HappyFunCorp"
 google_analytics_id: "UA-20250697-7"
+social: {
+  twitter: "http://twitter.com/HappyFunCorp",
+  instagram: "http://instagram.com/HappyFunCorp",
+  linkedin: "https://www.linkedin.com/company/1690055",
+  github: "https://github.com/orgs/HappyFunCorp"
+}

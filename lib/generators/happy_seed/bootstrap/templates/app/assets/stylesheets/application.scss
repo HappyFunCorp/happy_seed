@@ -1,0 +1,43 @@
+// The organization of this CSS is heavily inspired by GitHub's CSS
+// stylesheet guidelines.
+//
+//   See: https://github.com/styleguide/css
+//   See also: https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06
+//
+// See Bootstrap's CSS at:
+//   https://github.com/twbs/bootstrap-sass/tree/master/assets/stylesheets/bootstrap
+// or
+//   $ bundle show bootstrap-sass
+//
+
+
+// These both need to be imported before bootstrap:
+@import 'globals/fonts';
+@import 'globals/variables';
+
+
+// --------------Bootstrap-----------------------------
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+
+// --------------Global definitions--------------------
+// For example (add your own!!):
+@import 'globals/mixins';
+
+
+// --------------Shared styles-------------------------
+// Common base CSS modifications. For example:
+@import 'shared/buttons';
+@import 'shared/grid';
+
+
+// --------------Components----------------------------
+// Create your own and modify/extend Bootstrap's. For example:
+@import 'components/panel';
+
+
+// --------------Sections------------------------------
+// Page-specific styles. These should *only* be used as a last
+// resort if you really truly can't style your content more generally.
+@import 'sections/profile_page';

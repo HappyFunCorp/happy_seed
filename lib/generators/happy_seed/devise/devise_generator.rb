@@ -13,7 +13,7 @@ module HappySeed
         gem 'devise', '~> 3.4'
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
         run 'rails generate devise:install'

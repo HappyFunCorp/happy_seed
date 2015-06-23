@@ -1,0 +1,24 @@
+// --------------Buttons---------------------------------------------------
+// This is an example of styles that modify built-in bootstrap components.
+// First of all, Bootstrap gives you six different built-in button styles.
+// Use them!
+//
+// See: http://getbootstrap.com/css/#buttons
+//
+//
+// Need to style all of your buttons? Add a shadow to ALL of your buttons:
+
+// .btn {
+//   box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+// }
+
+
+// If the built-in button types aren't enough, create your own, but DO NOT
+// style the colors by hand. I know you can. but you'll get the hover/active
+// states wrong or waste a lot of time trying.
+//
+// See: https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_buttons.scss#L57
+
+// .btn-primary.inverse {
+//   @include button-variant($btn-primary-inverse-color, $btn-primary-inverse-bg, $btn-primary-inverse-border);
+// }

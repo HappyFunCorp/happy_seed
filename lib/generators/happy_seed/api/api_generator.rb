@@ -4,10 +4,10 @@ module HappySeed
       source_root File.expand_path('../templates', __FILE__)
 
       def install_device_invitable
-        unless gem_available?( "devise" )
+        unless gem_available?("devise")
           puts "The api generator requires devise"
 
-          if yes?( "Run happy_seed:devise now?" )
+          if yes?("Run happy_seed:devise now?")
             generate "happy_seed:devise"
           else
             exit
@@ -18,10 +18,10 @@ module HappySeed
         gem 'rspec_api_documentation', :groups => [:development, :test]
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
-        generate "model user_token user:belongs_to:index token installation_identifier:index push_token locked:boolean"
+        generate "model user_token user:belongs_to:index token installation_identifier:index push_token locked:boolean form_factor os"
         generate "migration add_user_tokens_count_to_users user_tokens_count:integer"
 
         directory '.'
@@ -44,10 +44,12 @@ module HappySeed
 "
         inject_into_class "app/models/user.rb", "User", "  has_many :user_tokens, dependent: :destroy\n"
 
-        gsub_file "app/models/user_token.rb", /belongs_to :user\n/,"  validates :user, presence: true
+        gsub_file "app/models/user_token.rb", /belongs_to :user\n/, "  validates :user, presence: true
   validates :token, presence: true, uniqueness: {case_sensitive: false}
   validates :installation_identifier, presence: true, uniqueness: {case_sensitive: false, scope: %w(user_id)}
   validates :push_token, allow_blank: true, uniqueness: {case_sensitive: false}
+  validates :form_factor, allow_blank: true, inclusion: {in: %w(smartphone tablet10 tablet7 desktop)}
+  validates :os, allow_blank: true, inclusion: {in: %w(ios android bb wp7)}
 
   scope :with_push_token, -> { where.not push_token: nil }
 
@@ -77,20 +79,21 @@ end"
         append_to_file 'spec/factories/users.rb', "\nFactoryGirl.define do
   factory :user_with_token, parent: :user do
     after :build do |user, evaluator|
-      user.user_tokens.build installation_identifier: Faker::Lorem.characters(10), push_token: Faker::Lorem.characters(10)
+      user.user_tokens.build installation_identifier: Faker::Lorem.characters(10), push_token: Faker::Lorem.characters(10),
+                             form_factor: %w(smartphone tablet10 tablet7 desktop).sample, os: %w(ios android bb wp7).sample
     end
   end
 end"
       end
 
       private
-        def gem_available?(name)
-          Gem::Specification.find_by_name(name)
-        rescue Gem::LoadError
-          false
-        rescue
-          Gem.available?(name)
-        end
+      def gem_available?(name)
+        Gem::Specification.find_by_name(name)
+      rescue Gem::LoadError
+        false
+      rescue
+        Gem.available?(name)
+      end
 
     end
   end

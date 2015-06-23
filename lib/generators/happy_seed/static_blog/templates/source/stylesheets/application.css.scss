@@ -1,5 +1,7 @@
 @import "bootstrap";
 
+$sticky_footer_height: 60px;
+
 body {
   padding-top: $navbar-height + 20;
 }
@@ -10,12 +12,21 @@ html.sticky {
   min-height: 100%;
 }
 
-.sticky .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
+@media (min-width: $screen-sm-min) {
+  .sticky body {
+    margin-bottom: $sticky_footer_height;
+  }
+
+  .sticky footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: $sticky_footer_height;
+  }
+}
+
+.footer {
   background-color: #f5f5f5;
 
   .text-muted {
@@ -24,8 +35,12 @@ html.sticky {
   }
 
   .social {
-    float: right;
-    font-size: 1.5em;
+    display: none;
+    @media (min-width: $screen-sm-min) {
+      float: right;
+      font-size: 1.5em;
+      display: block;
+    }
     a {
       color: white;
     }
@@ -142,6 +157,8 @@ code {
 
 
 .timeline {
+  @extend .container;
+
   margin-top: 2em;
 
   .post {

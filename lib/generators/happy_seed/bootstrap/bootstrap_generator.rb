@@ -13,7 +13,7 @@ module HappySeed
         gem 'bh'
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
         remove_file 'app/views/layouts/application.html.erb'

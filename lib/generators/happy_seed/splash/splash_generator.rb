@@ -19,14 +19,14 @@ module HappySeed
         gem 'gibbon'
 
         Bundler.with_clean_env do
-          run "bundle install > /dev/null"
+          run "bundle install --without production"
         end
 
         remove_file 'public/index.html'
 
         gsub_file "config/routes.rb", /\s*root.*\n/, "\n"
         route "root 'splash#index'"
-        route "get '/spash' => 'splash#index'"
+        route "get '/splash' => 'splash#index'"
         route "post '/signup' => 'splash#signup', as: :splash_signup"
 
         directory 'app'
