@@ -1,5 +1,7 @@
 Version 0.0.17
   - Cleaned up twitter generator
+  - Changed angular generator to move @app into the global scope
+  - Changed angular generator to define controllers via @app.controller
   
 Version 0.0.16
   - Fixes for rbenv (require bundler)
