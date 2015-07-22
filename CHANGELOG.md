@@ -1,3 +1,6 @@
+Version 0.0.17
+  - Cleaned up twitter generator
+  
 Version 0.0.16
   - Fixes for rbenv (require bundler)
   - Switched to bundle install --without production and print the output
