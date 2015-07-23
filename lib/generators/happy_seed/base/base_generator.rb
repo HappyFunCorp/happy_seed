@@ -9,6 +9,8 @@ module HappySeed
         gem 'rdiscount', :groups => [:development, :test]
         gem 'unicorn'
         gem 'rails_12factor'
+        gem 'web-console', '2.0.0.beta2', group: :development
+
 
         Bundler.with_clean_env do
           run "bundle install --without production"
