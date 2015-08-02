@@ -24,6 +24,12 @@ module HappySeed
         directory 'lib'
         directory 'docs'
 
+        inject_into_file 'app/views/setup/index.html.haml', after: "%body\n" do <<-'HAML'
+    = render partial: "application/header"
+    = render partial: "application/flashes"
+HAML
+        end
+
         inject_into_file 'config/application.rb', before: "end\nend\n" do <<-'RUBY'
   config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
     config.generators do |g|

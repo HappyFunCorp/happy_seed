@@ -5,7 +5,6 @@ puts
 
 gsub_file 'Gemfile', /.*sqlite3.*/, ""
 gem 'haml-rails'
-gem "httparty"
 
 gem_group :development, :test do
   gem "sqlite3"
@@ -33,10 +32,12 @@ gem_group :production do
   gem 'pg'
 end
 
-if ENV['SEED_DEVELOPMENT']
-  gem 'happy_seed', :path => File.dirname(__FILE__)
-else
-  gem 'happy_seed'
+gem_group :development do
+  if ENV['SEED_DEVELOPMENT']
+    gem 'happy_seed', :path => ENV['SEED_DEVELOPMENT'] # File.dirname(__FILE__)
+  else
+    gem 'happy_seed'
+  end
 end
 
 packages = []
@@ -54,11 +55,7 @@ Bundler.with_clean_env do
   # Install cucumber
   generate "cucumber:install"
 
-  append_to_file "features/support/env.rb", "
-World(FactoryGirl::Syntax::Methods)
-Warden.test_mode! 
-World(Warden::Test::Helpers)
-After{ Warden.test_reset! }"
+  append_to_file "features/support/env.rb", "\nWorld(FactoryGirl::Syntax::Methods)\n"
 
   # Install Guard
   run "guard init"
