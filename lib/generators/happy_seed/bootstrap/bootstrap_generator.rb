@@ -5,7 +5,13 @@ module HappySeed
     class BootstrapGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
-      def update_application_haml
+      def self.fingerprint
+        gem_available? 'bootstrap-sass'
+      end
+
+      def install_bootstrap
+        return if already_installed
+
         gem 'bootstrap-sass'
         gem 'modernizr-rails'
         gem 'meta-tags', :require => 'meta_tags'

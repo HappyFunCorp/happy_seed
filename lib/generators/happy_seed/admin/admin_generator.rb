@@ -1,9 +1,17 @@
+require 'generators/happy_seed/happy_seed_generator'
+
 module HappySeed
   module Generators
-    class AdminGenerator < Rails::Generators::Base
+    class AdminGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
-      def install_landing_page
+      def self.fingerprint
+        gem_available? 'activeadmin'
+      end
+
+      def install_active_admin
+        return if already_installed
+
         gem 'devise'
         gem 'activeadmin', github: 'activeadmin', branch: 'master'
         gem 'inherited_resources' # , github: 'josevalim/inherited_resources', branch: 'rails-4-2'
@@ -43,13 +51,9 @@ ROUTE
       
       end
 
-      private    
-        def gem_available?(name)
-           Gem::Specification.find_by_name(name)
-        rescue Gem::LoadError
-           false
-        rescue
-           Gem.available?(name)
+      protected
+        def fingerprint
+          gem_available?( 'activeadmin' )
         end
     end
   end

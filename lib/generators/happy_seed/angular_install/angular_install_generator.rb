@@ -1,9 +1,17 @@
+require 'generators/happy_seed/happy_seed_generator'
+
 module HappySeed
   module Generators
-    class AngularInstallGenerator < Rails::Generators::Base
+    class AngularInstallGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
+      def self.fingerprint
+        File.exists? 'app/controllers/angular_controller.rb'
+      end
+
       def install_angular
+        return if already_installed
+
         gem 'angularjs-rails'
 
         Bundler.with_clean_env do

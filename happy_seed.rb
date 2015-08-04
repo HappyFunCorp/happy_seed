@@ -40,7 +40,7 @@ Bundler.with_clean_env do
       {name: 'devise_invitable', desc: 'Invitable users'},
       {name: 'facebook', desc: 'OAuth: Connect with facebook' },
       {name: 'github', desc: 'OAuth: Connect with github' },
-      {name: 'googleauth', desc: 'OAuth: Connect wuth google' },
+      {name: 'googleoauth', desc: 'OAuth: Connect wuth google' },
       {name: 'instagram', desc: 'OAuth: Instagram' },
       {name: 'twitter', desc: 'OAuth: twitter' },
       ]},

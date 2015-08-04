@@ -1,26 +1,21 @@
+require 'generators/happy_seed/devise/devise_generator'
+
 module HappySeed
   module Generators
-    class OmniauthGenerator < Rails::Generators::Base
+    class OmniauthGenerator < HappySeedGenerator
       include Rails::Generators::Migration
       source_root File.expand_path('../templates', __FILE__)
 
+      def self.fingerprint
+        gem_available?( 'omniauth')
+      end
+
       def install_omniauth
-        # if File.exists? 'app/models/identity.rb'
-        #   puts "identity.rb already exists, skipping"
-        #   return
-        # end
+        return if already_installed
+
+        require_generator DeviseGenerator
 
         migration_template("make_email_nullable.rb", "db/migrate/make_email_nullable.rb" )
-
-        unless gem_available?( "devise" )
-          puts "The omniauth generator requires devise"
-
-          if yes?( "Run happy_seed:devise now?" )
-            generate "happy_seed:devise"
-          else
-            exit
-          end
-        end
 
         gem 'omniauth'
 
@@ -50,15 +45,7 @@ module HappySeed
         directory "docs"
       end
 
-      private    
-        def gem_available?(name)
-           Gem::Specification.find_by_name(name)
-        rescue Gem::LoadError
-           false
-        rescue
-           Gem.available?(name)
-        end
-
+      private
         def self.next_migration_number(dir)
           Time.now.utc.strftime("%Y%m%d%H%M%S")
         end

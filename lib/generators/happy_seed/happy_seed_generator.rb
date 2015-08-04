@@ -1,20 +1,24 @@
+ENV['DISABLE_SPRING'] = 'true'
+
 module HappySeed
   module Generators
     class HappySeedGenerator < Rails::Generators::Base
       protected
-        def require_omniauth
-          unless gem_available?( "devise" )
-            puts "The omniauth generator requires devise"
+        def already_installed
+          installed = self.class.fingerprint
+          puts "#{self.class.to_s} has already been run" if installed
+          installed
+        end
 
-            if yes?( "Run happy_seed:devise now?" )
-              generate "happy_seed:devise"
-            else
-              exit
-            end
-          end
+        def fingerprint
+          raise "Fingerprint not implemented in #{self.to_s}"
+        end
 
-          unless File.exists? 'app/models/identity.rb'
-            generate "happy_seed:omniauth"
+        def require_generator kls
+          if !kls.fingerprint
+            name = kls.to_s.gsub( /.*::/, "" ).gsub( /Generator/, "" ).underscore
+            puts "Running dependancy happy_seed:#{name}"
+            generate "happy_seed:#{name}"
           end
         end
 
@@ -49,11 +53,19 @@ RUBY
         end
      
         def gem_available?(name)
-          Gem::Specification.find_by_name(name)
-        rescue Gem::LoadError
-          false
-        rescue
-          Gem.available?(name)
+          self.gem_available?( name )
+        end
+
+        def self.gem_available?( name )
+          Bundler.with_clean_env do
+            begin
+              Gem::Specification.find_by_name(name)
+            rescue Gem::LoadError
+              false
+            rescue
+              Gem.available?(name)
+            end
+          end
         end
 
         def add_env( key )

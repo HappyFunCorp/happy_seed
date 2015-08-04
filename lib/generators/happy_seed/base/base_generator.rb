@@ -1,9 +1,17 @@
+require 'generators/happy_seed/happy_seed_generator'
+
 module HappySeed
   module Generators
-    class BaseGenerator < Rails::Generators::Base
+    class BaseGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
-      def install_foreman
+      def self.fingerprint
+        File.exists?( "docs/README.00.base.rdoc" )
+      end
+
+      def install_seed_base
+        return if already_installed
+
         puts "Installing happy_seed:base environment"
 
         # We only want SQLITE in development not everywhere

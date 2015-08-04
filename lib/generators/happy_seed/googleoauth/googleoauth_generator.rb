@@ -1,4 +1,4 @@
-require 'generators/happy_seed/happy_seed_generator'
+require 'generators/happy_seed/omniauth/omniauth_generator'
 
 module HappySeed
   module Generators
@@ -6,8 +6,14 @@ module HappySeed
       include Rails::Generators::Migration
       source_root File.expand_path('../templates', __FILE__)
 
+      def self.fingerprint
+        gem_available? 'omniauth-google-oauth2'
+      end
+
       def install_facebook
-        require_omniauth
+        return if already_installed
+
+        require_generator OmniauthGenerator
 
         gem 'omniauth-google-oauth2'
         gem 'google-api-client', require: "google/api_client"

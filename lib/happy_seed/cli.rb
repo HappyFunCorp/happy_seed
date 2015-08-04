@@ -1,5 +1,4 @@
 require 'thor'
-require 'happy_seed/wizard'
 
 module HappySeed
   class Cli < Thor

@@ -1,16 +1,19 @@
+require 'generators/happy_seed/happy_seed_generator'
+require 'generators/happy_seed/bootstrap/bootstrap_generator'
+
 module HappySeed
   module Generators
-    class DeviseGenerator < Rails::Generators::Base
+    class DeviseGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
-      def install_landing_page
-        if !gem_available?( "bootstrap-sass" )
-          if yes?( "Bootstrap generator doesn't seem to be installed, install now?" )
-            generate "happy_seed:bootstrap"
-          else
-            exit
-          end
-        end
+      def self.fingerprint
+        gem_available? 'devise'
+      end
+
+      def install_devise
+        return if already_installed
+
+        require_generator BootstrapGenerator
 
         gem 'devise', '~> 3.4'
 
@@ -18,10 +21,16 @@ module HappySeed
           run "bundle install --without production"
         end
 
-        run 'rails generate devise:install'
-        run 'rails generate devise User'
-        run 'rails generate devise:views'
-        
+        run 'bin/spring stop'
+
+        puts "Devise: #{self.class.fingerprint}"
+
+        Bundler.with_clean_env do
+          run 'rails generate devise:install'
+          run 'rails generate devise User'
+          run 'rails generate devise:views'
+        end
+                
         if gem_available?( "haml-rails" )
           remove_file 'app/views/devise/registrations/new.html.erb'
           remove_file 'app/views/devise/registrations/edit.html.erb'
@@ -42,7 +51,7 @@ module HappySeed
         end
 
         begin
-          inject_into_file 'spec/rails_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n  config.include Warden::Test::Helpers, type: :feature\n", :before => "\nend\n"
+          inject_into_file 'spec/rails_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n  config.include Warden::Test::Helpers, type: :feature\n", :after => "FactoryGirl::Syntax::Methods\n"
         rescue
           say_status :spec, "Unable to add devise helpers to rails_helper.rb", :red
         end

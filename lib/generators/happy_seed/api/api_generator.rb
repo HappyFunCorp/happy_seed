@@ -1,18 +1,18 @@
+require 'generators/happy_seed/devise/devise_generator'
+
 module HappySeed
   module Generators
-    class ApiGenerator < Rails::Generators::Base
+    class ApiGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
-      def install_device_invitable
-        unless gem_available?("devise")
-          puts "The api generator requires devise"
+      def self.fingerprint
+        gem_available? 'apitome'
+      end
 
-          if yes?("Run happy_seed:devise now?")
-            generate "happy_seed:devise"
-          else
-            exit
-          end
-        end
+      def install_device_invitable
+        return if already_installed
+
+        require_generator DeviseGenerator
 
         gem 'apitome'
         gem 'rspec_api_documentation', :groups => [:development, :test]

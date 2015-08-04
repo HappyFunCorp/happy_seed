@@ -1,4 +1,4 @@
-require 'generators/happy_seed/happy_seed_generator'
+require 'generators/happy_seed/omniauth/omniauth_generator'
 
 module HappySeed
   module Generators
@@ -7,8 +7,14 @@ module HappySeed
 
       source_root File.expand_path('../templates', __FILE__)
 
+      def self.fingerprint
+        gem_available?( 'omniauth-twitter' )
+      end
+
       def install_twitter
-        require_omniauth
+        return if already_installed
+
+        require_generator OmniauthGenerator
 
         gem 'omniauth-twitter'
         gem 'twitter'
@@ -37,7 +43,6 @@ module HappySeed
       def self.next_migration_number(dir)
         Time.now.utc.strftime("%Y%m%d%H%M%S")
       end
-
     end
   end
 end

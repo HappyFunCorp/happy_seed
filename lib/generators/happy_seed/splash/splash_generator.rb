@@ -1,20 +1,18 @@
-require 'generators/happy_seed/happy_seed_generator'
+require 'generators/happy_seed/bootstrap/bootstrap_generator'
 
 module HappySeed
   module Generators
     class SplashGenerator < HappySeedGenerator
       source_root File.expand_path('../templates', __FILE__)
 
-      def install_landing_page
-        unless gem_available?( "bootstrap-sass" )
-          puts "The splash generator requires bootstrap"
+      def self.fingerprint
+        File.exists?( "docs/README.02.splash.rdoc" )
+      end
 
-          if yes?( "Run happy_seed:bootstrap now?" )
-            generate "happy_seed:bootstrap"
-          else
-            exit
-          end
-        end
+      def install_landing_page
+        return if already_installed
+
+        require_generator BootstrapGenerator
 
         gem 'gibbon'
 
@@ -43,15 +41,6 @@ module HappySeed
           say_status :env, "Unable to add template .env files", :red
         end
       end
-
-      private    
-        def gem_available?(name)
-           Gem::Specification.find_by_name(name)
-        rescue Gem::LoadError
-           false
-        rescue
-           Gem.available?(name)
-        end
     end
   end
 end
