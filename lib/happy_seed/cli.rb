@@ -1,11 +1,12 @@
 require 'thor'
+require 'happy_seed/wizard'
 
 module HappySeed
   class Cli < Thor
     desc "rails APPNAME", "Generate a new rails application"
     def rails( *args )
-      file = gem_file_path( "happy_seed.rb")
-      system( "rails new -m #{file} #{args.join( " " )} --skip-turbolinks" )
+      seedrb = gem_file_path( "happy_seed.rb")
+      system "rails new -m #{seedrb} #{args.join( " " )} --skip-turbolinks"
     end
 
     desc "plugin NAME", "Generate a new rails plugin"

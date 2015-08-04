@@ -1,10 +1,12 @@
 Version 0.0.17
+  - New Configuration Wizard
   - Moved from unicorn to puma
   - Cleaned up twitter generator
   - Changed angular generator to move @app into the global scope
   - Changed angular generator to define controllers via @app.controller
   - Moved Devise testing support from base_generator to devise_generator
   - Moved happy_seed to development section of Gemfile
+  - Moved thigns out of application template into base_generator
   
 Version 0.0.16
   - Fixes for rbenv (require bundler)

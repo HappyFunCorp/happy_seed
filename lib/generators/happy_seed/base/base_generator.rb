@@ -5,14 +5,64 @@ module HappySeed
 
       def install_foreman
         puts "Installing happy_seed:base environment"
-        gem 'dotenv-rails', :groups=>[:development, :test]
-        gem 'rdiscount', :groups => [:development, :test]
+
+        # We only want SQLITE in development not everywhere
+        gsub_file 'Gemfile', /.*sqlite3.*/, ""
+
         gem 'puma'
         gem 'rails_12factor'
+        gem 'haml-rails'
+
+        gem_group :development, :test do
+          gem "sqlite3"
+          gem "rspec"
+          gem "rspec-rails"
+          gem "factory_girl_rails"
+          gem "capybara"
+          gem "cucumber-rails", :require => false
+          gem "guard-rspec"
+          gem "guard-cucumber"
+          gem "database_cleaner"
+          gem "spring-commands-rspec"
+          gem 'spring-commands-cucumber'
+          gem "quiet_assets"
+          gem "launchy"
+          gem "vcr"
+          gem "faker"
+          gem 'dotenv-rails'
+          gem 'rdiscount'
+        end
+
+        gem_group :test do
+          gem "webmock"
+        end
+
+        gem_group :production do
+          gem 'pg'
+        end
 
         Bundler.with_clean_env do
           run "bundle install --without production"
         end
+
+        gsub_file "app/assets/javascripts/application.js", /= require turbolinks/, "require turbolinks"
+
+        # Install rspec
+        generate "rspec:install"
+        gsub_file ".rspec", "--warnings\n", ""
+        append_to_file ".rspec", "--format documentation\n"
+
+        # Install cucumber
+        generate "cucumber:install"
+
+        append_to_file "features/support/env.rb", "\nWorld(FactoryGirl::Syntax::Methods)\n"
+
+        # Install Guard
+        run "guard init"
+
+        # Use the spring version and also run everything on startup
+        gsub_file "Guardfile", 'cmd: "bundle exec rspec"', 'cmd: "bin/rspec", all_on_start: true'
+        gsub_file "Guardfile", 'guard "cucumber"', 'guard "cucumber", cli: "--color --strict"'
 
         directory '.'
 

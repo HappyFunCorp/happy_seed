@@ -25,6 +25,27 @@ HappySeed is a set of application templates to help you get started building out
 
 All of these documents are droped into the docs folder of your project, and can be viewed with the [setup inspector](http://localhost:3000) once you start up the app.
 
+
+                                    ┌───────┐     ┌────────────────┐
+                                    │  api  │  ┌──│devise_invitable│
+                ┌────────────┐      └───────┘  │  └────────────────┘
+            ┌───│ jazz_hands │          │      │                 ┌────────┐
+            │   └────────────┘          ▼      │              ┌──│facebook│
+            │   ┌────────────┐     ┌────────┐  │  ┌────────┐  │  └────────┘
+            ├───│   admin    │  ┌──│ devise │◀─┴──│omniauth│◀─┤  ┌───────┐
+            │   └────────────┘  │  └────────┘     └────────┘  ├──│github │
+  ┌──────┐  │   ┌────────────┐  │  ┌────────┐                 │  └───────┘
+  │ base │◀─┼───│ bootstrap  │◀─┴──│ splash │                 │  ┌──────────┐
+  └──────┘  │   └────────────┘     └────────┘                 ├──│googleauth│
+            │   ┌────────────┐     ┌───────────────┐          │  └──────────┘
+            └───│angular_view│◀────│angular_install│          │  ┌─────────┐
+                └────────────┘     └───────────────┘          ├──│instagram│
+                                                              │  └─────────┘
+                                                              │  ┌───────┐
+                                                              └──│twitter│
+                                                                 └───────┘
+
+
 ## Usage
 
     $ gem install happy_seed

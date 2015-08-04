@@ -5,8 +5,10 @@ module HappySeed
 
       def install_landing_page
         if !gem_available?( "bootstrap-sass" )
-          if yes?( "Bootstrap-sass gem doesn't seem to be installed, install now?" )
+          if yes?( "Bootstrap generator doesn't seem to be installed, install now?" )
             generate "happy_seed:bootstrap"
+          else
+            exit
           end
         end
 

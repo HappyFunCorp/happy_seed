@@ -5,7 +5,7 @@ HappySeed Base Install
 
 The `happy_seed` application template sets up `haml`, `meta-tags`, disables `turbolinks`, and installs the `happy_seed` generators into your application.
 
-The `happy_seed:base` generator installs `dotenv-rails`, `unicorn`, http site authentication, and the `setup_controller`.
+The `happy_seed:base` generator installs `dotenv-rails`, `puma`, http site authentication, and the `setup_controller`.
 
 /setup is used to see the `happy_seed` documentation for each of the installed generators, and copies things into the rails doc directory.  The `setup_controller` is only visible locally.
 
