@@ -23,6 +23,78 @@
   .background
   .container
     .row
+      .col-md-12
+        %h2.text-center How is Happy Seed put together?
+        %br
+    .row
+      .hidden-xs.hidden-sm.col-xs-12
+        =partial "svg" 
+      .hidden-md.hidden-lg.col-sm-4.col-xs-12
+        =partial "vert_svg"
+      .col-md-12.col-sm-8.col-xs-12.comment_section
+        .row
+          .col-md-7.info_on_flow.intro_comment
+            %h3 Explore the diagram!
+            %p Click anywhere on the diagram to see what each option for happy seed installs and what it is connected to.
+            %p This should give you an idea of what options are dependant on others.
+     
+          .col-md-7.info_on_flow.base_comment.hide_comment
+            %h3 Base install:
+            %p Disables Turbolinks, includes haml, meta-tags, and dotenv-rails. Sets up basic http authentication, and puma.
+            %p
+              =link_to "Check out the docs >", "/docs/README.00.base.html"
+          .col-md-7.info_on_flow.bootstrap_comment.hide_comment
+            %h3 Bootstrap install:
+            %p Installs bootsrap-sass, modernizr-rails, organizes your assets directory organizes views and layouts directories, sets up application_helper methods to help with forms, includes flash support in application layout, updates rails scaffolding template to use bootsrap forms, turns off scaffolding stylesheet generation.
+            %p
+              =link_to "Check out the docs >", "/docs/README.01.bootstrap.html"
+          .col-md-7.info_on_flow.devise_comment.hide_comment
+            %h3 Devise install:
+            %p Installs devise, generates user class, copies over devise views and converts them to haml, and installs MailPreview for the device mailer.
+            %p
+              =link_to "Check out the docs >", "/docs/README.03.devise.html"
+          .col-md-7.info_on_flow.splash_comment.hide_comment
+            %h3 Splash install:
+            %p Installs a splash page, sets up splash controller and sets up mailing list sign up with mailchimp. You just have to dump in your list id and api key.
+            %p
+              =link_to "Check out the docs >", "/docs/README.02.splash.html"
+          .col-md-7.info_on_flow.facebook_comment.twitter_comment.instagram_comment.github_comment.googleauth_comment.omniauth_comment.hide_comment
+            %h3 Omniauth install:
+            %p Generates identity model link to user, installs omniauth, an omniauth controller, updates devise config, adds routes, removes devise email/password validations, adds FormUsers < User model for validations, and adds a registration controller to allow the user to add email and password for auth strategies that don't support it.
+            %p
+              =link_to "Check out the docs >", "/docs/README.04.omniauth.html"
+
+          .col-md-7.info_on_flow.jazz_hands_comment.hide_comment
+            %h3 Jazz Hands install:
+            %p Installs jazz hands. Tada!!!!!!
+            %p
+              =link_to "Check out the docs >", "/docs/README.12.jazz_hands.html"
+
+          .col-md-7.info_on_flow.admin_comment.hide_comment
+            %h3 Admin install:
+            %p Installs active admin from git, runs the active_admin install generator, creates AdminUser model, creates basic newsletter/campaign admin panel if MAILCHIMP_API_KEY is active.
+            %p
+              =link_to "Check out the docs >", "/docs/README.07.admin.html"
+          .col-md-7.info_on_flow.angular_view_comment.angular_install_comment.hide_comment
+            %h3 Angular install:
+            %p Installs angularjs-rails, updates application.js, creates structure in app/assets for templates and angular controllers, installs angular_controller.rb, and creates a sample landing view.
+            %p
+              =link_to "Check out the docs >", "/docs/README.10.angular_install.html"
+          .col-md-7.info_on_flow.api_comment.hide_comment
+            %h3 Api install:
+            %p Installs apitome and rspec_api_documentation, uses token auth.
+            %p
+              =link_to "Check out the docs >", "/docs/README.01.api.html"
+          .col-md-7.info_on_flow.devise_invitable_comment.hide_comment
+            %h3 Devise invitable install:
+            %p Installs devise_invitable, migrates your db, adds columns for invite, copies over devise views and formats them with bootstrap.
+            %p
+              =link_to "Check out the docs >", "/docs/README.03.devise_invitable.html"
+
+-#%section#what.cream.over
+  .background
+  .container
+    .row
       .right-col
         %h1.text-center-sm
           Quickly generate a new app, <br class="hidden-xs">and then get out of the&nbsp;way.

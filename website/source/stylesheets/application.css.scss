@@ -1,7 +1,7 @@
 //-----------------------------------------
 // Fonts
 //-----------------------------------------
-
+@import url(http://fonts.googleapis.com/css?family=Roboto:700);
 @font-face {
   font-family: 'TelegraficoRegular';
   src: font-url('telegrafico_by_ficod-webfont.eot');
@@ -487,6 +487,9 @@ h3.outset {
   .text-center-sm {
     text-align: center;
   }
+  .info_on_flow {
+    top: 150px;
+  }
 }
 @media (max-width: #{$screen-xs-max}) {
   .text-center-xs {
@@ -497,4 +500,265 @@ h3.outset {
   .left-col {
     padding-right: 50px;
   }
+
+  .info_on_flow {
+    margin-top: -120px;
+  }
+
+}
+
+.info_on_flow {
+  position: absolute;
+}
+
+#flow2 {
+  max-height: 600px;
+  height: auto;
+  padding-top: 30px;
+}
+//SVG
+path {
+  fill: #77B48A;
+}
+tspan {
+  fill: #bbb;
+  cursor: pointer;
+}
+rect {
+  fill: $cream;
+  cursor: pointer;
+}
+
+.comment_section {
+  height: 125px;
+}
+
+.googleauth_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .googleauth_rect, .omniauth_rect, .devise_rect, .bootstrap_rect, .base_rect, #googleauth2, #omniauth2, #devise2, #bootstrap2, #base2, #googleauth, #omniauth, #devise, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_omniauth, .omniauth_to_googleauth {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.facebook_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .facebook_rect, .omniauth_rect, .devise_rect, .bootstrap_rect, .base_rect,#facebook2, #omniauth2, #devise2, #bootstrap2, #base2, #facebook, #omniauth, #devise, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_omniauth, .omniauth_to_facebook {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.instagram_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .instagram_rect, .omniauth_rect, .devise_rect, .bootstrap_rect, .base_rect, #instagram2, #omniauth2, #devise2, #bootstrap2, #base2, #instagram, #omniauth, #devise, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_omniauth, .omniauth_to_instagram {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.twitter_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .twitter_rect, .omniauth_rect, .devise_rect, .bootstrap_rect, .base_rect, #twitter2, #omniauth2, #devise2, #bootstrap2, #base2, #twitter, #omniauth, #devise, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_omniauth, .omniauth_to_twitter {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.github_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .github_rect, .omniauth_rect, .devise_rect, .bootstrap_rect, .base_rect, #github2, #omniauth2, #devise2, #bootstrap2, #base2, #github, #omniauth, #devise, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_omniauth, .omniauth_to_github {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.devise_invitable_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .devise_invitable_rect, .devise_rect, .bootstrap_rect, .base_rect, #devise2, #devise2, #devise_invitable2, #bootstrap2, #base2,#devise, #devise_invitable, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_devise_invitable {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.api_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .api_rect, .devise_rect, .bootstrap_rect, .base_rect, #devise2, #bootstrap2, #base2, #devise2, #api2, #devise, #bootstrap, #base, #devise, #api, .base_to_bootstrap, .bootstrap_to_devise, .api_to_devise {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.devise_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .devise_rect, .bootstrap_rect, .base_rect, #devise2, #bootstrap2, #base2, #devise2, #devise, #bootstrap, #base, #devise, .base_to_bootstrap, .bootstrap_to_devise {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.bootstrap_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .bootstrap_rect, .base_rect, #bootstrap2, #base2, #bootstrap, #base, .base_to_bootstrap {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.admin_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .admin_rect, .base_rect, #admin2, #base2, #admin, #base, .base_to_admin {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.jazz_hands_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .jazz_hands_rect, .base_rect, #jazz_hands2, #base2, #jazz_hands, #base, .base_to_jazz_hands {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.splash_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .splash_rect, .bootstrap_rect, .base_rect, .base_to_bootstrap, .bootstrap_to_splash, #base2, #bootstrap2, #splash2, #base, #bootstrap, #splash {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+
+.angular_install_install, .angular_view_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .angular_install_rect, .angular_view_rect, .base_rect, #angular_install2, #angular_view2, #base2, #angular_install, #angular_view, #base, .base_to_angular_view, .angular_view_to_angular_install {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+ }
+}
+
+.base_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .base_rect, #base, #base2 {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+
+.omniauth_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .github_rect, .facebook_rect, .twitter_rect, .instagram_rect,.googleauth_rect, .omniauth_rect, .devise_rect, .bootstrap_rect, .base_rect, #facebook2, #googleauth2, #instagram2, #twitter2, #github2, #omniauth2, #devise2, #bootstrap2, #base2, #facebook, #googleauth, #instagram, #twitter, #github, #omniauth, #devise, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_omniauth, .omniauth_to_github, .omniauth_to_facebook, .omniauth_to_twitter, .omniauth_to_googleauth, .omniauth_to_instagram {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+.github_rect, .facebook_rect, .twitter_rect, .instagram_rect, .googleauth_rect, .omniauth_rect, .devise_rect, .bootstrap_rect, .base_rect {
+   //-webkit-animation: swell 1s linear 0s infinite alternate;
+     //-moz-animation: swell 1s linear 0s infinite alternate;
+       //-o-animation: swell 1s linear 0s infinite alternate;
+          //animation: swell 1s linear 0s infinite alternate;  
+  }
+}
+svg {
+  width: 100%;
+  overflow: visible !important;
+}
+tspan, text, text tspan, path, .info_on_flow {
+  transform-origin: 50% 50% 0;
+ transition: opacity .5s ease-in-out;
+ -moz-transition: opacity .5s ease-in-out;
+ -webkit-transition: opacity .5s ease-in-out;
+}
+
+.show_comment {
+  opacity: 1;
+  height: auto;
+}
+.hide_comment {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+}
+
+#what {
+  padding-bottom: 250px;
+}
+
+@keyframes swell {
+  from {
+  -webkit-transform: scale(1);  
+      -ms-transform: scale(1); 
+          transform: scale(1);
+  }
+  to {
+  -webkit-transform: scale(1.04);  
+      -ms-transform: scale(1.04); 
+          transform: scale(1.04);
+  }
+}
+#flow2 {
+ // margin-bottom: 110px;
 }
