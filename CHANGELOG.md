@@ -6,7 +6,8 @@ Version 0.0.17
   - Changed angular generator to define controllers via @app.controller
   - Moved Devise testing support from base_generator to devise_generator
   - Moved happy_seed to development section of Gemfile
-  - Moved thigns out of application template into base_generator
+  - Moved things out of application template into base_generator
+  - Include bower integration into vendor/assets
   
 Version 0.0.16
   - Fixes for rbenv (require bundler)

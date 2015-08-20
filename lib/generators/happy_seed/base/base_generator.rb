@@ -77,6 +77,7 @@ module HappySeed
         remove_file "application_controller.rb"
 
         inject_into_file 'app/controllers/application_controller.rb', File.read( find_in_source_paths('application_controller.rb') ), :after=>/protect_from_forgery.*\n/
+        inject_into_class 'config/application.rb', :Application, "    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')"
         inject_into_file 'config/environments/test.rb', "  config.log_level = :error\n", before: "end\n"
 
         begin
