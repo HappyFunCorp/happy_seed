@@ -8,11 +8,15 @@
       .col-md-12.text-center
         #logo-container
           #ted{"data-scroll-reveal"=>"enter from the top but wait .5s"}
+          %h2#info
+            Seed.
+            %br
+            Build MVPs quickly.
           %h1#seed-logo.logo{"data-scroll-reveal"=>"enter bottom but wait 1s over 1s"}
             Happy Seed
         .row
           .col-md-8.col-md-offset-2.mb-1
-            .overbracket{"data-scroll-reveal"=>"enter bottom but wait 1s over 1s"}
+            .overbracket{"data-scroll-reveal"=>"enter bottom over 1s"}
               %h2{"data-scroll-reveal"=>"enter bottom but wait 1.5s over 1.5s"}
                 The fastest way to get an MVP out the door.<br/>
                 Quickly set up a project and get all the pesky details right
@@ -20,7 +24,28 @@
           = link_to '#what' do
             %span.glyphicon.glyphicon-chevron-down
 
-%section#what.cream.over
+%section#what.green.over
+  .background
+  .container
+    .row
+      .left-col
+        %h1.jumbo What?
+
+      .right-col
+        %h3
+          Starting up building applications in seconds with the follow features:
+
+        %ul.checkmarked.bigger.text-centered.parenthesized.text-center
+          %li User Accounts
+          %li Smart testing
+          %li Splash pages
+          %li Integration with facebook, twitter, google, etc.
+          %li Smart Generators with HAML and Bootstrap
+          %li Admin Tools
+          %li Use what you need
+          %li Much more...
+
+%section.cream.over
   .background
   .container
     .row

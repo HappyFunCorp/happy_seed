@@ -318,6 +318,10 @@ ul.checkmarked {
   }
 }
 
+ul.bigger {
+  font-size: 1.5em;
+}
+
 .logo {
   text-indent: -9999px;
   text-align: left;
@@ -371,6 +375,7 @@ ul.checkmarked {
   }
 }
 #ted {
+  // @extend .col-xs-6;
   background-image: image-url('splash/ted.png');
   width: 0.5*950px;
   height: 0.5*782px;
@@ -378,6 +383,12 @@ ul.checkmarked {
   position: absolute;
   top: -410px;
   left: -390px;
+}
+
+#info {
+  position: absolute;
+  top: -300px;
+  width: 20em;
 }
 
 #logo-container {
