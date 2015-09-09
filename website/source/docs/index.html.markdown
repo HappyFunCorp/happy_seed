@@ -6,6 +6,13 @@ title: Hi there
 
 HappySeed is a set of application templates to help you get started building out new sites.  The main section is a rails application template plus a set of rails generators to help you get started with rails appliations quickly.  These generators setup the configuration of the application in a standard way, and the full set of generators include many things for setting up a modern rails app and well as middleman apps.
 
+## Base Tutorial
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe src="https://www.youtube.com/embed/hCsPDaKHw6I?rel=0" allowfullscreen></iframe>
+</div>
+
+
 ## Overall pattern
 
 Once HappySeed generates files for you, there is no runtime dependancy.  In the case of rails generators, these make changes to your source directory that you then own completely.  There is no need to deploy the `happy_seed` gem in a production environment.
