@@ -33,7 +33,7 @@ module HappySeed
       HappySeed::Generators::StaticBlogGenerator.start
     end
 
-    desc "Quick Generator Refererence"
+    desc "Help View", "Quick Generator Refererence"
     def refererence
       puts File.read( File.expand_path( "happy_seed.txt", File.dirname( __FILE__ ) ) )
     end
