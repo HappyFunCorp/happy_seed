@@ -17,31 +17,27 @@
 
     = csrf_meta_tag
 
-  %body{ "data-spy" => "scroll", "data-target" => "#top"}
+  %body{ "data-spy" => "scroll", "data-target" => "#about"}
     = render 'chromeframe'
     = render 'flashes'
 
-    %header#top.navbar.navbar-inverse.navbar-fixed-top{:role=>:banner}
+    %header#top.navbar-default.navbar-fixed-top{:role=>:banner}
       .navbar-header
         %button.navbar-toggle{:type=>:button, 'data-toggle'=>:collapse, 'data-target'=>'.navbar-collapse'}
           %span.sr-only Toggle navigations
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to '#', :class=>'navbar-brand' do
-          %span.glyphicon.glyphicon-leaf
-          Happy Seed
-      %nav.collapse.navbar-collapse{:role=>:navigation}
+        = link_to '#', :class=>'logo' do
+          =image_tag 'https://s3.amazonaws.com/assets.happyfuncorp.com/splash-assets/sw_logo.png', alt: "spork wrangler", class: "img-responsive logo"
+      %nav.pull-right.collapse.navbar-collapse{:role=>:navigation}
         %ul.nav.navbar-nav
-          %li= link_to 'Top', '#'
-          %li= link_to 'Why', '#what'
-          %li= link_to 'Feature 1', '#feature1'
-          %li= link_to 'Feature 2', '#feature2'
-          %li= link_to 'Feature 3', '#feature3'
+          %li= link_to 'about', '#about'
+          %li= link_to 'team', '#team'
+          %li= link_to 'contact', '#contact'
 
     = yield
 
-    = render 'footer'
 
     -# Javascript at the bottom for fast page loading
     = render 'javascripts'
@@ -49,7 +45,7 @@
     :javascript
         $(function() { 
           window.scrollReveal = new scrollReveal();
-          $("#top.navbar ul li a[href^='#']").on('click', function(e) {
+          $("#top ul li a[href^='#']").on('click', function(e) {
             e.preventDefault();
 
             // store hash
