@@ -33,11 +33,6 @@ module HappySeed
       HappySeed::Generators::StaticBlogGenerator.start
     end
 
-    desc "Help View", "Quick Generator Refererence"
-    def refererence
-      puts File.read( File.expand_path( "happy_seed.txt", File.dirname( __FILE__ ) ) )
-    end
-
     private
     def gem_file_path( filename )
       spec = Gem::Specification.find_by_name("happy_seed")
