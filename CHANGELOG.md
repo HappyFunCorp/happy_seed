@@ -1,3 +1,6 @@
+Version 0.0.18
+  - Updated github to use Octokit
+  
 Version 0.0.17
   - New Configuration Wizard
   - Moved from unicorn to puma

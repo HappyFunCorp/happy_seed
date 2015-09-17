@@ -15,7 +15,7 @@ module HappySeed
         require_generator OmniauthGenerator
 
         gem 'omniauth-github'
-        gem 'github_api'
+        gem 'octokit'
 
         Bundler.with_clean_env do
           run "bundle install --without production"
@@ -23,7 +23,8 @@ module HappySeed
 
         directory 'docs'
 
-        add_omniauth :github, "user", "Github"
+        add_omniauth :github, "user", "Octokit"
+        gsub_file( 'app/models/user.rb', /Octokit.*/, "Octokit::Client.new(access_token: github.accesstoken)" )     
       end
     end
   end
