@@ -73,6 +73,7 @@ module HappySeed
         gsub_file "Guardfile", 'guard "cucumber"', 'guard "cucumber", cli: "--color --strict"'
 
         directory '.'
+        append_to_file '.gitignore', ".env\n"
 
         remove_file "application_controller.rb"
 
