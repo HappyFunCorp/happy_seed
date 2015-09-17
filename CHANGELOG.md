@@ -1,3 +1,7 @@
+Version 0.0.18
+  - Updated github to use Octokit
+  - Updated splash page generator
+  
 Version 0.0.17
   - New Configuration Wizard
   - Moved from unicorn to puma
