@@ -26,10 +26,6 @@ class SplashController < ApplicationController
       rescue StandardError => e
         @error = true
 
-        puts "ERROR: #{e}: #{e.detail}."
-
-        puts e.body
-
         if e.message =~ /is already subscribed to the list/
           @message = "You're already signed up to receive updates. Thanks for your enthusiasm!"
         else
