@@ -2,6 +2,11 @@ require 'thor'
 
 module HappySeed
   class Cli < Thor
+    desc "version", "Prints out the current version"
+    def version
+      puts "You are running seed version #{HappySeed::VERSION}"
+    end
+
     desc "rails APPNAME", "Generate a new rails application"
     def rails( *args )
       seedrb = gem_file_path( "happy_seed.rb")
