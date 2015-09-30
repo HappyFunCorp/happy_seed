@@ -12,13 +12,14 @@ class SplashController < ApplicationController
     else
       begin
 
-        gb = Gibbon::API.new
+        gb = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
 
-        gb.lists.subscribe({
-          :id => ENV['MAILCHIMP_SPLASH_SIGNUP_LIST_ID'],
-          :email => {:email => params[:signup_email]},
-          :double_optin => true
-        })
+       gb.lists(ENV['MAILCHIMP_SPLASH_SIGNUP_LIST_ID']).members.create(
+         body: {
+           email_address: params[:signup_email],
+           status: "pending"
+           }
+         )
 
         @message = 'Thanks for signing up!'
 
@@ -37,7 +38,7 @@ class SplashController < ApplicationController
 
 
   private
-  
+
     def gem_available?(name)
        Gem::Specification.find_by_name(name)
     rescue Gem::LoadError
