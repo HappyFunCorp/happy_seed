@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    happy_seed (0.0.18)
+    happy_seed (0.0.19)
       rails (~> 4.2)
       thor
 

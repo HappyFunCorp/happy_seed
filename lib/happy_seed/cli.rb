@@ -1,3 +1,4 @@
+require 'happy_seed/version'
 require 'thor'
 
 module HappySeed
@@ -36,6 +37,11 @@ module HappySeed
     def static_blog( name )
       require 'generators/happy_seed/static_blog/static_blog_generator'
       HappySeed::Generators::StaticBlogGenerator.start
+    end
+
+    desc "reference", "Quick generator Reference"    
+    def reference    
+      puts File.read( File.expand_path( "../../happy_seed.txt", File.dirname( __FILE__ ) ) )   
     end
 
     private

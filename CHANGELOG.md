@@ -1,3 +1,6 @@
+Version 0.0.19
+  - Updated Gibbon to latest version
+  
 Version 0.0.18
   - Updated github to use Octokit
   - Updated splash page generator
