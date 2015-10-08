@@ -15,6 +15,13 @@ This is a quick framework to get up a marketing page for your application, and a
 
 The splash controller uses a seperate splash layout, which lets you isolate the design of the splash page from the overall content and look and feel of your application.
 
+## Walkthrough
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe src="https://www.youtube.com/embed/wb51M6I3I8g?rel=0" allowfullscreen></iframe>
+</div>
+
+
 ### Environment Variables
 
 This is for the mailchimp signup form.
@@ -26,6 +33,10 @@ This is for the mailchimp signup form.
 
 ### What needs to be done?
 
-Style the page by editing assets/stylesheets/slash.css.scss, views/splash/index.html.haml, and views/layouts/splash
+Style the page by editing assets/stylesheets/slash.css.scss, views/splash/index.html.haml, and views/layouts/splash.html.haml
 
-Sign up for mailchimp, get your api key, create a mailing list and setup the environment.
+1. Signup for mailchimp: https://login.mailchimp.com/signup
+2. Activate your account
+3. Create a mailing list: List -> Create List
+4. Get list ID (Settings -> List name and defaults) for MAILCHIMP_SPLASH_SIGNUP_LIST_ID
+5. Get MAILCHIMP_API_KEY (Your name -> Account -> Extras -> API Keys)

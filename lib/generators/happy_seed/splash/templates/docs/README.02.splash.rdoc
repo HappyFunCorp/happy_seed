@@ -15,6 +15,13 @@ This is a quick framework to get up a marketing page for your application, and a
 
 The splash controller uses a seperate splash layout, which lets you isolate the design of the splash page from the overall content and look and feel of your application.
 
+## Walkthrough
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe src="https://www.youtube.com/embed/wb51M6I3I8g?rel=0" allowfullscreen></iframe>
+</div>
+
+
 ### Environment Variables
 
 This is for the mailchimp signup form.
