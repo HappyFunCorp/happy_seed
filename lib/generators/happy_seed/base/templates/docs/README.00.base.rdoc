@@ -9,6 +9,12 @@ The `happy_seed:base` generator installs `dotenv-rails`, `puma`, http site authe
 
 /setup is used to see the `happy_seed` documentation for each of the installed generators, and copies things into the rails doc directory.  The `setup_controller` is only visible locally.
 
+## Walkthrough
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe src="https://www.youtube.com/embed/Pn2ehV8EDFM?rel=0" allowfullscreen></iframe>
+</div>
+
 ### Why do you want this?
 
 Haml is great and we like it better than balancing out closing tags.  meta-tags makes it easy to flesh out SEO.

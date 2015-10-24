@@ -9,9 +9,14 @@ HappySeed is a set of application templates to help you get started building out
 ## Base Tutorial
 
 <div class="embed-responsive embed-responsive-16by9">
-  <iframe src="https://www.youtube.com/embed/hCsPDaKHw6I?rel=0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/Pn2ehV8EDFM?rel=0" allowfullscreen></iframe>
 </div>
 
+## Splash Tutorial
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe src="https://www.youtube.com/embed/wb51M6I3I8g?rel=0" allowfullscreen></iframe>
+</div>
 
 ## Overall pattern
 
