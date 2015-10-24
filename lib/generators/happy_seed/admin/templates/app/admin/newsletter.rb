@@ -2,10 +2,10 @@ if !ENV['MAILCHIMP_API_KEY'].blank?
   ActiveAdmin.register_page "Newsletter"  do
     content do
       if !params[:list_id]
-        @lists = Gibbon::API.new.lists.list
+        @lists = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY']).lists.retrieve
 
         panel "MailChimp Lists" do
-          table_for @lists['data'] do
+          table_for @lists['lists'] do
             column( "name" ) { |d| d['name'] }
             column( "members" ) { |d| d['stats']['member_count'] }
             column( "unsubscribe_count") { |d| d["stats"]["unsubscribe_count"] }

@@ -4,28 +4,24 @@ if !ENV['MAILCHIMP_API_KEY'].blank?
 
     content do
       @c = {}
+      gb = Gibbon::Request.new(api_key: ENV['MAILCHIMP_API_KEY'])
       if params[:list_id]
-        @c = Gibbon::API.new.campaigns.list( :filters => { :list_id => params[:list_id] } )
+        @c = gb.campaigns.retrieve( params: {list_id: params[:list_id]}  )
       elsif params[:campaign_id]
-        @c = Gibbon::API.new.campaigns.list( :filters => { :campaign_id => params[:campaign_id] } )
+        @c = gb.campaigns.retrieve( params: {campaign_id: params[:campaign_id]}  )
       else
-        @c = Gibbon::API.new.campaigns.list
+        @c = gb.campaigns.retrieve
       end
 
-      data = @c['data'].each do |d| 
-        d['summary'] = {} if d['summary'].is_a? Array
-      end
-      table_for data do #.sort { |a,b| a['send_time'] <=> b['send_time'] } do
-        column( "list_id" ) { |d| d['list_id']}
-        column( "title" ) { |d| d['title'] }
+      table_for @c['campaigns'] do
+        column( "subject" ) { |d| d['settings']['subject_line'] }
+        column( "title" ) { |d| d['settings']['title'] }
         column( "created" ) { |d| d['create_time'] }
         column( "sent" ) { |d| d['send_time'] }
-        column( "subject" ) { |d| d['subject'] }
         column( "emails sent") { |d| d['emails_sent'] }
-        column( "opens" ) { |d| d['summary']['opens'] }
-        column( "clicks" ) { |d|  d['summary']['clicks'] }
-        column( "UUser Clicks" ) { |d| d['summary']['users_who_clicked'] }
-        column( "last click" ) { |d|  d['summary']['last_click'] }
+        column( "opens" ) { |d| d['report_summary'] && d['report_summary']['opens'] }
+        column( "clicks" ) { |d|  d['report_summary'] && d['report_summary']['clicks'] }
+        column( "unique_opens" ) { |d| d['report_summary'] && d['report_summary']['unique_opens'] }
       end
     end
 

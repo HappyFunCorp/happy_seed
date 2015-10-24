@@ -1,3 +1,10 @@
+Version 0.0.20
+  - Updated Bootstrap panels in the templates
+  - Disabled many default test generators
+  - Updated Google Analytics javascript
+  - Added lograte to the base install
+  - Fixed Gibbon API login on admin panel
+  
 Version 0.0.19
   - Updated Gibbon to latest version
   

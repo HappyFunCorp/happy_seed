@@ -20,6 +20,7 @@ module HappySeed
         gem 'puma'
         gem 'rails_12factor'
         gem 'haml-rails'
+        gem "quiet_assets"
 
         gem_group :development, :test do
           gem "sqlite3"
@@ -33,7 +34,6 @@ module HappySeed
           gem "database_cleaner"
           gem "spring-commands-rspec"
           gem 'spring-commands-cucumber'
-          gem "quiet_assets"
           gem "launchy"
           gem "vcr"
           gem "faker"
@@ -47,6 +47,7 @@ module HappySeed
 
         gem_group :production do
           gem 'pg'
+          gem 'lograge'
         end
 
         Bundler.with_clean_env do
@@ -79,7 +80,12 @@ module HappySeed
 
         inject_into_file 'app/controllers/application_controller.rb', File.read( find_in_source_paths('application_controller.rb') ), :after=>/protect_from_forgery.*\n/
         inject_into_class 'config/application.rb', :Application, "    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')"
+        inject_into_file 'config/application.rb', after: "config.generators do |g|\n" do <<-'RUBY'
+      g.test_framework :rspec, fixture: true, fixture_replacement: :factory_girl, helper_specs: false, view_specs: false, routing_specs: false, controller_specs: false
+RUBY
         inject_into_file 'config/environments/test.rb', "  config.log_level = :error\n", before: "end\n"
+        inject_into_file 'config/environments/production.rb', "  config.lograge.enabled = true\n", before: "end\n"
+
 
         begin
           inject_into_file 'spec/rails_helper.rb', "require 'webmock/rspec'\n", after: "'rspec/rails'\n"

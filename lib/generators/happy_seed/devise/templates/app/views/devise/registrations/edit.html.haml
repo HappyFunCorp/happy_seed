@@ -1,11 +1,11 @@
 - @title = "Edit #{resource_name.to_s.humanize}"
 .container
   .row
-    .center_panel
+    .center-panel
       .panel.panel-default.only
-
         .panel-heading
-          = @title
+          %h3.panel-title
+            = @title
 
         .panel-body
 
@@ -29,7 +29,8 @@
       - if devise_mapping.omniauthable?
         .panel.panel-default.only
           .panel-heading
-            Connect your accounts
+            %h3.panel-title
+              Connect your accounts
 
           .panel-body
             %ul
@@ -42,7 +43,8 @@
       .panel.panel-default.only
 
         .panel-heading
-          Cancel my account
+          %h3.panel-title
+            Cancel my account
 
         .panel-body
           %p
