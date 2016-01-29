@@ -36,11 +36,12 @@ module HappySeed
 HAML
         end
 
-        inject_into_file 'config/application.rb', before: "end\nend\n" do <<-'RUBY'
-  config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+        inject_into_file 'config/application.rb', before: "  end\nend\n" do <<-'RUBY'
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
     config.generators do |g|
       g.stylesheets = false
       g.scaffold_controller "scaffold_controller"
+      g.test_framework :rspec, fixture: true, fixture_replacement: :factory_girl, helper_specs: false, view_specs: false, routing_specs: false, controller_specs: false
     end
   
 RUBY
