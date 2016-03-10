@@ -1,5 +1,5 @@
 
-  before_filter :authenticate
+  before_action :authenticate
 
   def authenticate
     unless ENV['HTTP_AUTH_USERNAME'].blank? or ENV['HTTP_AUTH_PASSWORD'].blank?

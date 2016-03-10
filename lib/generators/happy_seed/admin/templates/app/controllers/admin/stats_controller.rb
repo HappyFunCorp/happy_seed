@@ -1,5 +1,5 @@
 class Admin::StatsController < ApplicationController
-  before_filter :authenticate_admin_user!
+  before_action :authenticate_admin_user!
 
   def stats
     if params[:scope].blank?

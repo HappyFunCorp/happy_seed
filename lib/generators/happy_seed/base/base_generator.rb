@@ -20,16 +20,17 @@ module HappySeed
         gem 'puma'
         gem 'rails_12factor'
         gem 'haml-rails'
-        gem "quiet_assets"
+        # TODO quiet_assets needs to get updated for rails 5
+        # gem "quiet_assets"
 
         gem_group :development, :test do
           gem "sqlite3"
-          gem "rspec"
-          gem "rspec-rails"
+          gem 'rspec', '~> 3.5.0.beta1'
+          gem 'rspec-rails', '~> 3.5.0.beta1'
           gem "factory_girl_rails"
           gem "capybara"
           gem "cucumber-rails", :require => false
-          gem "guard-rspec"
+          gem "guard-rspec", '~> 4.6.4', require: false
           gem "guard-cucumber"
           gem "database_cleaner"
           gem "spring-commands-rspec"
@@ -39,6 +40,7 @@ module HappySeed
           gem "faker"
           gem 'dotenv-rails'
           gem 'rdiscount'
+          gem 'rails-controller-testing'
         end
 
         gem_group :test do
@@ -103,9 +105,16 @@ module HappySeed
 
         begin
           inject_into_file 'spec/rails_helper.rb', "\n  config.include FactoryGirl::Syntax::Methods\n", :before => "\nend\n"
+          inject_into_file 'spec/rails_helper.rb', "\n  [:controller, :view, :request].each do |type|\n    config.include ::Rails::Controller::Testing::TestProcess, :type => type\n    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type\n    config.include ::Rails::Controller::Testing::Integration, :type => type\n  end", :before => "\nend\n"
           append_to_file 'spec/rails_helper.rb', "\nVCR.configure do |c|\n  c.cassette_library_dir  = Rails.root.join('spec', 'vcr')\n  c.hook_into :webmock\nend\n"
         rescue
           say_status :spec, "Unable to add factory girl and VCR to rails_helper.rb", :red
+        end
+
+        begin
+          inject_into_file 'Rakefile', "module TempFixForRakeLastComment\n  def last_comment\n    last_description\n  end\nend\nRake::Application.send :include, TempFixForRakeLastComment\n", before: "Rails.application.load_tasks"
+        rescue 
+          say_status :spec, "Unable to add Rake workaround for last_comment"
         end
 
         route "get '/setup' => 'setup#index'"

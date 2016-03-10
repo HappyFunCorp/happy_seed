@@ -1,5 +1,5 @@
 class SetupController < ApplicationController
-  before_filter :require_local!
+  before_action :require_local!
   layout :false
 
   def index
