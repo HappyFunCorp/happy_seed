@@ -1,23 +1,17 @@
-- @title = "Sign In"
 .container
   .row
-    .center-panel
-      .panel.panel-default.only
-        .panel-heading
-          %h3.panel-title
-            Sign in
+    .profile.center
+      = panel title: 'Log in', context: :primary do
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f|
+          .panel-body
+            = f.error_notification
 
-        .panel-body
+            = f.input :email, required: true, autofocus: true
+            = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+            = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+          .panel-footer
+            .buttons
+              = f.button :submit, "Log in", class: "btn-primary"
 
-          = form_for resource, as: resource_name, url: session_path(resource_name), layout: :horizontal do |f|
-
-            = f.email_field :email, autofocus: true
-            = f.password_field :password, autocomplete: "off"
-
-            - if devise_mapping.rememberable?
-              = f.check_box :remember_me
-
-            = f.submit "Sign in", :class=>'btn btn-primary form-control'
-
-          %p.text-right
-            = render partial: "devise/shared/links"
+            .links
+              = render "devise/shared/links"

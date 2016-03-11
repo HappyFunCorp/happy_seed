@@ -1,7 +1,7 @@
 Version 0.0.21
   - Upgrade to Rails 5.0.0.beta3
   - Upgrade rspec-rails to 3.5.0.beta1
-
+  - Integrated simple_form for scaffolded code
   
 Version 0.0.20
   - Updated Bootstrap panels in the templates

@@ -17,9 +17,11 @@ module HappySeed
         gem 'meta-tags', :require => 'meta_tags'
         gem 'responders', '~> 2.0'
         gem 'bh'
+        gem 'simple_form'
 
         Bundler.with_clean_env do
           run "bundle install --without production"
+          run "rails generate simple_form:install --bootstrap"
         end
 
         remove_file 'app/views/layouts/application.html.erb'

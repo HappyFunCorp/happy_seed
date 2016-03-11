@@ -15,7 +15,7 @@ module HappySeed
 
         require_generator BootstrapGenerator
 
-        gem 'devise', '~> 3.4'
+        gem 'devise', '~> 4.0.0.rc2'
 
         Bundler.with_clean_env do
           run "bundle install --without production"

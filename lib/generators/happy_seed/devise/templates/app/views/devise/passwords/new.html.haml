@@ -1,21 +1,16 @@
 .container
   .row
-    .center-panel
-      .panel.panel-default.only
+    .profile.center
+      = panel title: 'Forgot your password?', context: :primary do
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f|
+          .panel-body
+            = f.error_notification
 
-        .panel-heading
-          %h3.panel-title
-            Forgot your password?
+            .form-inputs
+              = f.input :email, required: true, autofocus: true
+          .panel-footer
+            .buttons
+              = f.button :submit, "Send me reset password instructions", class: "btn-primary"
 
-        .panel-body
-
-          = form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal) do |f|
-
-            / = devise_error_messages!
-
-            = f.email_field :email, autofocus: true
-
-            = f.submit "Send me reset password instructions"
-
-          %p.text-right
-            = render partial: "devise/shared/links"
+            .links
+              = render "devise/shared/links"

@@ -1,20 +1,20 @@
 .container
   .row
-    .center-panel
-      .panel.panel-default.only
+    .profile.center
+      = panel title: 'Change your password', context: :primary do
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f|
+          .panel-body
+            = f.error_notification
 
-        .panel-heading
-          %h3.panel-title
-            Change your password
+            = f.input :reset_password_token, as: :hidden
+            = f.full_error :reset_password_token
 
-        .panel-body
+            = f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+            = f.input :password_confirmation, label: "Confirm your new password", required: true
 
-          = form_for(resource, as: resource_name, url: password_path(resource_name), layout: :horizontal, method: 'put') do |f|
+          .panel-footer
+            .buttons
+              = f.button :submit, "Change my password", class: "btn-primary"
 
-            / = devise_error_messages!
-            = f.hidden_field :reset_password_token
-
-            = f.password_field :password, autocomplete: "off", autofocus: true
-            = f.password_field :password_confirmation, autocomplete: "off"
-
-            = f.submit "Change my password", :class=>'btn btn-primary form-control'
+            .links
+              = render "devise/shared/links"

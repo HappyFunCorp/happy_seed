@@ -20,6 +20,9 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+// Uncomment if you want to use the default bootstrap theme
+// @import 'bootstrap/theme';
+
 
 // --------------Global definitions--------------------
 // For example (add your own!!):
@@ -35,9 +38,10 @@
 // --------------Components----------------------------
 // Create your own and modify/extend Bootstrap's. For example:
 @import 'components/panel';
+@import 'components/profile_panels';
 
 
 // --------------Sections------------------------------
 // Page-specific styles. These should *only* be used as a last
 // resort if you really truly can't style your content more generally.
-@import 'sections/profile_page';
+// @import 'sections/profile_page';
