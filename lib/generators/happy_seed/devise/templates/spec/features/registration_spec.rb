@@ -81,7 +81,7 @@ feature "Registration", :type => :feature do
 
     body = ActionMailer::Base.deliveries.last.body
 
-    md = /(\/users\/password\/edit\?reset.*)"/.match( body.to_s )
+    md = body.encoded.match /(\/users\/password\/edit\?reset.*)/
     if !md
       assert( false, "URL NOT FOUND IN MESSAGE")
     end
