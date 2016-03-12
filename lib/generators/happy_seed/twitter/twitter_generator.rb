@@ -26,7 +26,8 @@ module HappySeed
         add_omniauth :twitter
 
         directory "docs"
-        insert_into_file "app/models/identity.rb", "\n    identity.secrettoken = auth.credentials.secret", after: "identity.accesstoken = auth.credentials.token"
+        directory "spec"
+        insert_into_file "app/models/identity.rb", "      identity.secrettoken = auth.credentials.secret\n", after: "identity.accesstoken = auth.credentials.token\n"
         migration_template("add_secret_token_to_identity.rb", "db/migrate/add_secret_token_to_identity.rb" )
 
         gsub_file( "app/models/user.rb", "Twitter.client( access_token: twitter.accesstoken )",

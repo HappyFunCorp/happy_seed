@@ -36,11 +36,12 @@ module HappySeed
           gsub_file "app/models/user.rb", ", :validatable", ""
           inject_into_class "app/models/user.rb", "User", "  has_many :identities, dependent: :destroy\n"
           # insert_into_file "app/models/user.rb", File.read( find_in_source_paths( "user.rb" ) ), :before => "\nend\n"
+          inject_into_class "app/models/user.rb", "User", File.read( find_in_source_paths( "user.rb" ) )
         rescue
           say_status :user_model, "Unable to add omniauthable to app/models/users.rb", :red
         end
 
-        gsub_file 'config/routes.rb', "devise_for :users\n", "devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }\n"
+        gsub_file 'config/routes.rb', "devise_for :users\n", "devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }\n"
 
         directory "docs"
       end

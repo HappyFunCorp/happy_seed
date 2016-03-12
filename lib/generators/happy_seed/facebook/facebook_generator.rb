@@ -22,6 +22,8 @@ module HappySeed
         end
 
         directory 'docs'
+        directory 'spec'
+
 
         add_omniauth :facebook, "email"
       end

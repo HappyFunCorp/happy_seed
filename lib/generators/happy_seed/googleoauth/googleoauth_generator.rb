@@ -26,7 +26,7 @@ module HappySeed
         directory 'app'
 
         add_omniauth :google_oauth2, 'email,profile,offline", prompt: "consent', 'GoogleAppsClient', "google_oauth2"
-        insert_into_file "app/models/identity.rb", "\n    identity.refreshtoken = auth.credentials.refresh_token", after: "identity.accesstoken = auth.credentials.token"
+        insert_into_file "app/models/identity.rb", "\n      identity.refreshtoken = auth.credentials.refresh_token", after: "identity.accesstoken = auth.credentials.token"
         migration_template("add_refresh_token_to_identity.rb", "db/migrate/add_refresh_token_to_identity.rb" )
       end
 

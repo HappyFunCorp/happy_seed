@@ -59,11 +59,9 @@ RUBY
         def self.gem_available?( name )
           Bundler.with_clean_env do
             begin
-              Gem::Specification.find_by_name(name)
+              return Bundler.environment.gem name
             rescue Gem::LoadError
               false
-            rescue
-              Gem.available?(name)
             end
           end
         end
