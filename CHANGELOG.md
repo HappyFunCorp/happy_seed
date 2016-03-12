@@ -4,6 +4,7 @@ Version 0.0.21
   - Integrated simple_form for scaffolded code
   - Got rid of FormUser
   - Added OAuth feature specs
+  - Added premailer and HTML to devise mail templates
   
 Version 0.0.20
   - Updated Bootstrap panels in the templates

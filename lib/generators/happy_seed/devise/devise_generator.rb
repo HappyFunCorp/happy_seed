@@ -16,6 +16,8 @@ module HappySeed
         require_generator BootstrapGenerator
 
         gem 'devise', '~> 4.0.0.rc2'
+        gem 'premailer-rails'
+        gem 'nokogiri'
 
         Bundler.with_clean_env do
           run "bundle install --without production"
