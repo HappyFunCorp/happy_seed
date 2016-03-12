@@ -21,6 +21,15 @@
             .form-actions
               = f.button :submit, "Update", class: "btn-primary"
 
+      - if devise_mapping.omniauthable?
+        = panel title: 'Connect your accounts', context: :primary do
+          .panel-body
+            - resource_class.omniauth_providers.each do |provider|
+              - if resource.identities.where( :provider => provider ).first
+                %p= link_to "Reconnect with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: "btn btn-default"
+              - else
+                %p= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), class: "btn btn-default"
+
     .profile.sidebar
       = panel title: "Cancel my Account", context: :danger do
         .panel-body
