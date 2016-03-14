@@ -38,6 +38,7 @@ Bundler.with_clean_env do
     {name: 'splash', desc: 'Basic splash page' },
     {name: 'devise', desc: 'User profiles', subtree: [
       {name: 'devise_invitable', desc: 'Invitable users'},
+      {name: 'devise_confirmable', desc: 'Confirmable users'},
       {name: 'facebook', desc: 'OAuth: Connect with facebook' },
       {name: 'github', desc: 'OAuth: Connect with github' },
       {name: 'googleoauth', desc: 'OAuth: Connect wuth google' },

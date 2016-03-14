@@ -1,0 +1,22 @@
+HappySeed Devise Confirmable Install
+===================
+
+### What does this do?
+
+The `happy_seed:devise_confirmable` generator
+
+* Installs devise_confirmable
+* Adds columns to track if the user has been confirmed
+* Copies over devise views
+* Gives them bootstrap views
+
+### Why do you want this?
+
+This allows you to invite users to the site and have them sign up through a link.
+### Environment Variables
+
+na
+
+### What needs to be done?
+
+na

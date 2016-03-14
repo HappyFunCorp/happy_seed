@@ -82,6 +82,8 @@ After{ Warden.test_reset! }"
         end
 
         gsub_file "config/initializers/devise.rb", "# config.parent_mailer = 'ActionMailer::Base'", "config.parent_mailer = 'ApplicationMailer'"
+
+        gsub_file 'config/routes.rb', "devise_for :users", "devise_for :users, :controllers => { }"
       end
 
       private

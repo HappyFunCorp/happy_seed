@@ -42,7 +42,7 @@ module HappySeed
           say_status :user_model, "Unable to add omniauthable to app/models/users.rb", :red
         end
 
-        gsub_file 'config/routes.rb', "devise_for :users\n", "devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations' }\n"
+        gsub_file 'config/routes.rb', "devise_for :users, :controllers => {", "devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', "
 
         directory "docs"
       end

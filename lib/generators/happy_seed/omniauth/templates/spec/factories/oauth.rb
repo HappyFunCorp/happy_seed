@@ -3,5 +3,8 @@ FactoryGirl.define do
     before(:create) do |user, evaluator|
       user.oauth_callback = true
     end
+    if User.devise_modules.include? :confirmable
+      confirmed_at Time.now
+    end
   end
 end

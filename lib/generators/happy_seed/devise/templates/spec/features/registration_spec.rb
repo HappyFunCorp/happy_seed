@@ -12,7 +12,22 @@ feature "Registration", :type => :feature do
 
     click_button "Sign up"
 
-    expect( page.body ).to include( "Welcome! You have signed up successfully." )
+    if User.devise_modules.include? :confirmable
+      expect( page.body ).to include( 'A message with a confirmation link has been sent to your email address.' )
+
+      body = ActionMailer::Base.deliveries.last.body
+
+      md = body.encoded.match /(\/users\/confirmation.*) /
+      if !md
+        assert( false, "Confirmation URL not found in message" )
+      end
+
+      visit md[1]
+
+      expect( page.body ).to include( "Your email address has been successfully confirmed." )
+    else
+      expect( page.body ).to include( "Welcome! You have signed up successfully." )
+    end
 
     click_link "Profile"
   end
@@ -42,7 +57,22 @@ feature "Registration", :type => :feature do
 
     click_button "Sign up"
 
-    expect( page.body ).to include( "Welcome! You have signed up successfully." )
+    if User.devise_modules.include? :confirmable
+      expect( page.body ).to include( 'A message with a confirmation link has been sent to your email address.' )
+
+      body = ActionMailer::Base.deliveries.last.body
+
+      md = body.encoded.match /(\/users\/confirmation.*) /
+      if !md
+        assert( false, "Confirmation URL not found in message" )
+      end
+
+      visit md[1]
+
+      expect( page.body ).to include( "Your email address has been successfully confirmed." )
+    else
+      expect( page.body ).to include( "Welcome! You have signed up successfully." )
+    end
 
     click_link "Profile"
 
@@ -67,7 +97,7 @@ feature "Registration", :type => :feature do
   end
 
   it "following a forgot password link should let you reset your password and log in" do
-    user = create :user
+    user = create :user, confirmed_at: Time.now
 
     visit new_user_password_path
 

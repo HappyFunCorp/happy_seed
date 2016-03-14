@@ -1,0 +1,17 @@
+.container
+  .row
+    .profile.center
+      = panel title: 'Resend confirmation instructions', context: :primary do
+        = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f|
+          .panel-body
+            = f.error_notification
+            = f.full_error :confirmation_token
+
+            .form-inputs
+              = f.input :email, required: true, autofocus: true
+          .panel-footer
+            .buttons
+              = f.button :submit, "Resend confirmation instructions", class: "btn-primary"
+
+            .links
+              = render "devise/shared/links"

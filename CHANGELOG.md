@@ -4,7 +4,8 @@ Version 0.0.21
   - Integrated simple_form for scaffolded code
   - Got rid of FormUser
   - Added OAuth feature specs
-  - Added premailer and HTML to html_email generator
+  - Added happy_seed:html_email - premailer and HTML emails
+  - Added happy_seed:devise_confirmable
   - Switch to github version of devise_invitable
   - Updated Forgotpassword and invite emails to html
   - Including better errors
