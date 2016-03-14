@@ -9,6 +9,7 @@ Version 0.0.21
   - Updated Forgotpassword and invite emails to html
   - Including better errors
   - Updated ActiveAdmin generator
+  - Added ckeditor to ActiveAdmin
   - Fixed #53
   
 Version 0.0.20

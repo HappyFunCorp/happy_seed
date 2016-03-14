@@ -21,6 +21,8 @@ module HappySeed
         gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
 
         gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+
+        gem 'ckeditor'
         # gem 'dateslices'
 
         Bundler.with_clean_env do
@@ -37,7 +39,7 @@ module HappySeed
         directory "spec"
         directory "vendor"
 
-        insert_into_file "config/initializers/active_admin.rb", "  config.register_javascript '//www.google.com/jsapi'\n  config.register_javascript 'chartkick.js'\n", :after => "To load a javascript file:\n"
+        insert_into_file "config/initializers/active_admin.rb", "  config.register_javascript '//www.google.com/jsapi'\n  config.register_javascript 'chartkick.js'\n  config.register_javascript 'ckeditor/init.js'", :after => "To load a javascript file:\n"
         append_to_file "config/initializers/assets.rb", "\nRails.application.config.assets.precompile += %w( chartkick.js )\n"
 
         inject_into_file 'config/application.rb', after: "config.generators do |g|\n" do <<-'RUBY'

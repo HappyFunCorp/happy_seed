@@ -18,6 +18,7 @@ module HappySeed
         migration_template("make_email_nullable.rb", "db/migrate/make_email_nullable.rb" )
 
         gem 'omniauth'
+        gem 'omniauth-oauth2', '1.3.1'
 
         Bundler.with_clean_env do
           run "bundle install --without production"
