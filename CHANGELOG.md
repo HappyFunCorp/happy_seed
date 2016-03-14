@@ -7,6 +7,7 @@ Version 0.0.21
   - Added premailer and HTML to html_email generator
   - Switch to github version of devise_invitable
   - Updated Forgotpassword and invite emails to html
+  - Including better errors
   
 Version 0.0.20
   - Updated Bootstrap panels in the templates
