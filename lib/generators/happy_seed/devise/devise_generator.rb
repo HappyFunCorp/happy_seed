@@ -1,5 +1,6 @@
 require 'generators/happy_seed/happy_seed_generator'
 require 'generators/happy_seed/bootstrap/bootstrap_generator'
+require 'generators/happy_seed/html_email/html_email_generator'
 
 module HappySeed
   module Generators
@@ -14,18 +15,15 @@ module HappySeed
         return if already_installed
 
         require_generator BootstrapGenerator
+        require_generator HtmlEmailGenerator
 
         gem 'devise', '~> 4.0.0.rc2'
-        gem 'premailer-rails'
-        gem 'nokogiri'
 
         Bundler.with_clean_env do
           run "bundle install --without production"
         end
 
         run 'bin/spring stop'
-
-        puts "Devise: #{self.class.fingerprint}"
 
         Bundler.with_clean_env do
           run 'rails generate devise:install'
@@ -40,6 +38,8 @@ module HappySeed
           remove_file 'app/views/devise/passwords/edit.html.erb'
           remove_file 'app/views/devise/passwords/new.html.erb'
         end
+
+        remove_file 'app/views/devise/mailer/reset_password_instructions.html.erb'
 
         remove_file "spec/factories/users.rb"
         
@@ -80,6 +80,8 @@ After{ Warden.test_reset! }"
         else
           say_status :gsub_file, "Can't find application/_header.html.haml, skipping"
         end
+
+        gsub_file "config/initializers/devise.rb", "# config.parent_mailer = 'ActionMailer::Base'", "config.parent_mailer = 'ApplicationMailer'"
       end
 
       private

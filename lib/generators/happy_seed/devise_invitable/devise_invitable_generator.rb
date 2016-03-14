@@ -14,7 +14,7 @@ module HappySeed
 
         require_generator DeviseGenerator
 
-        gem 'devise_invitable'
+        gem 'devise_invitable', github: "scambra/devise_invitable"
 
         Bundler.with_clean_env do
           run "bundle install --without production"
@@ -24,6 +24,8 @@ module HappySeed
         run 'rails generate devise_invitable:install'
         run 'rails generate devise_invitable User'
         run 'rails generate devise_invitable:views'
+
+        remove_file 'app/views/devise/mailer/invitation_instructions.html.erb'
         
         directory '.'
 
