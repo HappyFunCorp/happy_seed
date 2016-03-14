@@ -8,6 +8,8 @@ Version 0.0.21
   - Switch to github version of devise_invitable
   - Updated Forgotpassword and invite emails to html
   - Including better errors
+  - Updated ActiveAdmin generator
+  - Fixed #53
   
 Version 0.0.20
   - Updated Bootstrap panels in the templates

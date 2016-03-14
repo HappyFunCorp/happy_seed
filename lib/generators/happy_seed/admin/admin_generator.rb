@@ -12,10 +12,16 @@ module HappySeed
       def install_active_admin
         return if already_installed
 
-        gem 'devise'
-        gem 'activeadmin', github: 'activeadmin', branch: 'master'
-        gem 'inherited_resources' # , github: 'josevalim/inherited_resources', branch: 'rails-4-2'
-        gem 'dateslices'
+        gem 'devise', '~> 4.0.0.rc2'
+        # gem 'activeadmin', github: 'activeadmin', branch: 'master'
+        gem 'activeadmin', github: 'activeadmin'
+        gem 'ransack',    github: 'activerecord-hackery/ransack'
+        gem 'kaminari',   github: 'amatsuda/kaminari', branch: '0-17-stable'
+        gem 'formtastic', github: 'justinfrench/formtastic'
+        gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
+
+        gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+        # gem 'dateslices'
 
         Bundler.with_clean_env do
           run "bundle install --without production"

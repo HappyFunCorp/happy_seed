@@ -43,7 +43,6 @@ module HappySeed
           gem 'rails-controller-testing'
           gem "better_errors"
           gem "binding_of_caller"
-
         end
 
         gem_group :test do
