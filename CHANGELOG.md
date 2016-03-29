@@ -12,6 +12,7 @@ Version 0.0.21
   - Updated ActiveAdmin generator
   - Added ckeditor to ActiveAdmin
   - Fixed #53
+  - Added fake redis
   
 Version 0.0.20
   - Updated Bootstrap panels in the templates

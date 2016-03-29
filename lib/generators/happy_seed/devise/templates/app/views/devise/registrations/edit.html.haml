@@ -1,6 +1,6 @@
 .container
   .row
-    .profile.panel
+    .profile.large_panel
       = panel title: 'Edit Profile', context: :primary do
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
           .panel-body

@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe SplashController, :type => :controller do
+  before :each do
+    sign_out :user
+  end
+
   after do
     ENV['HTTP_AUTH_USERNAME'] = nil
     ENV['HTTP_AUTH_PASSWORD'] = nil
@@ -28,7 +32,7 @@ RSpec.describe SplashController, :type => :controller do
       ENV['GOOGLE_ANALYTICS_SITE_ID'] = '123456'
 
       get :index
-      expect( response.body ).to include( "['_setAccount','123456']" )
+      expect( response.body ).to include( "ga('create', '123456'" );
 
       ENV['GOOGLE_ANALYTICS_SITE_ID'] = nil
     end
@@ -39,7 +43,7 @@ RSpec.describe SplashController, :type => :controller do
       ENV["MAILCHIMP_SPLASH_SIGNUP_LIST_ID"] = nil
       ENV["MAILCHIMP_API_KEY"] = nil
 
-      xhr :post, :signup
+      post :signup, xhr: true
 
       expect( assigns( :message) ).to include( "environment variables need to be set" )
     end
@@ -54,7 +58,7 @@ RSpec.describe SplashController, :type => :controller do
         to_return(:status => 200, :body => "", :headers => {})
 
       
-      xhr :post, :signup, { :email => "wschenk@gmail.com" }
+      post :signup, xhr: true, params: { email: "wschenk@gmail.com" }
 
       expect( assigns( :message) ).not_to include( "environment variables need to be set" )
 

@@ -47,6 +47,9 @@ module HappySeed
 RUBY
         end
 
+        inject_into_file "config/environments/production.rb", "  config.assets.precompile += Ckeditor.assets\n  config.assets.precompile += ['ckeditor/*']\n", before: "end\n"
+        append_to_file "app/assets/stylesheets/active_admin.scss", "\n.cke_chrome {\n  width: 79.5% !important;\n  overflow: hidden;\n}"
+
         route <<-'ROUTE'
 namespace :admin do
     # get "/stats" => "stats#stats"

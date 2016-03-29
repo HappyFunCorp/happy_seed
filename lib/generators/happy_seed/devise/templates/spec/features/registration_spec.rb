@@ -97,7 +97,7 @@ feature "Registration", :type => :feature do
   end
 
   it "following a forgot password link should let you reset your password and log in" do
-    user = create :user, confirmed_at: Time.now
+    user = create :user
 
     visit new_user_password_path
 

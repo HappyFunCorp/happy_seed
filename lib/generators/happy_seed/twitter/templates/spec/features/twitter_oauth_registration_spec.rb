@@ -5,6 +5,7 @@ feature "TwitterOAuthRegistration", :type => :feature do
 
   before do
     OmniAuth.config.test_mode = true
+    sign_out :user
   end
 
   after do

@@ -27,7 +27,7 @@
 
 .profile {
   border: 0;
-  &.panel {
+  &.large_panel {
     @extend .col-sm-9;
     @extend .small_screen_flush;
   }

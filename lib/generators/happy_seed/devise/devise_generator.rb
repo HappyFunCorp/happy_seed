@@ -40,7 +40,8 @@ module HappySeed
         end
 
         remove_file 'app/views/devise/mailer/reset_password_instructions.html.erb'
-
+        remove_file 'app/views/devise/mailer/confirmation_instructions.html.erb'
+        
         remove_file "spec/factories/users.rb"
         
         begin

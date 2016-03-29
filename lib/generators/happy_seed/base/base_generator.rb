@@ -47,6 +47,7 @@ module HappySeed
 
         gem_group :test do
           gem "webmock"
+          gem "fakeredis", :require => "fakeredis/rspec"
         end
 
         gem_group :production do
