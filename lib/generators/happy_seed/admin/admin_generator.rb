@@ -1,4 +1,5 @@
 require 'generators/happy_seed/happy_seed_generator'
+require 'generators/happy_seed/roles/roles_generator'
 
 module HappySeed
   module Generators
@@ -12,6 +13,12 @@ module HappySeed
       def install_active_admin
         return if already_installed
 
+        seperate_admin_user = yes? "Install seperate AdminUser (otherwise add role to User)?"
+
+        if !seperate_admin_user
+          require_generator RolesGenerator
+        end
+
         gem 'devise', '~> 4.0.0.rc2'
         # gem 'activeadmin', github: 'activeadmin', branch: 'master'
         gem 'activeadmin', github: 'activeadmin'
@@ -23,13 +30,17 @@ module HappySeed
         gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 
         gem 'ckeditor'
-        # gem 'dateslices'
+        gem 'dateslices'
 
         Bundler.with_clean_env do
           run "bundle install --without production"
         end
 
-        generate 'active_admin:install'
+        if seperate_admin_user
+          generate 'active_admin:install'
+        else
+          generate 'active_admin:install --skip-users'
+        end
 
         remove_file "app/admin/dashboard.rb"
         remove_file "spec/factories/admin_users.rb"
@@ -40,6 +51,16 @@ module HappySeed
         directory "vendor"
 
         insert_into_file "config/initializers/active_admin.rb", "  config.register_javascript '//www.google.com/jsapi'\n  config.register_javascript 'chartkick.js'\n  config.register_javascript 'ckeditor/init.js'", :after => "To load a javascript file:\n"
+
+        if !seperate_admin_user
+          gsub_file "config/initializers/active_admin.rb", /# config.authentication_method.*/, "config.authentication_method = :authenticate_user!"
+          gsub_file "config/initializers/active_admin.rb", /# config.authorization_adapter = ActiveAdmin::CanCanAdapter/, "config.authorization_adapter = ActiveAdmin::CanCanAdapter"
+          gsub_file "config/initializers/active_admin.rb", /# config.on_unauthorized_access = :access_denied/, "config.on_unauthorized_access = :access_denied"
+          gsub_file "config/initializers/active_admin.rb", /# config.current_user_method.*/, "config.current_user_method = :current_user"
+          gsub_file "config/initializers/active_admin.rb", /config.logout_link_path.*/, "config.logout_link_path = :destroy_user_session_path"
+          gsub_file "config/initializers/active_admin.rb", /# config.logout_link_method.*/, "config.logout_link_method = :delete"
+        end
+
         append_to_file "config/initializers/assets.rb", "\nRails.application.config.assets.precompile += %w( chartkick.js )\n"
 
         inject_into_file 'config/application.rb', after: "config.generators do |g|\n" do <<-'RUBY'
