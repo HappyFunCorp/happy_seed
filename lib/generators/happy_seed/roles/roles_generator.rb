@@ -28,7 +28,7 @@ module HappySeed
         inject_into_class "app/models/user.rb", User, "  enum role: [:user, :admin]\n"
 
         inject_into_file 'app/controllers/application_controller.rb', 
-          "\n  def access_denied(exception)\n    redirect_to root_path, alert: exception.message\n  end\n",
+          "\n\n  def access_denied(exception)\n    redirect_to root_path, alert: exception.message\n  end\n",
           before: /\nend/
       end
     end

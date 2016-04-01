@@ -1,106 +1,141 @@
-//-----------------------------------------
-// Variables, customize bootstrap here
-//-----------------------------------------
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,300);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+// @import url(https://fonts.googleapis.com/css?family=Roboto:100,300);
+$font-family-sans-serif: "Lato";
+$headings-font-weight: 300;
 
-$red: #CD6363;
-$font-family-sans-serif: "Roboto";
-$headings-font-weight: 100;
-$font-size-base: 14px;
-$font-size-h2: floor(($font-size-base * 2.5));
+$brand-primary: darken(#428bca, 6.5%);
 
-$navbar-height: 75px;
-$navbar-default-bg: rgba(255,255,255, 0.9);
-$navbar-default-link-active-bg: rgb(255,255,255);
-$navbar-default-toggle-border-color: rgb(255,255,255);
-$navbar-default-toggle-icon-bar-bg: #000;
-$navbar-default-toggle-hover-bg: rgb(255,255,255);
-$navbar-default-link-active-color: $red;
+$navbar-default-bg: white;
+$navbar-default-border: white;
+$navbar-default-link-color: black;
 
-$jumbotron-bg: rgb(255,255,255);
-$border-color: #CCC;
+$navbar-default-link-hover-bg: lighten( $brand-primary, 50% );
+$navbar-default-link-active-bg: lighten( $brand-primary, 30% );
 
-$carousel-indicator-background: rgba(255, 0, 0, 0.2);
-$carousel-indicator-border: 1px solid black;
+$body-bg: white;
 
-$input-bg: rgba(255,0,0,0.1);
-$input-border: rgb(0,0,0);
-$form-submit-hover: rgba(0,0,0,0.1);
-$submit-button-color: rgb(0,0,0);
-$submit-border-color: rgb(0,0,0);
-$submit-button-background: transparent;
-// Color Palate
+$slideup-navbar-height: 150px;
+
+$border-radius-base: 2px;
+$border-radius-large: 2px;
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
-body {
-  margin-top: $navbar-height;
-  position: relative;
+@import 'components/slideup_header';
+
+// $slideup-navbar-height: $navbar-height !default;
+
+.btn-lg {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
 }
 
-.bottom-border {
-  border-bottom: 1px solid $border-color;
-}
+$splash-section-padding: 4em;
 
-.logo img{
-  width: 44px;
-  height: 54px;
-  margin: 10px;
-}
+body.splash {
+  text-align: center;
 
-.hero {
-  margin-top: 50px;
-}
-
-h4 {
-  font-weight: 300;
-  color: $red;
-}
-
-h2 {
-  margin-bottom: 80px;
-}
-
-#contact h1 {
-  color: $red;
-  margin-bottom: 40px;
-}
-
-section {
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-#about {
-  img {
-    margin: 0 auto;
+  p.info {
+    font-size: 1.5em;
   }
-}
 
-.avatar {
-  width: 100px;
-  height: 100px;
-  padding: 10px;
-}
-
-.carousel-indicators {
-  bottom: 0;
-  li {
-    border: $carousel-indicator-border;
-    background: $carousel-indicator-background;
+  section {
+    padding-top: $splash-section-padding;
+    padding-bottom: $splash-section-padding;
+    @extend .clearfix;
   }
-}
 
-form .btn {
-  background: $submit-button-background;
-  color: $submit-button-color;
-  input {
-    border-color: $submit-border-color;
-    &:hover {
-      background: $form-submit-hover;
-      color: black;
+  header {
+    height: 0;
+  }
+  .affix-top .navbar {
+    background: transparent;
+  }
+
+  .lightimage {
+    padding-top: 4 * $font-size-base + $slideup-navbar-height;
+    background-size: cover;
+    min-height: 600px;
+    p {padding: 2em 0;}
+    overflow: hidden;
+    position: relative;
+
+    .row {
+      position:relative;
+      z-index:2;
+    }
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.6;
+      background-image: url('https://s3.amazonaws.com/assets.happyfuncorp.com/splash-assets/unsplash_Matthew_Wiebe.jpg');
+      background-repeat: no-repeat;
+      background-position: 50% 0;
+      -ms-background-size: cover;
+      -o-background-size: cover;
+      -moz-background-size: cover;
+      -webkit-background-size: cover;
+      background-size: cover;
+    }
+  }
+
+  .colored.primary {
+    background: $brand-primary;
+    color: white;
+
+    p {
+      padding: 2em 0;
+      font-size: 1.3em;
+    }
+  }
+
+  .inner-column {
+    @extend .col-sm-8;
+    @extend .col-sm-offset-2;
+  }
+
+  .inner-block {
+    @extend .col-md-3;
+    @extend .col-sm-6;
+
+    @media (max-width: $screen-xs-max) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .quarter-block {
+    width: 25%;
+    float: left;
+
+    img {
+      @extend .img-responsive;
     }
   }
 }
 
+.btn-primary {
+  &:hover {
+    border: 1px solid $brand-primary;
+    background: white;
+    color: $brand-primary;
+  }
+}
+.btn-primary-inverted {
+  background: white;
+  color: $brand-primary;
+
+  &:hover {
+    border: 1px solid white;
+    background: $brand-primary;
+    color: white;
+  }
+}

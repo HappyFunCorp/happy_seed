@@ -1,0 +1,51 @@
+$slideup-navbar-height: $navbar-height !default;
+
+header.slideup {
+  position: static;
+
+  height: $slideup-navbar-height;
+
+  .navbar {
+    border:none;
+    @include box-shadow( 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28) );
+    transition: background-color .2s, height .5s, box-shadow .5s;
+
+    .navbar-brand {
+      transition: all .2s;
+      transition-timing-function: ease-out;
+
+
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    li > a {
+      transition: all .2s;
+      transition-timing-function: ease-out;
+
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  &.affix-top {
+    .navbar {
+      height: $slideup-navbar-height;
+      @include box-shadow( none );
+    }
+    .navbar-brand {
+      padding:  (($slideup-navbar-height - 20)/2) 15px;
+    }
+
+    .navbar-toggle {
+      margin-top: (($slideup-navbar-height - 20)/2);
+    }
+
+    li > a {
+      padding-top: (($slideup-navbar-height - 20)/2);
+      padding-bottom: (($slideup-navbar-height - 20)/2);
+      font-size: 12px;
+    }
+  }
+}

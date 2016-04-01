@@ -17,24 +17,19 @@
 
     = csrf_meta_tag
 
-  %body{ "data-spy" => "scroll", "data-target" => "#about"}
+  %body.splash#top{ data: { spy: "scroll", target: "#navbar"} }
     = render 'chromeframe'
     = render 'flashes'
 
-    %header#top.navbar-default.navbar-fixed-top{:role=>:banner}
-      .navbar-header
-        %button.navbar-toggle{:type=>:button, 'data-toggle'=>:collapse, 'data-target'=>'.navbar-collapse'}
-          %span.sr-only Toggle navigations
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        = link_to '#', :class=>'logo' do
-          =image_tag 'https://s3.amazonaws.com/assets.happyfuncorp.com/splash-assets/sw_logo.png', alt: "spork wrangler", class: "img-responsive logo"
-      %nav.pull-right.collapse.navbar-collapse{:role=>:navigation}
-        %ul.nav.navbar-nav
-          %li= link_to 'about', '#about'
-          %li= link_to 'team', '#team'
-          %li= link_to 'contact', '#contact'
+    %header.slideup.affix-top{ data: { spy: "affix", "offset-top": 10 } }
+      = navbar id: "navbar", fluid: true, position: :top, padding: 0 do
+        = vertical do
+          = link_to "Home", "#top"
+        = horizontal do
+          = nav class: 'navbar-right' do
+            = link_to "About", "#about"
+            = link_to "Features", "#features"
+            = link_to "Contact", "#contact"
 
     = yield
 
@@ -45,16 +40,18 @@
     :javascript
         $(function() { 
           window.scrollReveal = new scrollReveal();
-          $("#top ul li a[href^='#']").on('click', function(e) {
+          $("#top a[href^='#']").on('click', function(e) {
             e.preventDefault();
 
             // store hash
             var hash = this.hash;
 
+            var nav_height = $("nav").height();
+
             // animate
             $('html, body').animate({
-              scrollTop: $(this.hash).offset().top - 95  // 75 is navbar height
-            }, 300, function(){
+              scrollTop: $(this.hash).offset().top - nav_height
+            }, 500, function(){
               // when done, add hash to url
               // (default click behaviour)
               window.location.hash = hash;
