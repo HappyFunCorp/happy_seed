@@ -15,6 +15,7 @@ Version 0.0.21
   - Added fake redis
   - Added roles_generator
   - Changed admin generator to optionally use roles
+  - Updated Splashpage
   
 Version 0.0.20
   - Updated Bootstrap panels in the templates
