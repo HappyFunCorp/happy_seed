@@ -20,8 +20,7 @@ module HappySeed
         gem 'puma'
         gem 'rails_12factor'
         gem 'haml-rails'
-        # TODO quiet_assets needs to get updated for rails 5
-        # gem "quiet_assets"
+        gem "quiet_assets"
 
         gem_group :development, :test do
           gem "sqlite3"

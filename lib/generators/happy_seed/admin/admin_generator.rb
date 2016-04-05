@@ -29,6 +29,8 @@ module HappySeed
 
         gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 
+        # TODO Move this to it's own generator
+        # TODO Add to application.js
         gem 'ckeditor'
         gem 'dateslices'
 
