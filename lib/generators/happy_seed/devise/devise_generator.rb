@@ -17,7 +17,7 @@ module HappySeed
         require_generator BootstrapGenerator
         require_generator HtmlEmailGenerator
 
-        gem 'devise', '~> 4.0.0.rc2'
+        gem 'devise', '~> 4.0'
 
         Bundler.with_clean_env do
           run "bundle install --without production"
@@ -30,7 +30,7 @@ module HappySeed
           run 'rails generate devise User'
           run 'rails generate devise:views'
         end
-                
+
         if gem_available?( "haml-rails" )
           remove_file 'app/views/devise/registrations/new.html.erb'
           remove_file 'app/views/devise/registrations/edit.html.erb'
@@ -58,14 +58,9 @@ module HappySeed
           say_status :spec, "Unable to add devise helpers to rails_helper.rb", :red
         end
 
-        append_to_file "features/support/env.rb", "
-Warden.test_mode! 
-World(Warden::Test::Helpers)
-After{ Warden.test_reset! }"
-
         directory 'app'
         directory 'docs'
-        directory 'test'
+        # directory 'test'
         directory 'spec'
 
         application(nil, env: "development") do
@@ -85,6 +80,11 @@ After{ Warden.test_reset! }"
         gsub_file "config/initializers/devise.rb", "# config.parent_mailer = 'ActionMailer::Base'", "config.parent_mailer = 'ApplicationMailer'"
 
         gsub_file 'config/routes.rb', "devise_for :users", "devise_for :users, :controllers => { }"
+
+        append_to_file 'spec/support/env.rb', "
+Warden.test_mode!
+World(Warden::Test::Helpers)
+After{ Warden.test_reset! }"
       end
 
       private

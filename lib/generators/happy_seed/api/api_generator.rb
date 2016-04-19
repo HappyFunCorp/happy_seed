@@ -9,49 +9,54 @@ module HappySeed
         gem_available? 'apitome'
       end
 
-      def install_device_invitable
+      def install_api
         return if already_installed
+
+        gem 'apitome'
+        gem_group :development, :test do
+          gem 'rspec-rails'
+          gem 'factory_girl_rails'
+          gem 'faker'
+          gem 'rspec_api_documentation'
+        end
+
+        generate 'rspec:install'
 
         require_generator DeviseGenerator
 
-        gem 'apitome'
-        gem 'rspec_api_documentation', :groups => [:development, :test]
-
         Bundler.with_clean_env do
-          run "bundle install --without production"
+          run 'bundle install --without production'
         end
 
-        generate "model user_token user:belongs_to:index token installation_identifier:index push_token locked:boolean form_factor os"
-        generate "migration add_user_tokens_count_to_users user_tokens_count:integer"
+        generate 'model UserToken user:belongs_to token:string installation_identifier:string locked:boolean form_factor:string os:string'
+        generate 'migration AddUserTokensCountToUsers push_token:string user_tokens_count:integer'
 
         directory '.'
 
-        route "  scope module: :api, defaults: {format: :json} do
+        route "scope module: :api, defaults: {format: :json} do
     %w(v1).each do |version|
       namespace version.to_sym do
-        resource :configuration, only: %w(show)
-        resource :user_token, path: :token, only: %w(create destroy update)
         resources :users, only: %w(create update show) do
-          resources :questions, only: %w(index)
           collection do
             post :forgot_password
             put :reset_password
           end
         end
+        resource :user_token, path: :token, only: %w(create destroy)
       end
     end
-  end
-"
-        inject_into_class "app/models/user.rb", "User", "  has_many :user_tokens, dependent: :destroy\n"
+  end\n"
+
+        inject_into_class 'app/models/user.rb', 'User' do
+          "  has_many :user_tokens, dependent: :destroy
+  validates :push_token, allow_blank: true, uniqueness: {case_sensitive: false}"
+        end
 
         gsub_file "app/models/user_token.rb", /belongs_to :user\n/, "  validates :user, presence: true
   validates :token, presence: true, uniqueness: {case_sensitive: false}
   validates :installation_identifier, presence: true, uniqueness: {case_sensitive: false, scope: %w(user_id)}
-  validates :push_token, allow_blank: true, uniqueness: {case_sensitive: false}
   validates :form_factor, allow_blank: true, inclusion: {in: %w(smartphone tablet10 tablet7 desktop)}
   validates :os, allow_blank: true, inclusion: {in: %w(ios android bb wp7)}
-
-  scope :with_push_token, -> { where.not push_token: nil }
 
   belongs_to :user, counter_cache: true
 
@@ -64,29 +69,36 @@ module HappySeed
       token = Devise.friendly_token.downcase
       break token unless self.class.where(token: token).first.present?
     end
-  end
-"
+  end\n"
 
-        prepend_to_file 'spec/spec_helper.rb', "require 'rspec_api_documentation'\n"
-        append_to_file 'spec/spec_helper.rb', "\nRspecApiDocumentation.configure do |config|
+        append_to_file 'spec/rails_helper.rb', "\nRspecApiDocumentation.configure do |config|
   config.format = :json
-  config.docs_dir = Pathname( 'docs/api' )
+  config.docs_dir = Pathname('docs/api')
 
   config.request_headers_to_include = %w(Authorization)
   config.response_headers_to_include = %w()
 end"
 
-        append_to_file 'spec/factories/users.rb', "\nFactoryGirl.define do
-  factory :user_with_token, parent: :user do
+        insert_into_file 'spec/factories/users.rb', after: /factory :user do\s*$/ do
+          "\n    push_token { Faker::Lorem.characters 10 }\n"
+        end
+
+        insert_into_file 'spec/factories/users.rb', before: /end\s*\z/ do
+          "\n  factory :user_with_token, parent: :user do
     after :build do |user, evaluator|
-      user.user_tokens.build installation_identifier: Faker::Lorem.characters(10), push_token: Faker::Lorem.characters(10),
-                             form_factor: %w(smartphone tablet10 tablet7 desktop).sample, os: %w(ios android bb wp7).sample
+      user.user_tokens.build installation_identifier: Faker::Lorem.characters(10),
+      form_factor: %w(smartphone tablet10 tablet7 desktop).sample,
+      os: %w(ios android bb wp7).sample
     end
-  end
-end"
+  end\n"
+        end
+
+        rake 'db:migrate:reset', env: 'test'
+        rake 'docs:generate', env: 'test'
       end
 
       private
+
       def gem_available?(name)
         Gem::Specification.find_by_name(name)
       rescue Gem::LoadError
@@ -94,7 +106,6 @@ end"
       rescue
         Gem.available?(name)
       end
-
     end
   end
 end

@@ -11,3 +11,5 @@ test_app/
 lib/**/Gemfile.lock
 website/build
 .idea/
+.ruby-gemset
+.ruby-version
