@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Declare your gem's dependencies in happy_seed.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -10,5 +10,10 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-# To use debugger
-# gem 'debugger'
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'hash_syntax', require: false
+  # To use a debugger
+  # gem 'byebug'
+end
