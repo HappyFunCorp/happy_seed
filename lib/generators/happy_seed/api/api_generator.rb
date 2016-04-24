@@ -28,8 +28,7 @@ module HappySeed
           run 'bundle install --without production'
         end
 
-        generate 'model UserToken user:belongs_to token:string installation_identifier:string locked:boolean form_factor:string os:string'
-        generate 'migration AddUserTokensCountToUsers push_token:string user_tokens_count:integer'
+        generate 'model UserToken user:belongs_to access_token:string'
 
         directory '.'
 
@@ -48,26 +47,21 @@ module HappySeed
   end\n"
 
         inject_into_class 'app/models/user.rb', 'User' do
-          "  has_many :user_tokens, dependent: :destroy
-  validates :push_token, allow_blank: true, uniqueness: {case_sensitive: false}"
+          '  has_many :user_tokens, dependent: :destroy'
         end
 
-        gsub_file "app/models/user_token.rb", /belongs_to :user\n/, "  validates :user, presence: true
-  validates :token, presence: true, uniqueness: {case_sensitive: false}
-  validates :installation_identifier, presence: true, uniqueness: {case_sensitive: false, scope: %w(user_id)}
-  validates :form_factor, allow_blank: true, inclusion: {in: %w(smartphone tablet10 tablet7 desktop)}
-  validates :os, allow_blank: true, inclusion: {in: %w(ios android bb wp7)}
+        gsub_file 'app/models/user_token.rb', /belongs_to :user\n/, "belongs_to :user, required: true
 
-  belongs_to :user, counter_cache: true
+  validates :access_token, presence: true, uniqueness: {case_sensitive: false}
 
-  before_validation :set_token
+  before_validation :set_access_token
 
   private
 
-  def set_token
-    self.token ||= loop do
-      token = Devise.friendly_token.downcase
-      break token unless self.class.where(token: token).first.present?
+  def set_access_token
+    self.access_token ||= loop do
+      random_string = SecureRandom.hex(4).downcase
+      break random_string if self.class.where(access_token: random_string).empty?
     end
   end\n"
 
@@ -79,16 +73,10 @@ module HappySeed
   config.response_headers_to_include = %w()
 end"
 
-        insert_into_file 'spec/factories/users.rb', after: /factory :user do\s*$/ do
-          "\n    push_token { Faker::Lorem.characters 10 }\n"
-        end
-
         insert_into_file 'spec/factories/users.rb', before: /end\s*\z/ do
           "\n  factory :user_with_token, parent: :user do
     after :build do |user, evaluator|
-      user.user_tokens.build installation_identifier: Faker::Lorem.characters(10),
-      form_factor: %w(smartphone tablet10 tablet7 desktop).sample,
-      os: %w(ios android bb wp7).sample
+      user.user_tokens.build
     end
   end\n"
         end

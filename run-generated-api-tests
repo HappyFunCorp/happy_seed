@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+export HAPPY_SEED_PATH=`pwd`
+export TARGET_PATH=/tmp
+
+rm -rf $TARGET_PATH/test_app
+cd $TARGET_PATH
+
+rails new test_app -d sqlite3 -TB
+cp "$HAPPY_SEED_PATH/.ruby-gemset" $TARGET_PATH/test_app/
+cp "$HAPPY_SEED_PATH/.ruby-version" $TARGET_PATH/test_app/
+cp $TARGET_PATH/Gemfile.lock $TARGET_PATH/test_app/
+cd $TARGET_PATH/test_app
+
+echo "gem 'happy_seed', path: '$HAPPY_SEED_PATH'" >> Gemfile
+bundle
+bin/rails g happy_seed:api
+bundle exec rspec spec/acceptance/api/v1 -fd
+
+cp Gemfile.lock $TARGET_PATH/
+cd $HAPPY_SEED_PATH

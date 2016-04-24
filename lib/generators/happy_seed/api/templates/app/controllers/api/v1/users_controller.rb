@@ -20,7 +20,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     respond_to do |format|
       user = User.new user_params
       if user.save
-        user_token = user.user_tokens.where(installation_identifier: user_token_params[:installation_identifier]).first_or_create
+        user_token = user.user_tokens.create
         if user_token.persisted?
           format.json do
             render json: { user_token: user_token_hash(user_token, user: true) }, status: :created
@@ -33,26 +33,6 @@ class Api::V1::UsersController < Api::V1::BaseController
       else
         format.json do
           render json: { errors: user.errors }, status: :unprocessable_entity
-        end
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @user.present?
-        if @user.update(user_params)
-          format.json do
-            render json: { user: user_hash(@user) }, status: :ok
-          end
-        else
-          format.json do
-            render json: { errors: @user.errors }, status: :unprocessable_entity
-          end
-        end
-      else
-        format.json do
-          render json: { errors: { id: 'not found' } }, status: :not_found
         end
       end
     end
@@ -81,7 +61,6 @@ class Api::V1::UsersController < Api::V1::BaseController
           if user.errors.empty?
             render json: { user: user_hash(user) }, status: :ok
           else
-            p user.errors
             render json: { errors: user.errors }, status: :unprocessable_entity
           end
         else
@@ -98,10 +77,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    params.require(:user).permit :email, :password, :username, :push_token, :reset_password_token, :password_confirmation, invited: %w(email full_name).map(&:to_sym)
-  end
-
-  def user_token_params
-    params[:user_token].permit :installation_identifier
+    params.require(:user).permit :email, :password, :username, :reset_password_token, :password_confirmation, invited: %w(email full_name).map(&:to_sym)
   end
 end

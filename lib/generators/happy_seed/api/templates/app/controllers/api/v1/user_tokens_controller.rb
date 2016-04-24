@@ -3,13 +3,11 @@ class Api::V1::UserTokensController < Api::V1::BaseController
 
   def create
     respond_to do |format|
-      user = User.where('LOWER(email) = ?', user_token_params[:email].try(:downcase)).first
+      user = User.where('LOWER(email) = ?', user_params[:email].try(:downcase)).first
       if user.present?
-        if user.valid_password?(user_token_params[:password])
+        if user.valid_password?(user_params[:password])
           if user.active_for_authentication?
-            user_token = user.user_tokens.where(installation_identifier: user_token_params[:installation_identifier]).first_or_initialize
-            user_token.update form_factor: user_token_params[:form_factor],
-                              os: user_token_params[:os]
+            user_token = user.user_tokens.create
             if user_token.persisted?
               format.json do
                 render json: { user_token: user_token_hash(user_token, user: true) }, status: :ok
@@ -54,7 +52,7 @@ class Api::V1::UserTokensController < Api::V1::BaseController
 
   private
 
-  def user_token_params
-    params[:user_token].permit :email, :password, :installation_identifier, :form_factor, :os
+  def user_params
+    params[:user].permit :email, :password
   end
 end

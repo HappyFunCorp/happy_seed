@@ -7,19 +7,15 @@ resource 'User' do
   post '/v1/users', format: :json do
     parameter :email, 'Email', required: true, scope: :user
     parameter :password, 'Password', required: true, scope: :user
-    parameter :push_token, 'Unique Push Token', required: true, scope: :user
-    parameter :installation_identifier, 'Unique Installation Identifier', required: true, scope: :user_token
 
     let(:email) { user.email }
     let(:password) { user.password }
-    let(:push_token) { Faker::Lorem.characters 10 }
-    let(:installation_identifier) { Faker::Lorem.characters 10 }
 
     example_request 'sign up' do
       response_json = JSON.parse response_body
 
       expect(status).to eq(201)
-      expect(response_json['user_token']).to have_key('token')
+      expect(response_json['user_token']).to have_key('access_token')
       expect(response_json['user_token']).to have_key('user')
     end
 
@@ -72,31 +68,10 @@ resource 'User' do
 
     parameter :id, 'User Unique Identifier', required: true
 
-    let(:token) { ActionController::HttpAuthentication::Token.encode_credentials user.user_tokens.first.try(:token), installation_identifier: user.user_tokens.first.try(:installation_identifier) }
+    let(:token) { ActionController::HttpAuthentication::Token.encode_credentials user.user_tokens.first.try(:access_token) }
     let(:id) { user.id }
 
     example_request 'show' do
-      response_json = JSON.parse response_body
-
-      expect(status).to eq 200
-      expect(response_json['user']).to have_key('id')
-    end
-  end
-
-  put '/v1/users/:id', format: :json do
-    before { user.save }
-
-    header 'AUTHORIZATION', :token
-
-    parameter :id, 'User Unique Identifier', required: true
-    parameter :push_token, 'Unique Push Token', required: true, scope: :user
-
-    let(:token) { ActionController::HttpAuthentication::Token.encode_credentials user.user_tokens.first.try(:token), installation_identifier: user.user_tokens.first.try(:installation_identifier) }
-    let(:id) { user.id }
-    let(:push_token) { Faker::Lorem.characters 10 }
-
-    example_request 'update' do
-      explanation 'While this illustrates all possible parameters, any subset can be used. Example: to change only push_token, omit other optional parameters'
       response_json = JSON.parse response_body
 
       expect(status).to eq 200
