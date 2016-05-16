@@ -10,7 +10,10 @@ The `happy_seed:api` generator
 
 ### Why do you want this?
 
-This allows you to invite users to the site and have them sign up through a link.
+1. creates a base api framework for a project that is not exclusively api, and has html as well
+2. creates user signup, login and logout endpoints
+3. creates integration tests for these endpoints
+4. generates documentation at docs/api for these endpoints
 
 ### Environment Variables
 

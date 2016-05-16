@@ -1,11 +1,12 @@
 Version 0.0.21
-  - Upgrade to Rails 5.0.0.beta3
+  - Upgrade to Rails 5.0.0.rc1
   - Upgrade rspec-rails to 3.5.0.beta1
   - Integrated simple_form for scaffolded code
   - Got rid of FormUser
   - Added OAuth feature specs
   - Added happy_seed:html_email - premailer and HTML emails
   - Added happy_seed:devise_confirmable
+  - Added happy_seed:roles
   - Switch to github version of devise_invitable
   - Updated Forgotpassword and invite emails to html
   - Including better errors
@@ -13,7 +14,6 @@ Version 0.0.21
   - Added ckeditor to ActiveAdmin
   - Fixed #53
   - Added fake redis
-  - Added roles_generator
   - Changed admin generator to optionally use roles
   - Updated Splashpage
   

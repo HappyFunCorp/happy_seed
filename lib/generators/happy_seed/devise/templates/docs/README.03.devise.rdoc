@@ -10,6 +10,7 @@ The happy_seed:devise generator
 * Copies over devise views
 * Gives them bootstrap views
 * Installs MailPreview for the device mailer.
+* HTML Emails
 
 ### Why do you want this?
 

@@ -23,7 +23,7 @@ Turbolinks tend to be more trouble than they are worth.  Outside of making web s
 
 dotenv-rails mimics the way that heroku starts up the application even when using "rails s", rather than foreman.  This pulls in data from the .env file.  In the case where you only have the web application in the Procfile, its easier to read through the log file when you use rails s rather than foreman.  .env is also a good way to make sure that none of your configuration stuff is stuck away in code somewhere.
 
-Assuming that you aren't hemmoraging memory, using unicorn is a great way to get more out of your dynos.  This setup gives you 3 workers for every dyno.  (We have nothing against Puma.)
+This setups puma and foreman (a Procfile) which mirrors the default setup of heroku.
 
 Finally we setup some basic HTTP auth and a simple setup controller to help navigate what seed has generated for you.  By default the HTTP auth stuff is off (i.e. no user/pass set) but the basic idea is that before you open things up to the world you can share your app to a limited group of people.
 

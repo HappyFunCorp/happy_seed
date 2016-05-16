@@ -7,6 +7,7 @@ The happy_seed bootstrap generator
 
 * Installs bootstrap-sass
 * Installs modernizr-rails
+* Installs and configures simple_form
 * Organizes the app/assets directory
 * Organizes the app/views/layouts and app/views/application directories
 * Sets up some application_helper methods to make working with forms easier
@@ -19,6 +20,8 @@ The happy_seed bootstrap generator
 Bootstrap should be the base of all our projects going forward.  This creates a variables.css.scss where you can configure bootstrap to your needs, and you can put the custom css stuff after that.
 
 The splash generator builds on this, but doesn't use the main "application.css" stylesheets or javascripts.  The layout here should be used for the application proper.
+
+Easier forms with simple_form.
 
 Better scaffolding means that it's easier to just whip up things to get started.  While you will obviously eventually rewrite all of this code, it's good to have working stuff to start with that doesn't look painful.
 

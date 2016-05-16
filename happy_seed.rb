@@ -37,6 +37,7 @@ Bundler.with_clean_env do
   GRAPH = [
     {name: 'splash', desc: 'Basic splash page' },
     {name: 'devise', desc: 'User profiles', subtree: [
+      {name: 'roles', desc: 'User roles'},
       {name: 'devise_invitable', desc: 'Invitable users'},
       {name: 'devise_confirmable', desc: 'Confirmable users'},
       {name: 'facebook', desc: 'OAuth: Connect with facebook' },
