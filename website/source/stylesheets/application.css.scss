@@ -521,6 +521,7 @@ h3.outset {
 }
 
 .info_on_flow {
+  @extend .col-md-7;
   position: absolute;
 }
 
@@ -606,11 +607,11 @@ rect {
     }
   }
 }
-.devise_invitable_install {
+.invitable_install {
   path, tspan {
     opacity: 0.2;
   }
-  .devise_invitable_rect, .devise_rect, .bootstrap_rect, .base_rect, #devise2, #devise2, #devise_invitable2, #bootstrap2, #base2,#devise, #devise_invitable, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_devise_invitable {
+  .invitable_rect, .devise_rect, .bootstrap_rect, .base_rect, #devise2, #devise2, #invitable2, #bootstrap2, #base2,#devise, #invitable, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_invitable {
     fill: $green;
     opacity: 1;
     tspan {
@@ -618,6 +619,43 @@ rect {
     }
   }
 }
+.confirmable_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .confirmable_rect, .devise_rect, .bootstrap_rect, .base_rect, #devise2, #devise2, #confirmable2, #bootstrap2, #base2,#devise, #confirmable, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_confirmable {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.roles_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .roles_rect, .devise_rect, .bootstrap_rect, .base_rect, #devise2, #devise2, #roles2, #bootstrap2, #base2,#devise, #roles, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_roles {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.admin_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .admin_rect, .roles_rect, .devise_rect, .bootstrap_rect, .base_rect, #admin2, #admin, #devise2, #devise2, #roles2, #bootstrap2, #base2,#devise, #roles, #bootstrap, #base, .base_to_bootstrap, .bootstrap_to_devise, .devise_to_roles, .roles_to_admin {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+
 .api_install {
   path, tspan {
     opacity: 0.2;
@@ -654,11 +692,11 @@ rect {
     }
   }
 }
-.admin_install {
+.html_email_install {
   path, tspan {
     opacity: 0.2;
   }
-  .admin_rect, .base_rect, #admin2, #base2, #admin, #base, .base_to_admin {
+  .html_email_rect, .base_rect, #html_email2, #base2, #html_email, #base, .base_to_html_email {
     fill: $green;
     opacity: 1;
     tspan {
