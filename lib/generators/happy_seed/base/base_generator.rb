@@ -20,33 +20,32 @@ module HappySeed
         gem 'puma'
         gem 'rails_12factor'
         gem 'haml-rails'
-        gem "quiet_assets"
 
         gem_group :development, :test do
-          gem "sqlite3"
-          gem 'rspec', '~> 3.5.0.beta1'
-          gem 'rspec-rails', '~> 3.5.0.beta1'
-          gem "factory_girl_rails"
-          gem "capybara"
-          gem "cucumber-rails", :require => false
-          gem "guard-rspec", '~> 4.6.4', require: false
-          gem "guard-cucumber"
-          gem "database_cleaner"
-          gem "spring-commands-rspec"
+          gem 'sqlite3'
+          gem 'rspec', '~> 3.5.0'
+          gem 'rspec-rails', '~> 3.5.0'
+          gem 'factory_girl_rails'
+          gem 'capybara'
+          gem 'cucumber-rails', branch: 'rails-5', require: false
+          gem 'guard-rspec', '~> 4.6.4', require: false
+          gem 'guard-cucumber'
+          gem 'database_cleaner'
+          gem 'spring-commands-rspec'
           gem 'spring-commands-cucumber'
-          gem "launchy"
-          gem "vcr"
-          gem "faker"
+          gem 'launchy'
+          gem 'vcr'
+          gem 'faker'
           gem 'dotenv-rails'
           gem 'rdiscount'
           gem 'rails-controller-testing'
-          gem "better_errors"
-          gem "binding_of_caller"
+          gem 'better_errors'
+          gem 'binding_of_caller'
         end
 
         gem_group :test do
-          gem "webmock"
-          gem "fakeredis", :require => "fakeredis/rspec"
+          gem 'webmock'
+          gem 'fakeredis', require: 'fakeredis/rspec'
         end
 
         gem_group :production do
@@ -75,7 +74,7 @@ module HappySeed
 
         # Use the spring version and also run everything on startup
         gsub_file "Guardfile", 'cmd: "bundle exec rspec"', 'cmd: "bin/rspec", all_on_start: true'
-        gsub_file "Guardfile", 'guard "cucumber"', 'guard "cucumber", cli: "--color --strict"'
+        # gsub_file "Guardfile", 'guard "cucumber"', 'guard "cucumber", cli: "--color --strict"'
 
         directory '.'
         append_to_file '.gitignore', ".env\n"

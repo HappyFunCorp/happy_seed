@@ -16,6 +16,7 @@ Version 0.0.21
   - Added fake redis
   - Changed admin generator to optionally use roles
   - Updated Splashpage
+  - Removed quiet_assets gem
   
 Version 0.0.20
   - Updated Bootstrap panels in the templates

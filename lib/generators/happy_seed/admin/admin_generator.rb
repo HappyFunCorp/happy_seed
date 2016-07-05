@@ -1,5 +1,7 @@
 require 'generators/happy_seed/happy_seed_generator'
 require 'generators/happy_seed/roles/roles_generator'
+require 'generators/happy_seed/ckeditor/ckeditor_generator'
+
 
 module HappySeed
   module Generators
@@ -19,6 +21,8 @@ module HappySeed
           require_generator RolesGenerator
         end
 
+        require_generator CkeditorGenerator
+
         gem 'devise', '~> 4.0.0.rc2'
         # gem 'activeadmin', github: 'activeadmin', branch: 'master'
         gem 'activeadmin', github: 'activeadmin'
@@ -29,9 +33,6 @@ module HappySeed
 
         gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 
-        # TODO Move this to it's own generator
-        # TODO Add to application.js
-        gem 'ckeditor'
         gem 'dateslices'
 
         Bundler.with_clean_env do
