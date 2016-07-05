@@ -80,6 +80,7 @@ module HappySeed
         append_to_file '.gitignore', ".env\n"
 
         remove_file "application_controller.rb"
+        remove_file "test"
 
         inject_into_file 'app/controllers/application_controller.rb', 
           File.read( find_in_source_paths('application_controller.rb') ), 
@@ -93,10 +94,13 @@ module HappySeed
           "  config.log_level = :error\n", 
           before: "end\n"
 
-        inject_into_file 'config/environments/production.rb', 
-          "  config.lograge.enabled = true\n", 
+        inject_into_file 'config/environments/development.rb', 
+          "  config.assets.quiet = true\n", 
           before: "end\n"
 
+        inject_into_file 'config/environments/production.rb', 
+          "  config.lograge.enabled = true\n  config.assets.quiet = true\n", 
+          before: "end\n"
 
         begin
           inject_into_file 'spec/rails_helper.rb', "require 'webmock/rspec'\n", after: "'rspec/rails'\n"

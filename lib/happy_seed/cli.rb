@@ -11,7 +11,7 @@ module HappySeed
     desc "rails APPNAME", "Generate a new rails application"
     def rails( *args )
       seedrb = gem_file_path( "happy_seed.rb")
-      system "rails new -m #{seedrb} #{args.join( " " )} --skip-turbolinks"
+      system "rails new -m #{seedrb} #{args.join( " " )} --skip-turbolinks --skip-test-unit"
     end
 
     desc "plugin NAME", "Generate a new rails plugin"

@@ -17,7 +17,7 @@ module HappySeed
         require_generator BootstrapGenerator
         require_generator HtmlEmailGenerator
 
-        gem 'devise', '~> 4.0'
+        gem 'devise', '~> 4.2'
 
         Bundler.with_clean_env do
           run "bundle install --without production"
@@ -46,16 +46,8 @@ module HappySeed
         
         begin
           prepend_to_file 'spec/spec_helper.rb', "require 'devise'\n"
-          inject_into_file 'spec/spec_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n", :before => "\nend\n"
-          inject_into_file 'spec/spec_helper.rb', "\n  config.include Warden::Test::Helpers, type: :feature\n  Warden.test_mode!\n", :before => "\nend\n"
         rescue
           say_status :spec, "Unable to add devise helpers to spec_helper.rb", :red
-        end
-
-        begin
-          inject_into_file 'spec/rails_helper.rb', "\n  config.include Devise::TestHelpers, type: :controller\n  config.include Warden::Test::Helpers, type: :feature\n", :after => "FactoryGirl::Syntax::Methods\n"
-        rescue
-          say_status :spec, "Unable to add devise helpers to rails_helper.rb", :red
         end
 
         directory 'app'
@@ -80,11 +72,6 @@ module HappySeed
         gsub_file "config/initializers/devise.rb", "# config.parent_mailer = 'ActionMailer::Base'", "config.parent_mailer = 'ApplicationMailer'"
 
         gsub_file 'config/routes.rb', "devise_for :users", "devise_for :users, :controllers => { }"
-
-        append_to_file 'spec/support/env.rb', "
-Warden.test_mode!
-World(Warden::Test::Helpers)
-After{ Warden.test_reset! }"
       end
 
       private
