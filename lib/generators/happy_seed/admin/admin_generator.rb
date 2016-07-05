@@ -30,6 +30,7 @@ module HappySeed
         gem 'formtastic', github: 'justinfrench/formtastic'
         gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
 
+        # To fix a Draper deprecation error
         gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 
         gem 'dateslices'
