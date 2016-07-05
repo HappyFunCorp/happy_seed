@@ -23,9 +23,8 @@ module HappySeed
 
         require_generator CkeditorGenerator
 
-        gem 'devise', '~> 4.0.0.rc2'
-        # gem 'activeadmin', github: 'activeadmin', branch: 'master'
         gem 'activeadmin', github: 'activeadmin'
+        gem 'inherited_resources', github: 'activeadmin/inherited_resources'
         gem 'ransack',    github: 'activerecord-hackery/ransack'
         gem 'kaminari',   github: 'amatsuda/kaminari', branch: '0-17-stable'
         gem 'formtastic', github: 'justinfrench/formtastic'

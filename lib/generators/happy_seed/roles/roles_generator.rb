@@ -22,7 +22,7 @@ module HappySeed
         end
 
         template "ability.rb", "app/models/ability.rb"
-        template "docs"
+        directory "docs"
 
         generate 'migration add_role_to_users role:integer'
 
