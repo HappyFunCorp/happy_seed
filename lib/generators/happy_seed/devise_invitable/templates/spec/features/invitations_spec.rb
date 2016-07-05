@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 feature "Invitations", :type => :feature do
+  include Warden::Test::Helpers
+
   it "should only allow logged in users to invite people" do
     visit new_user_invitation_path
 
@@ -36,7 +38,7 @@ feature "Invitations", :type => :feature do
 
     body = ActionMailer::Base.deliveries.last.body
 
-    md = body.encoded.match /(\/users\/invitation\/accept.*)"/
+    md = body.encoded.match /(\/users\/invitation\/accept.*?)"/
     if !md
       assert( false, "URL NOT FOUND IN MESSAGE")
     end
