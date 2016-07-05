@@ -48,6 +48,7 @@ Bundler.with_clean_env do
       ]},
     {name: 'admin', desc: 'Active Admin for back office adminstration' },
     {name: 'api', desc: 'Provide API for mobile device (Beta)' },
+    {name: 'react', desc: 'Setup react-on-rails' },
     {name: 'angular', desc: 'Setup an angular application' },
     {name: 'jazz_hands', desc: 'Better Rails Console tools' }
   ]

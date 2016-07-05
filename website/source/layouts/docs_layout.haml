@@ -19,7 +19,7 @@
               - Dir.glob( "source/docs/README*").sort.each do |f|
                 - l = f.gsub( /.*source\//, "/" ).gsub( /.html.*/, ".html" )
                 - l = '/docs/README.01.html_email.html' if f =~ /html_email/
-                - n = f.gsub( /.*\d\d./, "" ).gsub( /.html.*/, "" ).capitalize
+                - n = f.gsub( /.*\d\d./, "" ).gsub( /.html.*/, "" ).gsub( /_/, " " ).gsub( /(\w*)/, &:capitalize )
                 %li{ class: current_page.url == l ? "active" : nil }
                   = link_to " - #{n}", l
                   

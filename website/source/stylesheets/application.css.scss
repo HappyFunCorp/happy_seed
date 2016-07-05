@@ -83,11 +83,16 @@ $pre-color: $charcoal;
 
 $section-spacing: 80px;
 
+$border-radius-small: 1px;
+$border-radius-base: 1px;
+
+
 //-----------------------------------------
 // Bootstrap
 //-----------------------------------------
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'bootstrap/theme';
 
 //-----------------------------------------
 // Rules

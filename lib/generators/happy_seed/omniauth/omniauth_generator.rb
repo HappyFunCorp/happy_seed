@@ -7,7 +7,7 @@ module HappySeed
       source_root File.expand_path('../templates', __FILE__)
 
       def self.fingerprint
-        gem_available?( 'omniauth')
+        gem_available?( 'omniauth' )
       end
 
       def install_omniauth
