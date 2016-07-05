@@ -10,7 +10,6 @@ The happy_seed bootstrap generator
 * Uses user roles and cancancan to control access
 * Optionally creates a seperate AdminUser model
 * Creates basic newsletter/campaign admin panel if `MAILCHIMP_API_KEY` is active
-* Includes ckeditor for editing HTML values.
 
 ### Why do you want this?
 
