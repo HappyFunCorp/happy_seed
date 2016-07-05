@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe SplashController, :type => :controller do
   before :each do
-    sign_out :user
+    begin
+      Devise
+      sign_out :user
+    rescue NameError
+    end
   end
 
   after do

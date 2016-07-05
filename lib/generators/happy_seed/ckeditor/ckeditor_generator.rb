@@ -21,8 +21,6 @@ module HappySeed
           run "bundle install --without production"
         end
 
-        # TODO Application js
-
         inject_into_file "config/environments/production.rb", "  config.assets.precompile += Ckeditor.assets\n  config.assets.precompile += ['ckeditor/*']\n", before: "end\n"
         inject_into_file "app/assets/javascripts/application.js", "\n//= require ckeditor/init", after: "//= require bootstrap-sprockets"
 
