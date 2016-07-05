@@ -17,6 +17,7 @@ Version 0.0.21
   - Changed admin generator to optionally use roles
   - Updated Splashpage
   - Removed quiet_assets gem
+  - Added react_on_rails
   
 Version 0.0.20
   - Updated Bootstrap panels in the templates
