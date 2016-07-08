@@ -17,7 +17,7 @@ The `happy_seed:base` generator installs `dotenv-rails`, `puma`, http site authe
 
 ### Why do you want this?
 
-Haml is great and we like it better than balancing out closing tags.  meta-tags makes it easy to flesh out SEO.
+Haml is great and we like it better than balancing out closing tags.  The meta-tags gem makes it easy to flesh out SEO.
 
 Turbolinks tend to be more trouble than they are worth.  Outside of making web site analytics slightly more cumbersome, we end up having trouble with debugging and testing.  Turbolinks work by having all of the javascript of the page loaded and resident and only replacing the body of the page when the user loads up a new page.  When everything works correctly this makes things faster; when it doesn't work correctly, you end up tracking down issues where DOM event handlers aren't correctly attached.
 

@@ -12,7 +12,7 @@ The `happy_seed:devise_confirmable` generator
 
 ### Why do you want this?
 
-This allows you to invite users to the site and have them sign up through a link.
+This allows you to confirm users through an email link and checks to make sure they are confirmed when logging in. For more information on devise and confirmable, [head](https://github.com/plataformatec/devise) here for the readme.
 
 ### Environment Variables
 
@@ -20,4 +20,4 @@ na
 
 ### What needs to be done?
 
-na
+Be aware that if you are running this generator after you already have users, you may want to mark existing users as already confirmed. Please read the comments in the migration and uncomment the line `execute("UPDATE users SET confirmed_at = NOW()") ` before running the migration.  For futher information consult [these docs.](https://github.com/plataformatec/devise/wiki/How-To:-Add-:confirmable-to-Users)
