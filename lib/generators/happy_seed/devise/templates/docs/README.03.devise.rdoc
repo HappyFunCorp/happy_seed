@@ -26,5 +26,4 @@ Take a look at the user model to see if you want to configure any other features
 
 Once you feel good about it run "rake db:migrate" and you should be good to go.
 
-## Writing tests
-
+For more information on devise please consult the docs [here.](https://github.com/plataformatec/devise)

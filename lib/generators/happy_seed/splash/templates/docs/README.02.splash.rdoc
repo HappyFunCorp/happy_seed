@@ -38,5 +38,5 @@ Style the page by editing assets/stylesheets/slash.css.scss, views/splash/index.
 1. Signup for mailchimp: https://login.mailchimp.com/signup
 2. Activate your account
 3. Create a mailing list: List -> Create List
-4. Get list ID (Settings -> List name and defaults) for MAILCHIMP_SPLASH_SIGNUP_LIST_ID
-5. Get MAILCHIMP_API_KEY (Your name -> Account -> Extras -> API Keys)
+4. Get list ID (Settings -> List name and defaults) for `MAILCHIMP_SPLASH_SIGNUP_LIST_ID`
+5. Get `MAILCHIMP_API_KEY` (Your name -> Account -> Extras -> API Keys)
