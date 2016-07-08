@@ -3,12 +3,12 @@ HappySeed Ckeditor Email Install
 
 ### What does this do?
 
-* Includes ckeditor for editing HTML values.
+* Includes ckeditor, a WYSIWYG editor for adding html to your documents. For a detailed explanation of everything you can do with ckeditor see the documentation for the gem [here.](https://github.com/galetahub/ckeditor)
 
 
 ### Why do you want this?
 
-Easy html body editors
+Easy html body editor for when you need to add html content through your admin panel/form/etc. We tend to use this for situations in which admins need to be able to add custom content to a page through active_admin etc. It's pretty great.
 
 ### Environment Variables
 
