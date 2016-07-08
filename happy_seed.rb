@@ -36,6 +36,7 @@ Bundler.with_clean_env do
 
   GRAPH = [
     {name: 'splash', desc: 'Basic splash page' },
+    {name: 'simple_cms', desc: 'Simple CMS' },
     {name: 'devise', desc: 'User profiles', subtree: [
       {name: 'roles', desc: 'User roles'},
       {name: 'devise_invitable', desc: 'Invitable users'},
