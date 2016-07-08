@@ -1,0 +1,79 @@
+%section.lightimage
+  .container
+    .row
+      .inner-column
+        %h1
+          - show_content :splash_title do
+            Big Fat Title
+
+        %p.info
+          - show_content :splash_description do
+            Great descriptive content
+
+        = link_to "Call to Action", root_url, class: "btn btn-primary btn-lg"
+
+%section.colored.primary#about
+  .container
+    .row
+      .inner-column
+        %h2
+          - show_content :splash_question do
+            Question I'm about to answer?
+
+        - show_content :splash_answer do
+          %p Why yes, this is the answer.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.  And it goes on for a bit.
+
+        = link_to "Another call to action", root_url, class: "btn btn-primary-inverted btn-lg"
+
+%section.features#features
+  .container
+    .row
+      .inner-block
+        = image_tag "https://s3.amazonaws.com/assets.happyfuncorp.com/splash-assets/pic1.jpg", class: "img-responsive"
+        - show_content :splash_feature_1 do
+          %h4 SPROUTS
+
+          %p It was a humorously perilous business for both of us. For, before we proceed further, it must be said that the monkey-rope was fast at both ends; fast to Queequeg's broad canvas belt, and fast to my narrow leather one.
+
+      .inner-block
+        = image_tag "https://s3.amazonaws.com/assets.happyfuncorp.com/splash-assets/pic2.jpg", class: "img-responsive"
+        - show_content :splash_feature_2 do
+          %h4 COUNTER CULTURE
+          %p It was a humorously perilous business for both of us. For, before we proceed further, it must be said that the monkey-rope was fast at both ends; fast to Queequeg's broad canvas belt, and fast to my narrow leather one.
+
+      .inner-block
+        = image_tag "https://s3.amazonaws.com/assets.happyfuncorp.com/splash-assets/pic3.jpg", class: "img-responsive"
+        - show_content :splash_feature_3 do
+          %h4 BIKE SANDWICH
+          %p It was a humorously perilous business for both of us. For, before we proceed further, it must be said that the monkey-rope was fast at both ends; fast to Queequeg's broad canvas belt, and fast to my narrow leather one. 
+
+      .inner-block
+        = image_tag "https://s3.amazonaws.com/assets.happyfuncorp.com/splash-assets/pic2.jpg", class: "img-responsive"
+        - show_content :splash_feature_4 do
+          %h4 COUNTER CULTURE
+          %p It was a humorously perilous business for both of us. For, before we proceed further, it must be said that the monkey-rope was fast at both ends; fast to Queequeg's broad canvas belt, and fast to my narrow leather one.
+
+%section.images
+  .quarter-block
+    = image_tag "https://scontent-lga3-1.cdninstagram.com/t51.2885-15/e35/12237401_1672681199644836_991083135_n.jpg"
+
+  .quarter-block
+    = image_tag "https://scontent-lga3-1.cdninstagram.com/t51.2885-15/e35/12716797_1679687052302598_977732638_n.jpg"
+  .quarter-block
+    = image_tag "https://scontent-lga3-1.cdninstagram.com/t51.2885-15/e35/12107643_1510048632656460_2102141939_n.jpg"
+  .quarter-block
+    = image_tag "https://scontent-lga3-1.cdninstagram.com/t51.2885-15/e35/12237446_1702630963356665_284108057_n.jpg"
+
+            
+%section.contact#contact
+  .container
+    .row
+      .inner-column
+        %h1 Stay connected for announcements and releases.
+        = form_tag splash_signup_path, role: :form, remote: true do
+          .form-group
+            .input-group
+              = text_field_tag :signup_email, "", class: "form-control", placeholder: 'E-Mail', type: "email"
+              %span.input-group-btn
+                = submit_tag 'Sign up', class: 'btn btn-primary'
+          %small#signup-message

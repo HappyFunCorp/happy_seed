@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-sm-10.col-sm-offset-1
+
+      %h1 FAQ
+
+      - @faqs.each do |faq|
+        .faq
+          .title
+            %a{ data: { toggle: "collapse" }, href: "##{faq.key.gsub( ".", "_")}" }
+              = faq.title
+              .icon
+          .content.collapse.in{ id: faq.key.gsub( ".", "_") }= faq.body.html_safe
