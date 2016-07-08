@@ -8,7 +8,7 @@ module HappySeed
       source_root File.expand_path('../templates', __FILE__)
 
       def self.fingerprint
-        gem_available?( 'omniauth' )
+        File.exists? 'app/models/simple_content.rb'
       end
 
       def install_simple_cms
