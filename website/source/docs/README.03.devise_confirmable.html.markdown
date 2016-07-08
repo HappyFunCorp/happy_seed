@@ -12,7 +12,7 @@ The `happy_seed:devise_confirmable` generator
 
 ### Why do you want this?
 
-This allows you to confirm users through an email link and checks to make sure they are confirmed when logging in. For more information on devise and confirmable, [head](https://github.com/plataformatec/devise) here for the readme.
+This allows you to confirm users through an email link and checks to make sure they are confirmed when logging in. For more information on devise and confirmable, check out the docs [here.](https://github.com/plataformatec/devise)
 
 ### Environment Variables
 
