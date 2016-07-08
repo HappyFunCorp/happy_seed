@@ -20,4 +20,4 @@ na
 
 ### What needs to be done?
 
-na
+Be aware that if you are running this generator after you already have users, you may want to mark existing users as already confirmed. Please read the comments in the migration and uncomment the line `execute("UPDATE users SET confirmed_at = NOW()") ` before running the migration.  For futher information consult [these docs.](https://github.com/plataformatec/devise/wiki/How-To:-Add-:confirmable-to-Users)

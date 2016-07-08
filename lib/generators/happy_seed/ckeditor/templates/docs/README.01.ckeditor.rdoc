@@ -8,7 +8,7 @@ HappySeed Ckeditor Email Install
 
 ### Why do you want this?
 
-Easy html body editor for when you need to add html content through your admin panel/form/etc. We tend to use this for situations in which admins need to be able to add custom content to a page through active_admin etc. It's pretty great.
+Easy html body editor for when you need to add html content through your admin panel/form/etc. Ckeditor is a great solution for this and makes it very easy.
 
 ### Environment Variables
 

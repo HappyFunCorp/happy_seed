@@ -3,11 +3,11 @@ HappySeed SimpleCms Install
 
 ### What does this do?
 
-The `happy_seed:simple_cms` generator depends upon `happy_seed:splash` and `happy_seed:admin` and installs a basic cms that allows you to use the `show_content` method.
+The `happy_seed:simple_cms` generator depends upon `happy_seed:splash` and `happy_seed:admin` and installs a basic cms by creating a SimpleContent model and a helper method called `show_content` you can use in your views.
 
 ### Why do you want this?
 
-It creates a very simple CMS that allows you to change content easily. It makes it especially easyfor sites where content changes often. This allows you to easily put in the base content and allow users to update at their liesure so you can focus on building and not tweaking copy.
+It creates a very simple CMS that allows you to change content easily. It makes it especially easy for sites where content changes often. This allows you to easily put in the base content and allow users to update at their liesure so you can focus on building and not tweaking copy.
 
 ### Environment Variables
 
@@ -15,7 +15,7 @@ None needed. However, see below on how to use the `@debug_content` instance vari
 
 ### What needs to be done?
 
-In addition to creating the active admin interface for modifying content the main helper it creates is the `show_content` method that you can use in your haml views as follows:
+In addition to creating the active admin interface for modifying content and the SimpleContent model, the main helper it creates is the `show_content` method that you can use in your haml views as follows:
 
 ```
 -show_content :my_content_title do

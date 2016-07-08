@@ -5,7 +5,7 @@ HappySeed Omniauth Install
 
 The `happy_seed:omniauth` generator depends upon `happy_seed:devise` and
 
-* Generates an Intentity model, linked to User
+* Generates an Indentity model, linked to User
 * Installs omniauth
 * Installs an omniauth_controller
 * Updates devise configuration
@@ -16,7 +16,7 @@ The `happy_seed:omniauth` generator depends upon `happy_seed:devise` and
 
 ### Why do you want this?
 
-This lets you easily add oauth authentication for 3rd party sites to you application, the main ones being facebook and twitter.  This sets up the infrastructure to make everything work with devise.
+This lets you easily add oauth authentication for 3rd party sites to your application; the main ones being facebook and twitter.  This sets up the infrastructure to make everything work with devise.
 
 The Identity model is used to link up the user with the remote information.  What information is given is stored, though you could go deeper with this.  Additionally, the access token for the user is store in the Identity model for interacting with the remote service on behalf of the user.
 
