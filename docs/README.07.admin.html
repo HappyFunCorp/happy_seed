@@ -10,8 +10,8 @@
     <meta property="og:url" content="http://seed.happyfuncorp.com"/>
     <meta property="og:type" content="website"/>
     <meta property="og:image" content="https://s3.amazonaws.com/happyfuncorp-cdn/use-happy-seed.png"/>
-    <meta property="og:description" content="Roses are red, violets are blue, your code sucks because you’re not using seed."/>
-    <link href="../stylesheets/application-6539cfdd.css" rel="stylesheet" type="text/css" />
+    <meta property="og:description" content="Seed is a rails application generator to build MVPs easily and quickly."/>
+    <link href="../stylesheets/application-087a5ab5.css" rel="stylesheet" type="text/css" /><link href="../stylesheets/socicons-d8ab83dd.css" rel="stylesheet" type="text/css" />
     <!-- = yield :stylesheets -->
     <script src="../javascripts/modernizr-d6ac2c8a.js" type="text/javascript"></script>
     <!--[if lt IE 9]>
@@ -47,10 +47,11 @@
               <li><a href="/docs/rails.html">Rails</a></li>
               <li><a href="/docs/plugin.html">Plugins</a></li>
               <li><a href="/docs/middleman.html">Static</a></li>
+              <li><a href="/docs/contribute.html">Contribute</a></li>
             </ul>
           </li>
-          <li><a href="http://codex.happyfuncorp.com/tagged/seed">Blog</a></li>
-          <li><a href="https://github.com/HappyFunCorp/happy_seed/blob/master/CHANGELOG.md">0.0.15</a></li>
+          <li><a href="http://codex.happyfuncorp.com/">Blog</a></li>
+          <li><a href="https://github.com/HappyFunCorp/happy_seed/blob/master/CHANGELOG.md">0.0.21</a></li>
         </ul>
       </nav>
     </header>
@@ -68,13 +69,16 @@
             <ul>
             <li>Installs active admin from git</li>
             <li>Runs the active_admin:install generator</li>
-            <li>Creates AdminUser model</li>
+            <li>Uses user roles and cancancan to control access</li>
+            <li>Optionally creates a seperate AdminUser model</li>
             <li>Creates basic newsletter/campaign admin panel if <code>MAILCHIMP_API_KEY</code> is active</li>
             </ul>
             
             <h3>Why do you want this?</h3>
             
-            <p>ActiveAdmin, for all of it&#39;s flaws, including out of date documentation, is a nice way to put a back-end on an application.</p>
+            <p>ActiveAdmin is a great way to create backend admin tools.  For very complex workflows it may make sense to go custom, but for quickly adding some crud operations it can&#39;t be beat.</p>
+            
+            <p>If you choose to create a seperate AdminUser there is a seperate user universe for admins.  If you want to use the existing devise users, then the happy_seed:roles generator is run and ActiveAdmin is configured to use CanCanCan for all of the models.  This lets you control admin access based upon the <code>abilities.rb</code> class.</p>
             
             <h3>Environment Variables</h3>
             
@@ -82,9 +86,31 @@
             
             <h3>What needs to be done?</h3>
             
-            <p>Add models to the dashboard.</p>
+            <p>Add models to the dashboard by editing app/admin/dashboard.rb to lay out the dashboard, and app/controllers/admin/stats_controller.rb to provide the data.</p>
             
-            <p>(the happy_Seed stats module is in development)</p>
+            <h3>Example of using rich text editor</h3>
+            
+            <p>To easily enable editing html content in ActiveAdmin we&#39;ve included the ckeditor.  Here&#39;s a quick example of how you&#39;d add this to the admin tool.</p>
+            
+            <p>First create a model:</p>
+            
+            <pre><code>rails g scaffold faq title:string body:text position:integer&#x000A;</code></pre>
+            
+            <p>Then create <code>app/admin/faq.rb</code>, and define the fields for the form:</p>
+            
+            <p>ActiveAdmin.register Faq do
+              permit_params :title, :body, :position</p>
+            
+            <p>form do |f|
+                f.semantic<em>errors # shows errors on :base
+                f.inputs do
+                  f.input :title
+                  f.input :body, as: :ckeditor, input</em>html: { ckeditor: { height: 400 } }          # builds an input field for every attribute
+                  f.input :position
+                end
+                f.actions         # adds the &#39;Submit&#39; and &#39;Cancel&#39; buttons
+              end
+            end</p>
           </div>
           <div class='col-sm-2 col-sm-pull-10'>
             <ul class='nav nav-pills nav-stacked'>
@@ -104,16 +130,31 @@
                 <a href="/docs/README.01.bootstrap.html"> - Bootstrap</a>
               </li>
               <li>
+                <a href="/docs/README.01.ckeditor.html"> - Ckeditor</a>
+              </li>
+              <li>
+                <a href="/docs/README.01.html_email.html"> - Html Email</a>
+              </li>
+              <li>
                 <a href="/docs/README.02.splash.html"> - Splash</a>
               </li>
               <li>
                 <a href="/docs/README.03.devise.html"> - Devise</a>
               </li>
               <li>
-                <a href="/docs/README.03.devise_invitable.html"> - Devise_invitable</a>
+                <a href="/docs/README.03.devise_confirmable.html"> - Devise Confirmable</a>
+              </li>
+              <li>
+                <a href="/docs/README.03.devise_invitable.html"> - Devise Invitable</a>
+              </li>
+              <li>
+                <a href="/docs/README.03.roles.html"> - Roles</a>
               </li>
               <li>
                 <a href="/docs/README.04.omniauth.html"> - Omniauth</a>
+              </li>
+              <li>
+                <a href="/docs/README.04.simple_cms.html"> - Simple Cms</a>
               </li>
               <li>
                 <a href="/docs/README.05.instagram.html"> - Instagram</a>
@@ -134,13 +175,16 @@
                 <a href="/docs/README.07.admin.html"> - Admin</a>
               </li>
               <li>
-                <a href="/docs/README.10.angular_install.html"> - Angular_install</a>
+                <a href="/docs/README.10.angular_install.html"> - Angular Install</a>
               </li>
               <li>
-                <a href="/docs/README.11.angular_view.html"> - Angular_view</a>
+                <a href="/docs/README.10.react.html"> - React</a>
               </li>
               <li>
-                <a href="/docs/README.12.jazz_hands.html"> - Jazz_hands</a>
+                <a href="/docs/README.11.angular_view.html"> - Angular View</a>
+              </li>
+              <li>
+                <a href="/docs/README.12.jazz_hands.html"> - Jazz Hands</a>
               </li>
               <li>
                 <a href="/docs/plugin.html">Plugins</a>
@@ -148,51 +192,99 @@
               <li>
                 <a href="/docs/middleman.html">Middleman</a>
               </li>
+              <li>
+                <a href="/docs/contribute.html">Contribute</a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
-    <section class='navy under' id='who'>
-      <div class='background'></div>
+    <footer>
       <div class='container'>
         <div class='row'>
-          <div class='left-col'>
-            <h1 class='jumbo'>Who?</h1>
-          </div>
-          <div class='right-col'>
-            <h2>
-              Sign up for the HappyFunCorp mailing&nbsp;list!
-            </h2>
+          <div class='infobloc'>
+            <h2>Sign up for the HappyFunCorp mailing list!</h2>
             <form action='//happyfuncorp.us8.list-manage.com/subscribe/post?u=4693df87615db712ba7e23f18&amp;amp;id=d4f8c4b866' class='form-horizontal md-3' method='post'>
               <div style='position: absolute; left: -5000px;'>
-                <input name='b_4693df87615db712ba7e23f18_d4f8c4b866' tabindex='-1' type='text' value=''>
+                <input name='b_4693df87615db712ba7e23f18_d4f8c4b866' tabindex='-1' type='email' value=''>
               </div>
               <div class='form-group' id='signup'>
                 <div class='col-sm-12'>
                   <div class='input-group'>
-                    <input class='form-control' name='EMAIL' placeholder='Enter your email periodic news from HFC' type='email'>
+                    <input class='form-control' name='EMAIL' placeholder='email address' type='email'>
                     <span class='input-group-btn'>
-                      <input type="submit" value="Sign Up" class="btn btn-primary" />
+                      <input type="submit" value="Sign Up" class="btn btn-default" />
                     </span>
                   </div>
                 </div>
               </div>
             </form>
-            <h3 class='outset tel mb-0'>
-              <div class='icon icon-seed-logo-white'></div>
-              HappySeed
-              <small>is a</small>
-              <a href="http://happyfuncorp.com">HappyFunCorp</a>
-              <small>Production.</small>
+            <h2>
+              You’ll get updates on new products, upcoming
               <br>
-              <small>Made in Brooklyn, NY.</small>
-            </h3>
+              events and much more!
+            </h2>
+            <p class='social'>
+              <a href='http://twitter.com/HappyFunCorp'>
+                <span class='socicon socicon-twitter bgcolor'></span>
+              </a>
+              <a href='http://instagram.com/HappyFunCorp'>
+                <span class='socicon socicon-instagram bgcolor'></span>
+              </a>
+              <a href='https://www.linkedin.com/company/1690055'>
+                <span class='socicon socicon-linkedin bgcolor'></span>
+              </a>
+              <a href='https://github.com/orgs/HappyFunCorp'>
+                <span class='socicon socicon-github bgcolor'></span>
+              </a>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://seed.happyfuncorp.com/" data-text="Happy Seed, a better way to start growing rails sites" data-via="happyfuncorp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </p>
+          </div>
+          <div class='hfc'>
+            <h2 class='happyfuncorp'><a href="http://happyfuncorp.com">HappyFunCorp</a></h2>
+            <ul>
+              <li><a href="http://happyfuncorp.com/#about">About</a></li>
+              <li><a href="http://happyfuncorp.com/#team">Team</a></li>
+              <li><a href="http://happyfuncorp.com/#portfolio">Portfolio</a></li>
+              <li><a href="http://happyfuncorp.com/#happy-thoughts">Happy Thoughts</a></li>
+              <li><a href="http://happyfuncorp.com/#news">News</a></li>
+              <li><a href="http://codex.happyfuncorp.com">Blog</a></li>
+              <!-- %li=link_to "Jobs", "http://happyfuncorp.com/#jobs" -->
+              <li><a href="http://academy.happyfuncorp.com/">Events</a></li>
+              <li><a href="http://happyfuncorp.com/#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class='products'>
+            <h2>Products</h2>
+            <ul>
+              <li><a href="http://seed.happyfuncorp.com/">Happy Seed</a></li>
+              <li><a href="http://happyalchemy.com/">Happy Alchemy</a></li>
+              <li><a href="http://shoutouts.happyfuncorp.com/">Shoutouts</a></li>
+              <li><a href="http://gaze.happyfuncorp.com">Benevolent Gaze</a></li>
+              <li><a href="http://knowmore.happyfuncorp.com">Knowmore</a></li>
+            </ul>
           </div>
         </div>
       </div>
-    </section>
-    <script src="../javascripts/all-c2e91618.js" type="text/javascript"></script>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-sm-12'>
+            <p class='bottom'>
+              <span class='left'>
+                &copy;
+                <span class='copy'>2015</span>
+              </span>
+              |
+              <span class='happyfuncorp'>
+                <a href="http://happyfuncorp.com">HappyFunCorp</a>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../javascripts/all-08a15019.js" type="text/javascript"></script>
     <script type="text/javascript">
       var _gaq=[['_setAccount','UA-20250697-7'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
@@ -200,7 +292,7 @@
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
     <!-- # - unless mobile_device? -->
-    <script src="../javascripts/scrollReveal-90e15013.js" type="text/javascript"></script>
+    <!-- # = javascript_include_tag 'scrollReveal.js' -->
     <script>
       $(function() { 
         window.scrollReveal = new scrollReveal();

@@ -60,42 +60,21 @@
       <div class='container'>
         <div class='row'>
           <div class='col-sm-10 col-sm-push-2'>
-            <h1>HappySeed Omniauth Install</h1>
+            <h2>Contributing to Seed</h2>
             
-            <h3>What does this do?</h3>
+            <p>To contribute to Seed, clone the <a href="https://github.com/happyfuncode/happy_seed">happy_seed repo</a>. To create a new app with the the rails generator script, run</p>
             
-            <p>The <code>happy_seed:omniauth</code> generator depends upon <code>happy_seed:devise</code> and</p>
+            <pre><code>$ export SEED_DEVELOPMENT=/path/to/your/happy_seed&#x000A;$ cd /path/to/your/happy_seed&#x000A;$ bundle exec happy_seed rails mytestapp&#x000A;</code></pre>
             
-            <ul>
-            <li>Generates an Indentity model, linked to User</li>
-            <li>Installs omniauth</li>
-            <li>Installs an omniauth_controller</li>
-            <li>Updates devise configuration</li>
-            <li>Adds routes</li>
-            <li>Removes devise email/password validations, updates database</li>
-            <li>Removes the :validatable option for devise and moves the login in class.</li>
-            <li>Adds a registration controller to allow the user to add email and password for auth strategies that don&#39;t support it.</li>
-            </ul>
+            <p>This will generate, for example, a new rails app and will set the <code>happy_seed</code> gem to use the source specified in <code>SEED_DEVELOPMENT</code>. Within that app, you can then use the regular generator commands, for example:</p>
             
-            <h3>Why do you want this?</h3>
+            <pre><code>$ cd mytestapp&#x000A;$ rails generate happy_seed:bootstrap&#x000A;</code></pre>
             
-            <p>This lets you easily add oauth authentication for 3rd party sites to your application; the main ones being facebook and twitter.  This sets up the infrastructure to make everything work with devise.</p>
+            <p>Since it&#39;s inconvenient to generate apps over and over, a simple pattern to test and undo your changes is</p>
             
-            <p>The Identity model is used to link up the user with the remote information.  What information is given is stored, though you could go deeper with this.  Additionally, the access token for the user is store in the Identity model for interacting with the remote service on behalf of the user.</p>
+            <pre><code>$ git commit -a&#x000A;$ rails generate happy_seed:bootstrap&#x000A;$ git reset --hard&#x000A;</code></pre>
             
-            <p>It also creates the omniauth_callback controller.  Devise as it&#39;s setup out of the box has the user&#39;s email address as the login, but not all services will give you the user&#39;s email address.  (Twitter for example.)  The controller in this case will check only set the email address if one is returned.</p>
-            
-            <p>It also creates a registration controller to allow a user to set an email.  If the user hasn&#39;t set a password, they can change email without it.  If they set an password, then it is required to change things in the future.  This is done using conditional validators rather than a seperate model for the user.</p>
-            
-            <p>Documented in spec/features/registration_spec.rb</p>
-            
-            <h3>Environment Variables</h3>
-            
-            <p>Set up a $HOME/.seed_defaults file which contains development application keys.  These will be copied over initially so that you don&#39;t need to enter them in all the time.</p>
-            
-            <h3>What needs to be done?</h3>
-            
-            <p>This is a base module which is used by <code>happy_seed:twitter</code>, <code>happy_seed:facebook</code> and <code>happy_seed:instagram</code> and more.</p>
+            <p>Write tests where needed and submit a pull request!</p>
           </div>
           <div class='col-sm-2 col-sm-pull-10'>
             <ul class='nav nav-pills nav-stacked'>
@@ -106,78 +85,12 @@
                 <a href="/docs/rails.html">Rails</a>
               </li>
               <li>
-                <a href="/docs/README.00.base.html"> - Base</a>
-              </li>
-              <li>
-                <a href="/docs/README.01.api.html"> - Api</a>
-              </li>
-              <li>
-                <a href="/docs/README.01.bootstrap.html"> - Bootstrap</a>
-              </li>
-              <li>
-                <a href="/docs/README.01.ckeditor.html"> - Ckeditor</a>
-              </li>
-              <li>
-                <a href="/docs/README.01.html_email.html"> - Html Email</a>
-              </li>
-              <li>
-                <a href="/docs/README.02.splash.html"> - Splash</a>
-              </li>
-              <li>
-                <a href="/docs/README.03.devise.html"> - Devise</a>
-              </li>
-              <li>
-                <a href="/docs/README.03.devise_confirmable.html"> - Devise Confirmable</a>
-              </li>
-              <li>
-                <a href="/docs/README.03.devise_invitable.html"> - Devise Invitable</a>
-              </li>
-              <li>
-                <a href="/docs/README.03.roles.html"> - Roles</a>
-              </li>
-              <li class='active'>
-                <a href="/docs/README.04.omniauth.html"> - Omniauth</a>
-              </li>
-              <li>
-                <a href="/docs/README.04.simple_cms.html"> - Simple Cms</a>
-              </li>
-              <li>
-                <a href="/docs/README.05.instagram.html"> - Instagram</a>
-              </li>
-              <li>
-                <a href="/docs/README.05.twitter.html"> - Twitter</a>
-              </li>
-              <li>
-                <a href="/docs/README.06.facebook.html"> - Facebook</a>
-              </li>
-              <li>
-                <a href="/docs/README.06.github.html"> - Github</a>
-              </li>
-              <li>
-                <a href="/docs/README.06.googleoauth.html"> - Googleoauth</a>
-              </li>
-              <li>
-                <a href="/docs/README.07.admin.html"> - Admin</a>
-              </li>
-              <li>
-                <a href="/docs/README.10.angular_install.html"> - Angular Install</a>
-              </li>
-              <li>
-                <a href="/docs/README.10.react.html"> - React</a>
-              </li>
-              <li>
-                <a href="/docs/README.11.angular_view.html"> - Angular View</a>
-              </li>
-              <li>
-                <a href="/docs/README.12.jazz_hands.html"> - Jazz Hands</a>
-              </li>
-              <li>
                 <a href="/docs/plugin.html">Plugins</a>
               </li>
               <li>
                 <a href="/docs/middleman.html">Middleman</a>
               </li>
-              <li>
+              <li class='active'>
                 <a href="/docs/contribute.html">Contribute</a>
               </li>
             </ul>

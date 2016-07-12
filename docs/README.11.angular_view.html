@@ -10,8 +10,8 @@
     <meta property="og:url" content="http://seed.happyfuncorp.com"/>
     <meta property="og:type" content="website"/>
     <meta property="og:image" content="https://s3.amazonaws.com/happyfuncorp-cdn/use-happy-seed.png"/>
-    <meta property="og:description" content="Roses are red, violets are blue, your code sucks because you’re not using seed."/>
-    <link href="../stylesheets/application-6539cfdd.css" rel="stylesheet" type="text/css" />
+    <meta property="og:description" content="Seed is a rails application generator to build MVPs easily and quickly."/>
+    <link href="../stylesheets/application-087a5ab5.css" rel="stylesheet" type="text/css" /><link href="../stylesheets/socicons-d8ab83dd.css" rel="stylesheet" type="text/css" />
     <!-- = yield :stylesheets -->
     <script src="../javascripts/modernizr-d6ac2c8a.js" type="text/javascript"></script>
     <!--[if lt IE 9]>
@@ -47,10 +47,11 @@
               <li><a href="/docs/rails.html">Rails</a></li>
               <li><a href="/docs/plugin.html">Plugins</a></li>
               <li><a href="/docs/middleman.html">Static</a></li>
+              <li><a href="/docs/contribute.html">Contribute</a></li>
             </ul>
           </li>
-          <li><a href="http://codex.happyfuncorp.com/tagged/seed">Blog</a></li>
-          <li><a href="https://github.com/HappyFunCorp/happy_seed/blob/master/CHANGELOG.md">0.0.15</a></li>
+          <li><a href="http://codex.happyfuncorp.com/">Blog</a></li>
+          <li><a href="https://github.com/HappyFunCorp/happy_seed/blob/master/CHANGELOG.md">0.0.21</a></li>
         </ul>
       </nav>
     </header>
@@ -103,16 +104,31 @@
                 <a href="/docs/README.01.bootstrap.html"> - Bootstrap</a>
               </li>
               <li>
+                <a href="/docs/README.01.ckeditor.html"> - Ckeditor</a>
+              </li>
+              <li>
+                <a href="/docs/README.01.html_email.html"> - Html Email</a>
+              </li>
+              <li>
                 <a href="/docs/README.02.splash.html"> - Splash</a>
               </li>
               <li>
                 <a href="/docs/README.03.devise.html"> - Devise</a>
               </li>
               <li>
-                <a href="/docs/README.03.devise_invitable.html"> - Devise_invitable</a>
+                <a href="/docs/README.03.devise_confirmable.html"> - Devise Confirmable</a>
+              </li>
+              <li>
+                <a href="/docs/README.03.devise_invitable.html"> - Devise Invitable</a>
+              </li>
+              <li>
+                <a href="/docs/README.03.roles.html"> - Roles</a>
               </li>
               <li>
                 <a href="/docs/README.04.omniauth.html"> - Omniauth</a>
+              </li>
+              <li>
+                <a href="/docs/README.04.simple_cms.html"> - Simple Cms</a>
               </li>
               <li>
                 <a href="/docs/README.05.instagram.html"> - Instagram</a>
@@ -133,13 +149,16 @@
                 <a href="/docs/README.07.admin.html"> - Admin</a>
               </li>
               <li>
-                <a href="/docs/README.10.angular_install.html"> - Angular_install</a>
-              </li>
-              <li class='active'>
-                <a href="/docs/README.11.angular_view.html"> - Angular_view</a>
+                <a href="/docs/README.10.angular_install.html"> - Angular Install</a>
               </li>
               <li>
-                <a href="/docs/README.12.jazz_hands.html"> - Jazz_hands</a>
+                <a href="/docs/README.10.react.html"> - React</a>
+              </li>
+              <li class='active'>
+                <a href="/docs/README.11.angular_view.html"> - Angular View</a>
+              </li>
+              <li>
+                <a href="/docs/README.12.jazz_hands.html"> - Jazz Hands</a>
               </li>
               <li>
                 <a href="/docs/plugin.html">Plugins</a>
@@ -147,51 +166,99 @@
               <li>
                 <a href="/docs/middleman.html">Middleman</a>
               </li>
+              <li>
+                <a href="/docs/contribute.html">Contribute</a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
-    <section class='navy under' id='who'>
-      <div class='background'></div>
+    <footer>
       <div class='container'>
         <div class='row'>
-          <div class='left-col'>
-            <h1 class='jumbo'>Who?</h1>
-          </div>
-          <div class='right-col'>
-            <h2>
-              Sign up for the HappyFunCorp mailing&nbsp;list!
-            </h2>
+          <div class='infobloc'>
+            <h2>Sign up for the HappyFunCorp mailing list!</h2>
             <form action='//happyfuncorp.us8.list-manage.com/subscribe/post?u=4693df87615db712ba7e23f18&amp;amp;id=d4f8c4b866' class='form-horizontal md-3' method='post'>
               <div style='position: absolute; left: -5000px;'>
-                <input name='b_4693df87615db712ba7e23f18_d4f8c4b866' tabindex='-1' type='text' value=''>
+                <input name='b_4693df87615db712ba7e23f18_d4f8c4b866' tabindex='-1' type='email' value=''>
               </div>
               <div class='form-group' id='signup'>
                 <div class='col-sm-12'>
                   <div class='input-group'>
-                    <input class='form-control' name='EMAIL' placeholder='Enter your email periodic news from HFC' type='email'>
+                    <input class='form-control' name='EMAIL' placeholder='email address' type='email'>
                     <span class='input-group-btn'>
-                      <input type="submit" value="Sign Up" class="btn btn-primary" />
+                      <input type="submit" value="Sign Up" class="btn btn-default" />
                     </span>
                   </div>
                 </div>
               </div>
             </form>
-            <h3 class='outset tel mb-0'>
-              <div class='icon icon-seed-logo-white'></div>
-              HappySeed
-              <small>is a</small>
-              <a href="http://happyfuncorp.com">HappyFunCorp</a>
-              <small>Production.</small>
+            <h2>
+              You’ll get updates on new products, upcoming
               <br>
-              <small>Made in Brooklyn, NY.</small>
-            </h3>
+              events and much more!
+            </h2>
+            <p class='social'>
+              <a href='http://twitter.com/HappyFunCorp'>
+                <span class='socicon socicon-twitter bgcolor'></span>
+              </a>
+              <a href='http://instagram.com/HappyFunCorp'>
+                <span class='socicon socicon-instagram bgcolor'></span>
+              </a>
+              <a href='https://www.linkedin.com/company/1690055'>
+                <span class='socicon socicon-linkedin bgcolor'></span>
+              </a>
+              <a href='https://github.com/orgs/HappyFunCorp'>
+                <span class='socicon socicon-github bgcolor'></span>
+              </a>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://seed.happyfuncorp.com/" data-text="Happy Seed, a better way to start growing rails sites" data-via="happyfuncorp">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </p>
+          </div>
+          <div class='hfc'>
+            <h2 class='happyfuncorp'><a href="http://happyfuncorp.com">HappyFunCorp</a></h2>
+            <ul>
+              <li><a href="http://happyfuncorp.com/#about">About</a></li>
+              <li><a href="http://happyfuncorp.com/#team">Team</a></li>
+              <li><a href="http://happyfuncorp.com/#portfolio">Portfolio</a></li>
+              <li><a href="http://happyfuncorp.com/#happy-thoughts">Happy Thoughts</a></li>
+              <li><a href="http://happyfuncorp.com/#news">News</a></li>
+              <li><a href="http://codex.happyfuncorp.com">Blog</a></li>
+              <!-- %li=link_to "Jobs", "http://happyfuncorp.com/#jobs" -->
+              <li><a href="http://academy.happyfuncorp.com/">Events</a></li>
+              <li><a href="http://happyfuncorp.com/#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class='products'>
+            <h2>Products</h2>
+            <ul>
+              <li><a href="http://seed.happyfuncorp.com/">Happy Seed</a></li>
+              <li><a href="http://happyalchemy.com/">Happy Alchemy</a></li>
+              <li><a href="http://shoutouts.happyfuncorp.com/">Shoutouts</a></li>
+              <li><a href="http://gaze.happyfuncorp.com">Benevolent Gaze</a></li>
+              <li><a href="http://knowmore.happyfuncorp.com">Knowmore</a></li>
+            </ul>
           </div>
         </div>
       </div>
-    </section>
-    <script src="../javascripts/all-c2e91618.js" type="text/javascript"></script>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-sm-12'>
+            <p class='bottom'>
+              <span class='left'>
+                &copy;
+                <span class='copy'>2015</span>
+              </span>
+              |
+              <span class='happyfuncorp'>
+                <a href="http://happyfuncorp.com">HappyFunCorp</a>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../javascripts/all-08a15019.js" type="text/javascript"></script>
     <script type="text/javascript">
       var _gaq=[['_setAccount','UA-20250697-7'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
@@ -199,7 +266,7 @@
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
     <!-- # - unless mobile_device? -->
-    <script src="../javascripts/scrollReveal-90e15013.js" type="text/javascript"></script>
+    <!-- # = javascript_include_tag 'scrollReveal.js' -->
     <script>
       $(function() { 
         window.scrollReveal = new scrollReveal();
