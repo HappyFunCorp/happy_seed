@@ -1,4 +1,4 @@
-HappySeed Base Install
+HappySeed Base Install (Now for Rails 5!)
 =================
 
 ### What does this do?

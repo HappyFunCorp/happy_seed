@@ -11,9 +11,7 @@ The view generator adds
 
 ### Why do you want this?
 
-Getting angular to work in rails is a pain, especially when working around the asset pipeline.  Figuring out how to get the controller views to be served correctly is just a hassle, and this gives a model for doing that as well as dealing with forgery.
-
-The philosophy here is that all of the angular html templates are stored out of the assets/templates directory.
+This sets up your angular views for you in a quick and easy way.
 
 ### Environment Variables
 
@@ -21,4 +19,4 @@ na
 
 ### What needs to be done?
 
-na
+When you have set up your project and you want to add a new angular view, just run `rails g happy_seed:angular_view <NAME_OF VIEW>`.
