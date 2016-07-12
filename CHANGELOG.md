@@ -1,5 +1,5 @@
 Version 0.0.21
-  - Upgrade to Rails 5.0.0.rc1
+  - Upgrade to Rails 5.0.0
   - Upgrade rspec-rails to 3.5.0.beta1
   - Integrated simple_form for scaffolded code
   - Got rid of FormUser
