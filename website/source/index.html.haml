@@ -58,7 +58,7 @@
         %h2.text-center How is Happy Seed put together?
         %br
     .row
-      .hidden-xs.hidden-sm.col-xs-12
+      .hidden-xs.hidden-sm.col-xs-12.svg_container
         =partial "svg" 
       .hidden-md.hidden-lg.col-sm-4.col-xs-12
         =partial "vert_svg"
@@ -103,9 +103,9 @@
 
           .info_on_flow.html_email_comment.hide_comment
             %h3 HTML Email install:
-            %p Additional info...
+            %p Installs the pre-mailer gem which inlines styles for you and makes creating html-email much easier. It also sets up some base styles so that your html-emails look good out of the box.
             %p
-              =link_to "Check out the docs >", "/docs/README.07.admin.html"
+              =link_to "Check out the docs >", "/docs/README.01.html_email.html"
           .info_on_flow.angular_view_comment.angular_install_comment.hide_comment
             %h3 Angular install:
             %p Installs angularjs-rails, updates application.js, creates structure in app/assets for templates and angular controllers, installs angular_controller.rb, and creates a sample landing view.
@@ -125,31 +125,39 @@
 
           .info_on_flow.confirmable_comment.hide_comment
             %h3 Devise confirmable install:
-            %p Additional info...
+            %p Installs and sets up devise_confirmable so you can confirm users through a link in an email.
             %p
-              =link_to "Check out the docs >", "/docs/README.03.devise_invitable.html"
-
-          .info_on_flow.admin_comment.hide_comment
-            %h3 Admin install:
-            %p Additional info...
-            %p
-              =link_to "Check out the docs >", "/docs/README.03.devise_invitable.html"
+              =link_to "Check out the docs >", "/docs/README.03.devise_confirmable.html"
 
           .info_on_flow.roles_comment.hide_comment
             %h3 Roles install:
-            %p Additional info...
+            %p Installs and sets up can-can so you can manage roles quickly and easily. It is set up to work with active-admin out of the box so that you don't need a separate admin.
             %p
-              =link_to "Check out the docs >", "/docs/README.03.devise_invitable.html"
+              =link_to "Check out the docs >", "/docs/README.03.roles.html"
 
           .info_on_flow.admin_comment.hide_comment
             %h3 Admin install:
-            %p Additional info...
+            %p Installs and sets up active admin for back office mangement of content, users etc.
             %p
-              =link_to "Check out the docs >", "/docs/README.03.devise_invitable.html"
+              =link_to "Check out the docs >", "/docs/README.07.admin.html"
 
+          .info_on_flow.react_comment.hide_comment
+            %h3 React Install
+            %p Installs react_on_rails and gets your Hello World react app up and running.
+            %p
+              =link_to "Check out the docs >", "/docs/README.10.react.html"
 
+          .info_on_flow.simple_cms_comment.hide_comment
+            %h3 Simple CMS Install
+            %p Creates a simple CMS to make switching out content a breeze. 
+            %p
+              =link_to "Check out the docs >", "/docs/README.04.simple_cms.html"
 
-
+          .info_on_flow.ckeditor_comment.hide_comment
+            %h3 Ckeditor Install
+            %p Installs ckeditor so that you can give users editing content the ability to add format text with html etc.
+            %p
+              =link_to "Check out the docs >", "/docs/README.01.ckeditor.html"
 
 %section#why.green.under
   .background

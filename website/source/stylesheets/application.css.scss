@@ -549,7 +549,11 @@ rect {
 }
 
 .comment_section {
-  height: 125px;
+  height: 230px;
+
+  @media (min-width: $screen-sm-min) {
+    height: 125px;
+  }
 }
 
 .googleauth_install {
@@ -709,6 +713,30 @@ rect {
     }
   }
 }
+.react_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .react_rect, .base_rect, #react2, #base2, #react, #base, .base_to_react {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+.ckeditor_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .ckeditor_rect, .base_rect, #ckeditor2, #base2, #ckeditor, #base, .base_to_ckeditor {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
 .jazz_hands_install {
   path, tspan {
     opacity: 0.2;
@@ -733,6 +761,19 @@ rect {
     }
   }
 }
+.simple_cms_install {
+  path, tspan {
+    opacity: 0.2;
+  }
+  .splash_rect, .simple_cms_rect, .bootstrap_rect, .base_rect, .base_to_bootstrap, .bootstrap_to_splash, .splash_to_simple_cms, #simple_cms, #simple_cms2,#base2, #bootstrap2, #splash2, #base, #bootstrap, #splash {
+    fill: $green;
+    opacity: 1;
+    tspan {
+      opacity: 1;
+    }
+  }
+}
+
 
 .angular_install_install, .angular_view_install {
   path, tspan {
@@ -777,6 +818,9 @@ rect {
        //-o-animation: swell 1s linear 0s infinite alternate;
           //animation: swell 1s linear 0s infinite alternate;  
   }
+}
+.svg_container {
+  margin-bottom: 100px;
 }
 svg {
   width: 100%;
