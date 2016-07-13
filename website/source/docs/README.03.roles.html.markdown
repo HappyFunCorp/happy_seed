@@ -20,4 +20,4 @@ na
 
 ### What needs to be done?
 
-Define roles in the enum on the user model and abilities inside of the `abilities.rb` class per the directions in the cancan documentation [here.](https://github.com/ryanb/cancan/wiki/Defining-Abilities)  
+Define roles in the enum on the user model and abilities inside of the `abilities.rb` class per the directions in the cancancan documentation [here.](https://github.com/CanCanCommunity/cancancan)  
