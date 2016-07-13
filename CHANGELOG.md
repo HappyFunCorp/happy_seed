@@ -1,3 +1,6 @@
+Version 0.0.22
+  - Updating setup_controller
+  
 Version 0.0.21
   - Upgrade to Rails 5.0.0
   - Upgrade rspec-rails to 3.5.0.beta1

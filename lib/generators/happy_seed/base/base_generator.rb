@@ -123,6 +123,9 @@ module HappySeed
         end
 
         route "get '/setup' => 'setup#index'"
+        route "post '/setup/generate' => 'setup#generate'"
+        route "get '/setup/open' => 'setup#open'"
+
         route "root 'setup#index'"
       end
     end
