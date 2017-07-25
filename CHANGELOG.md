@@ -1,3 +1,9 @@
+Version 0.0.23
+  - Updade to rails 5.1.1
+  - Removed middleman generators
+  - Removed cucumber
+  
+  
 Version 0.0.22
   - Updating setup_controller
   

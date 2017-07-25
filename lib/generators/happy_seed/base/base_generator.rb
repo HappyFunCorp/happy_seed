@@ -27,12 +27,9 @@ module HappySeed
           gem 'rspec-rails', '~> 3.5.0'
           gem 'factory_girl_rails'
           gem 'capybara'
-          gem 'cucumber-rails', branch: 'rails-5', require: false
           gem 'guard-rspec', '~> 4.6.4', require: false
-          gem 'guard-cucumber'
           gem 'database_cleaner'
           gem 'spring-commands-rspec'
-          gem 'spring-commands-cucumber'
           gem 'launchy'
           gem 'vcr'
           gem 'faker'
@@ -64,10 +61,10 @@ module HappySeed
         gsub_file ".rspec", "--warnings\n", ""
         append_to_file ".rspec", "--format documentation\n"
 
-        # Install cucumber
-        generate "cucumber:install"
+        # # Install cucumber
+        # generate "cucumber:install"
 
-        append_to_file "features/support/env.rb", "\nWorld(FactoryGirl::Syntax::Methods)\n"
+        # append_to_file "features/support/env.rb", "\nWorld(FactoryGirl::Syntax::Methods)\n"
 
         # Install Guard
         run "guard init"

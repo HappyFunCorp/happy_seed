@@ -26,19 +26,7 @@ module HappySeed
       ARGV << "--mountable"
       HappySeed::Generators::PluginGenerator.start
     end
-
-    desc "static NAME", "Generate a new middleman static project"
-    def static( name )
-      require 'generators/happy_seed/static/static_generator'
-      HappySeed::Generators::StaticGenerator.start
-    end
-
-    desc "static_blog NAME", "Generate a new middleman static blog project"
-    def static_blog( name )
-      require 'generators/happy_seed/static_blog/static_blog_generator'
-      HappySeed::Generators::StaticBlogGenerator.start
-    end
-
+    
     desc "reference", "Quick generator Reference"    
     def reference    
       puts File.read( File.expand_path( "../../happy_seed.txt", File.dirname( __FILE__ ) ) )   
